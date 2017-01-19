@@ -1,13 +1,13 @@
-class raidController(object):
+class RaidController(object):
     def __init__(self, name):
         self.Name = name
         self.LDs = []
 
-    # Searches for raid controllers of all technology 
+    # Searches for raid controllers of all technology
     @staticmethod
     def probe():
         controllers = []
-        for technology in raidController.__subclasses__():
+        for technology in RaidController.__subclasses__():
             names = technology.probe()
             if names:
                 for name in names:
@@ -22,10 +22,11 @@ class raidController(object):
             LD.printInfo()
 
     def printSpecificInfo(self):
-        pass            
+        pass
 
-class raidLD(object):
-    
+
+class RaidLD(object):
+
     def __init__(self, name, controller):
         self.Name = name
         self.Controller = controller
@@ -35,7 +36,7 @@ class raidLD(object):
         print ''
         print 'Device: {}, {}, {}, {}'.format(self.Device, self.Size, self.Level, self.State)
         self.printSpecificInfo()
-        
+
         print ''
         print 'Active disks: {} of {}'.format(self.DriveActiveCount, self.DriveCount)
         raidPD.printTitle()
@@ -45,11 +46,12 @@ class raidLD(object):
     def printSpecificInfo(self):
         pass
 
-class raidPD(object):
+
+class RaidPD(object):
 
     def __init__(self, name, ld):
         self.LD = ld
-        self.Name=name
+        self.Name = name
         # Set default values
         self.Device = '-'
         self.Slot = '-'

@@ -1,11 +1,15 @@
-import re
 import os
-from raid import raidController, raidLD, raidPD
+import re
+
 import helpers as helpers
+
+from raid import RaidController, RaidLD, RaidPD
+
 
 raidUtil = '/usr/sbin/tw_cli'
 
-class raidController3ware(raidController):
+
+class RaidController3ware(RaidController):
 
     def __init__(self, name):
         super(self.__class__, self).__init__(name)
@@ -30,7 +34,7 @@ class raidController3ware(raidController):
         for line in helpers.getOutput('{} /c{} show'.format(raidUtil, self.Name)):
             match = re.search(r'^u(\d+)\s', line)
             if match:
-                self.LDs.append(raidLD3ware(match.group(1), self))
+                self.LDs.append(RaidLD3ware(match.group(1), self))
 
     def printSpecificInfo(self):
         print 'Model: {}, cache memory: {}'.format(self.Model, self.Cache)
@@ -49,22 +53,22 @@ class raidController3ware(raidController):
                 return match.group(1)
         return '-'
 
-class raidLD3ware(raidLD):
+
+class RaidLD3ware(RaidLD):
     def __init__(self, name, controller):
         super(self.__class__, self).__init__(name, controller)
-        self.Device           = self.Name
-        self.Level            = self.__getLDlevel()
-        self.State            = self.__getLDstate()
-        self.Size             = self.__getLDsize()
+        self.Device = self.Name
+        self.Level = self.__getLDlevel()
+        self.State = self.__getLDstate()
+        self.Size = self.__getLDsize()
         self.__enumeratePD()
         self.DriveActiveCount = self.DriveCount
 
     def __enumeratePD(self):
-        drives = []
         for line in helpers.getOutput('{} /c{}/u{} show all'.format(raidUtil, self.Controller.Name, self.Name)):
             match = re.search(r'^u.*DISK.*\sp(\d+)\s', line)
             if match:
-                self.PDs.append(raidPD3ware(match.group(1), self))
+                self.PDs.append(RaidPD3ware(match.group(1), self))
 
         self.DriveCount = len(self.PDs)
 
@@ -88,37 +92,33 @@ class raidLD3ware(raidLD):
             if match:
                 return '{} GiB'.format(match.group(1))
         return '0 GiB'
-        
 
-class raidPD3ware(raidPD):
+
+class RaidPD3ware(RaidPD):
 
     def __init__(self, name, ld):
         super(self.__class__, self).__init__(name, ld)
-        self.Device          = name
-        self.Technology      = self.__getTechnology()
-        self.Slot            = name
-        self.State           = self.__getState()
-        self.Model           = self.__getModel()
-        self.Serial          = self.__getSerial()
-        self.Firmware        = self.__getFirmware()
-        self.Capacity        = self.__getCapacity()
-        self.SectorSizes     = self.__getSectorSizes()
-        self.RPM             = self.__getRPM()
-        self.FormFactor      = self.__getFormFactor()
-        self.Speed           = self.__getSpeed()
-        self.PowerOnHours    = self.__getPowerOnHours()
+        self.Device = name
+        self.Technology = self.__getTechnology()
+        self.Slot = name
+        self.State = self.__getState()
+        self.Model = self.__getModel()
+        self.Serial = self.__getSerial()
+        self.Firmware = self.__getFirmware()
+        self.Capacity = self.__getCapacity()
+        self.SectorSizes = self.__getSectorSizes()
+        self.RPM = self.__getRPM()
+        self.FormFactor = self.__getFormFactor()
+        self.Speed = self.__getSpeed()
+        self.PowerOnHours = self.__getPowerOnHours()
         self.BadSectorsCount = self.__getBadSectorsCount()
-        self.Tempreature     = self.__getTemperature()
-
-    def __getSlot(self):
-        output = helpers.getOutput('{} /c{}/p{} show all'.format(raidUtil, self.LD.Controller.Name, self.Name))
-        return 0
+        self.Tempreature = self.__getTemperature()
 
     def __getState(self):
         for line in helpers.getOutput('{} /c{}/p{} show all'.format(raidUtil, self.LD.Controller.Name, self.Name)):
             match = re.search(r'\/c\d+\/p\d+\sStatus\s=\s(.*)$', line)
             if match:
-                return { 'OK': 'Optimal'}.get(match.group(1),match.group(1))
+                return {'OK': 'Optimal'}.get(match.group(1), match.group(1))
         return '-'
 
     def __getModel(self):
@@ -167,7 +167,7 @@ class raidPD3ware(raidPD):
             match = re.search(r'\/c\d+\/p\d+\sLink\sSpeed\s=\s(.*)\s', line)
             if match:
                 return match.group(1)
-        return '-'        
+        return '-'
 
     def __getPowerOnHours(self):
         for line in helpers.getOutput('{} /c{}/p{} show all'.format(raidUtil, self.LD.Controller.Name, self.Name)):
@@ -182,7 +182,7 @@ class raidPD3ware(raidPD):
             if match:
                 return match.group(1)
         return 0
-        
+
     def __getTemperature(self):
         for line in helpers.getOutput('{} /c{}/p{} show all'.format(raidUtil, self.LD.Controller.Name, self.Name)):
             match = re.search(r'\/c\d+\/p\d+\sTemperature\s=\s(\d*)\s', line)

@@ -1,11 +1,8 @@
 #!/usr/bin/python
-import os
-import sys
+from lib.raid import RaidController
+from lib.raid_3ware import RaidController3ware
+from lib.raid_soft import RaidControllerSoft
 
-from lib.raid import raidController
-from lib.raid_soft import raidControllerSoft
-from lib.raid_3ware import raidController3ware
-
-controllers = raidController.probe()
+controllers = RaidController.probe()
 for controller in controllers:
     controller.printInfo()

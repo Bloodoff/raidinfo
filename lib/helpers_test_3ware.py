@@ -10,6 +10,7 @@ FakeResponces = { '/usr/sbin/tw_cli show'           : 'testdata/3ware/1.txt',
                   '/usr/sbin/tw_cli /c6 show all'   : 'testdata/3ware/6.txt'
                   }
 
+
 def readFile(filename):
     file  = open(filename)
     lines = [line.strip() for line in file]
@@ -19,9 +20,10 @@ def readFile(filename):
 
 Outputs = {}
 
+
 def getOutput(cmd):
     lines = []
-    if ( Outputs.has_key(cmd) ):
+    if (cmd in Outputs):
         lines = Outputs[cmd]
     else:
         testfile = FakeResponces.get(cmd, False)
@@ -30,7 +32,7 @@ def getOutput(cmd):
             sys.exit(12)
         output = readFile('{}/{}'.format(os.path.dirname(__file__), testfile))
         for line in output:
-            if not re.match(r'^$',line.strip()):
+            if not re.match(r'^$', line.strip()):
                 lines.append(line.strip())
         Outputs[cmd] = lines
     return lines

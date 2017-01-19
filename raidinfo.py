@@ -3,8 +3,8 @@ import os
 import sys
 
 from lib.raid import raidController
-from lib.raid_soft import raidControllerSoft
 from lib.raid_3ware import raidController3ware
+from lib.raid_soft import raidControllerSoft
 
 
 def printUsage():

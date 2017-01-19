@@ -1,7 +1,7 @@
 import re
 import os
 from raid import raidController, raidLD, raidPD
-import helpers_test_3ware as helpers
+import helpers as helpers
 
 raidUtil = '/usr/sbin/tw_cli'
 
@@ -16,8 +16,8 @@ class raidController3ware(raidController):
 
     @staticmethod
     def probe():
-        #if not os.path.isfile(raidUtil):
-        #    return False
+        if not os.path.isfile(raidUtil):
+            return False
         output = helpers.getOutput('{} show'.format(raidUtil))
         controllers = []
         for line in output:

@@ -208,7 +208,7 @@ class raidPDsoft(raidPD):
 
     def __getTemperature(self):
         for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'94\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', line)
+            match = re.search(r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', line)
             if match:
                 return match.group(1)
         return '-'

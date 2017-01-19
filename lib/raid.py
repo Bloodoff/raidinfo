@@ -15,8 +15,8 @@ class RaidController(object):
         return controllers
 
     def printInfo(self):
-        print ''
-        print 'Controller {} type {} contains {} logical drives'.format(self.Name, self.Type, len(self.LDs))
+        print('')
+        print('Controller {} type {} contains {} logical drives'.format(self.Name, self.Type, len(self.LDs)))
         self.printSpecificInfo()
         for LD in self.LDs:
             LD.printInfo()
@@ -33,13 +33,13 @@ class RaidLD(object):
         self.PDs = []
 
     def printInfo(self):
-        print ''
-        print 'Device: {}, {}, {}, {}'.format(self.Device, self.Size, self.Level, self.State)
+        print('')
+        print('Device: {}, {}, {}, {}'.format(self.Device, self.Size, self.Level, self.State))
         self.printSpecificInfo()
 
-        print ''
-        print 'Active disks: {} of {}'.format(self.DriveActiveCount, self.DriveCount)
-        raidPD.printTitle()
+        print('')
+        print('Active disks: {} of {}'.format(self.DriveActiveCount, self.DriveCount))
+        RaidPD.printTitle()
         for PD in self.PDs:
             PD.printInfo()
 
@@ -72,11 +72,11 @@ class RaidPD(object):
 
     @staticmethod
     def printTitle():
-        print 'Device       |Slot| State      | Tech | Model                    | Serial number    | Firmware | Capacity   | Sector size |  FF  |  RPM  | Speed     | Temp | Hours  | Errors'
-        print '-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+        print('Device       |Slot| State      | Tech | Model                    | Serial number    | Firmware | Capacity   | Sector size |  FF  |  RPM  | Speed     | Temp | Hours  | Errors')
+        print('-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
 
     def printInfo(self):
-        print '{:12} | {:>2} | {:10} | {:4} | {:24} | {:16} | {:8} | {:>10} | {:>4} / {:>4} | {:3}" | {:>5} | {:>4} Gbps | {:>4} | {:>6} | {:>6}'.format(
+        print('{:12} | {:>2} | {:10} | {:4} | {:24} | {:16} | {:8} | {:>10} | {:>4} / {:>4} | {:3}" | {:>5} | {:>4} Gbps | {:>4} | {:>6} | {:>6}'.format(
             self.Device,
             self.Slot,
             self.State,
@@ -93,4 +93,4 @@ class RaidPD(object):
             self.Tempreature,
             self.PowerOnHours,
             self.BadSectorsCount
-        )
+        ))

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 import sys
 
@@ -8,12 +8,12 @@ from lib.raid_soft import raidControllerSoft
 
 
 def printUsage():
-    print 'Makes a compact report about RAID controllers'
-    print 'Usage: softraid.py'
+    print('Makes a compact report about RAID controllers')
+    print('Usage: softraid.py')
 
 if __name__ == '__main__':
     if os.getenv('USER') != 'root':
-        print 'This script requires Administrator privileges'
+        print('This script requires Administrator privileges')
         sys.exit(5)
 
 if len(sys.argv) > 1:

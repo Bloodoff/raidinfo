@@ -12,7 +12,7 @@ FakeResponces = { '/usr/sbin/tw_cli show'           : 'testdata/3ware/1.txt',
 
 
 def readFile(filename):
-    file  = open(filename)
+    file = open(filename)
     lines = [line.strip() for line in file]
     if len(lines) == 1:
         return lines[0]
@@ -28,7 +28,7 @@ def getOutput(cmd):
     else:
         testfile = FakeResponces.get(cmd, False)
         if not testfile:
-            print 'Test file for command "{}" not found'.format(cmd)
+            print('Test file for command "{}" not found'.format(cmd))
             sys.exit(12)
         output = readFile('{}/{}'.format(os.path.dirname(__file__), testfile))
         for line in output:

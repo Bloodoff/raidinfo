@@ -1,9 +1,9 @@
 import os
 import re
 
-import helpers as helpers
+from . import helpers_test_3ware as helpers
 
-from raid import RaidController, RaidLD, RaidPD
+from .raid import RaidController, RaidLD, RaidPD
 
 
 raidUtil = '/usr/sbin/tw_cli'
@@ -20,8 +20,8 @@ class RaidController3ware(RaidController):
 
     @staticmethod
     def probe():
-        if not os.path.isfile(raidUtil):
-            return False
+        #if not os.path.isfile(raidUtil):
+        #    return []
         output = helpers.getOutput('{} show'.format(raidUtil))
         controllers = []
         for line in output:
@@ -37,7 +37,7 @@ class RaidController3ware(RaidController):
                 self.LDs.append(RaidLD3ware(match.group(1), self))
 
     def printSpecificInfo(self):
-        print 'Model: {}, cache memory: {}'.format(self.Model, self.Cache)
+        print('Model: {}, cache memory: {}'.format(self.Model, self.Cache))
 
     def __getModel(self):
         for line in helpers.getOutput('{} /c{} show all'.format(raidUtil, self.Name)):
@@ -83,7 +83,7 @@ class RaidLD3ware(RaidLD):
         for line in helpers.getOutput('{} /c{}/u{} show all'.format(raidUtil, self.Controller.Name, self.Name)):
             match = re.search(r'\/c\d+\/u\d+\sstatus\s=\s(.*)$', line)
             if match:
-                return { 'OK': 'Optimal'}.get(match.group(1),match.group(1))
+                return {'OK': 'Optimal'}.get(match.group(1), match.group(1))
         return '-'
 
     def __getLDsize(self):

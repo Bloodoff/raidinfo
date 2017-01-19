@@ -1,9 +1,9 @@
 import os
 import re
 
-import helpers
+from . import helpers
 
-from raid import RaidController, RaidLD, RaidPD
+from .raid import RaidController, RaidLD, RaidPD
 
 
 syspath = "/sys/block"
@@ -59,7 +59,7 @@ class RaidLDsoft(RaidLD):
         self.DriveCount = len(self.PDs)
 
     def printSpecificInfo(self):
-        print 'Metadata version: {}, layout {}'.format(self.Version, self.Layout)
+        print('Metadata version: {}, layout {}'.format(self.Version, self.Layout))
 
     def __getLDlevel(self):
         return helpers.readFile('{}/{}/md/level'.format(syspath, self.Name)).upper()

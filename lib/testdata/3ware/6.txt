@@ -1,0 +1,40 @@
+/c6 Driver Version = 2.26.02.014
+/c6 Model = 9690SA-4I
+/c6 Available Memory = 448MB
+/c6 Firmware Version = FH9X 4.08.00.006
+/c6 Bios Version = BE9X 4.08.00.001
+/c6 Boot Loader Version = BL9X 3.08.00.001
+/c6 Serial Number = L340525B0260860
+/c6 PCB Version = Rev 044
+/c6 PCHIP Version = 2.00
+/c6 ACHIP Version = 1.31A4
+/c6 Controller Phys = 8
+/c6 Connections = 2 of 128
+/c6 Drives = 2 of 128
+/c6 Units = 1 of 128
+/c6 Active Drives = 2 of 128
+/c6 Active Units = 1 of 32
+/c6 Max Drives Per Unit = 32
+/c6 Total Optimal Units = 1
+/c6 Not Optimal Units = 0 
+/c6 Disk Spinup Policy = 1
+/c6 Spinup Stagger Time Policy (sec) = 1
+/c6 Auto-Carving Policy = off
+/c6 Auto-Carving Size = 2048 GB
+/c6 Auto-Rebuild Policy = on
+/c6 Rebuild Mode = Adaptive
+/c6 Rebuild Rate = 1
+/c6 Verify Mode = Adaptive
+/c6 Verify Rate = 1
+/c6 Controller Bus Type = PCIe
+/c6 Controller Bus Width = 4 lanes
+/c6 Controller Bus Speed = 2.5 Gbps/lane
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       465.651   RiW    ON     
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   465.76 GB SATA  0   -            WDC WD5001AALS-00J7 
+p1    OK             u0   465.76 GB SATA  1   -            WDC WD5001AALS-00J7 

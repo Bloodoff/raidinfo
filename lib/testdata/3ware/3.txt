@@ -1,0 +1,21 @@
+/c6/u0 status = OK
+/c6/u0 is not rebuilding, its current state is OK
+/c6/u0 is not verifying, its current state is OK
+/c6/u0 is initialized.
+/c6/u0 Write Cache = on
+/c6/u0 Read Cache = Intelligent
+/c6/u0 volume(s) = 1
+/c6/u0 name =                      
+/c6/u0 serial number = V8687841FE0FC100F555 
+/c6/u0 Ignore ECC policy = off       
+/c6/u0 Auto Verify Policy = on        
+/c6/u0 Storsave Policy = balance     
+/c6/u0 Command Queuing Policy = on        
+/c6/u0 Rapid RAID Recovery setting = all
+
+Unit     UnitType  Status         %RCmpl  %V/I/M  VPort Stripe  Size(GB)
+------------------------------------------------------------------------
+u0       RAID-1    OK             -       -       -     -       465.651   
+u0-0     DISK      OK             -       -       p0    -       465.651   
+u0-1     DISK      OK             -       -       p1    -       465.651   
+u0/v0    Volume    -              -       -       -     -       465.651   

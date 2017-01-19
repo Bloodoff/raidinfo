@@ -1,0 +1,5 @@
+
+Ctl   Model        (V)Ports  Drives   Units   NotOpt  RRate   VRate  BBU
+------------------------------------------------------------------------
+c6    9690SA-4I    2         2        1       0       1       1      -        
+

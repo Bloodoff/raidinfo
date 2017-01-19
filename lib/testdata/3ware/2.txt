@@ -1,0 +1,10 @@
+
+Unit  UnitType  Status         %RCmpl  %V/I/M  Stripe  Size(GB)  Cache  AVrfy
+------------------------------------------------------------------------------
+u0    RAID-1    OK             -       -       -       465.651   RiW    ON     
+
+VPort Status         Unit Size      Type  Phy Encl-Slot    Model
+------------------------------------------------------------------------------
+p0    OK             u0   465.76 GB SATA  0   -            WDC WD5001AALS-00J7 
+p1    OK             u0   465.76 GB SATA  1   -            WDC WD5001AALS-00J7 
+

@@ -1,7 +1,7 @@
 import re
 import os
 from raid import raidController, raidLD, raidPD
-import testhelpers as helpers
+import helpers_test_3ware as helpers
 
 raidUtil = '/usr/sbin/tw_cli'
 

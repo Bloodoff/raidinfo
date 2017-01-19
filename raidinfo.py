@@ -4,7 +4,7 @@ import sys
 
 from lib.raid import raidController
 from lib.raid_soft import raidControllerSoft
-#from lib.raid_3ware import raidController3ware
+from lib.raid_3ware import raidController3ware
 
 
 def printUsage():
@@ -13,7 +13,7 @@ def printUsage():
 if __name__ == '__main__':
     if os.getenv('USER') != 'root':
         print 'This script requires Administrator privileges'
-        sys.exit(5)
+#        sys.exit(5)
 
 if len(sys.argv) >1:
     printUsage()

@@ -43,6 +43,13 @@ FakeResponses = {'/opt/compaq/hpacucli/bld/hpacucli controller all show'   : 'te
                  'smartctl -x -d cciss,5 /dev/sg1': 'testdata/hpsa/smart/6.txt',
                  'smartctl -x -d cciss,6 /dev/sg1': 'testdata/hpsa/smart/7.txt',
                  'smartctl -x -d cciss,7 /dev/sg1': 'testdata/hpsa/smart/8.txt',
+                 'smartctl -x -d cciss,0 /dev/sg3': 'testdata/hpsa/smart/10.txt',
+                 'smartctl -x -d cciss,1 /dev/sg3': 'testdata/hpsa/smart/11.txt',
+                 'smartctl -x -d cciss,2 /dev/sg3': 'testdata/hpsa/smart/12.txt',
+                 'smartctl -x -d cciss,3 /dev/sg3': 'testdata/hpsa/smart/13.txt',
+                 'smartctl -x -d cciss,4 /dev/sg3': 'testdata/hpsa/smart/14.txt',
+                 'smartctl -x -d cciss,5 /dev/sg3': 'testdata/hpsa/smart/15.txt',
+                 'smartctl -x -d cciss,6 /dev/sg3': 'testdata/hpsa/smart/16.txt',
                 }
 
 

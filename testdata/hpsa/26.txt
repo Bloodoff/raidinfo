@@ -1,0 +1,22 @@
+Smart Array P410i in Slot 0 (Embedded)
+
+   array A
+
+      physicaldrive 2I:1:5
+         Port: 2I
+         Box: 1
+         Bay: 5
+         Status: OK
+         Drive Type: Data Drive
+         Interface Type: SAS
+         Size: 300 GB
+         Rotational Speed: 10500
+         Firmware Revision: HPD3
+         Serial Number: S0K1EYTG0000B418F5PJ
+         Model: HP      EG0300FCVBF     
+         Current Temperature (C): 26
+         Maximum Temperature (C): 41
+         PHY Count: 2
+         PHY Transfer Rate: 3.0Gbps, Unknown
+
+

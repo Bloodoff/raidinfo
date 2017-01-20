@@ -87,12 +87,12 @@ class RaidLDsoft(RaidLD):
         blocksize = int(helpers.readFile('{}/{}/queue/logical_block_size'.format(syspath, self.Name)))
         size = blockcount / 1024 * blocksize / 1024
         if size < 1024:
-            return '{} MiB'.format(size)
+            return '{} MiB'.format(round(size))
         size = size / 1024
         if size < 1024:
-            return '{} GiB'.format(size)
+            return '{} GiB'.format(round(size))
         size = size / 1024
-        return '{} TiB'.format(size)
+        return '{} TiB'.format((size))
 
     def __getLDdriveCount(self):
         return helpers.readFile('{}/{}/md/raid_disks'.format(syspath, self.Name))
@@ -175,7 +175,7 @@ class RaidPDsoft(RaidPD):
             match = re.search(r'Rotation Rate:\s+(\d+)', line)
             if match:
                 return match.group(1)
-        return 0
+        return '-'
 
     def __getFormFactor(self):
         for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):

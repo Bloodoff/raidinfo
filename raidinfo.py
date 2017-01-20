@@ -2,9 +2,7 @@
 import os
 import sys
 
-from lib.raid import raidController
-from lib.raid_3ware import raidController3ware
-from lib.raid_soft import raidControllerSoft
+from lib import *
 
 
 def printUsage():
@@ -20,6 +18,6 @@ if len(sys.argv) > 1:
     printUsage()
     sys.exit(1)
 
-controllers = raidController.probe()
+controllers = raid.RaidController.probe()
 for controller in controllers:
     controller.printInfo()

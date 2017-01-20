@@ -1,0 +1,24 @@
+Smart Array P212 in Slot 2
+
+   array A
+
+      physicaldrive 2E:1:11
+         Port: 2E
+         Box: 1
+         Bay: 11
+         Status: OK
+         Drive Type: Data Drive
+         Interface Type: SATA
+         Size: 2 TB
+         Rotational Speed: 7200
+         Firmware Revision: CV26    
+         Serial Number:             Z4Z15GRT
+         Model: ATA     ST2000VX000-1ES1
+         SATA NCQ Capable: True
+         SATA NCQ Enabled: True
+         Current Temperature (C): 23
+         Maximum Temperature (C): 31
+         PHY Count: 1
+         PHY Transfer Rate: 1.5Gbps
+
+

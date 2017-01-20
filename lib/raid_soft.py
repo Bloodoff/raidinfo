@@ -4,7 +4,7 @@ import re
 from . import helpers
 
 from .raid import RaidController, RaidLD, RaidPD
-
+from .smart import SMARTinfo
 
 syspath = "/sys/block"
 mdstat = "/proc/mdstat"
@@ -92,7 +92,7 @@ class RaidLDsoft(RaidLD):
         if size < 1024:
             return '{} GiB'.format(round(size))
         size = size / 1024
-        return '{} TiB'.format((size))
+        return '{} TiB'.format(round(size))
 
     def __getLDdriveCount(self):
         return helpers.readFile('{}/{}/md/raid_disks'.format(syspath, self.Name))
@@ -109,17 +109,19 @@ class RaidPDsoft(RaidPD):
         self.Technology = 'SATA'
         self.Slot = self.__getSlot()
         self.State = self.__getState()
-        self.Model = self.__getModel()
-        self.Serial = self.__getSerial()
-        self.Firmware = self.__getFirmware()
-        self.Capacity = self.__getCapacity()
-        self.SectorSizes = self.__getSectorSizes()
-        self.FormFactor = self.__getFormFactor()
-        self.Speed = self.__getSpeed()
-        self.RPM = self.__getRPM()
-        self.PowerOnHours = self.__getPowerOnHours()
-        self.BadSectorsCount = self.__getBadSectorsCount()
-        self.Tempreature = self.__getTemperature()
+        smart = SMARTinfo('', self.PhysicalDevice)
+        self.Model = smart.Model
+        self.Serial = smart.Serial
+        self.Firmware = smart.Firmware
+        self.Capacity = smart.Capacity
+        self.SectorSizes = smart.SectorSizes
+        self.FormFactor = smart.FormFactor
+        self.PHYCount = smart.PHYCount
+        self.PHYSpeed = smart.PHYSpeed
+        self.RPM = smart.RPM
+        self.PowerOnHours = smart.PowerOnHours
+        self.BadSectorsCount = smart.ErrorCount
+        self.Tempreature = smart.Temperature
 
     def __getSlot(self):
         slot = helpers.readFile('{}/{}/md/dev-{}/slot'.format(syspath, self.LD.Name, self.Name))
@@ -134,87 +136,3 @@ class RaidPDsoft(RaidPD):
             'spare': 'Hot Spare',
             'faulty': 'Faulty'
         }.get(state, state)
-
-    def __getModel(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Device Model:\s+(.*)$', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getSerial(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Serial Number:\s+(.*)$', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getFirmware(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Firmware Version:\s+(.*)$', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getCapacity(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'User Capacity:.+\[(.*)\]$', line)
-            if match:
-                return match.group(1)
-        return 0
-
-    def __getSectorSizes(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Sector Sizes:\s+(\d+)\D+(\d+)', line)
-            if match:
-                return [match.group(1), match.group(2)]
-        return [0, 0]
-
-    def __getRPM(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Rotation Rate:\s+(\d+)', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getFormFactor(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'Form Factor:\s+(.+)\s+inches', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getSpeed(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'SATA Version is:.+current:\s(.+)\sGb/s\)', line)
-            if match:
-                return match.group(1)
-        return '-'
-
-    def __getPowerOnHours(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'9\s+Power_On_Hours.*\s(\d+)$', line)
-            if match:
-                return match.group(1)
-        return 0
-
-    def __getBadSectorsCount(self):
-        count = 0
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            for item in [
-                    r'5\s+Reallocated_Sector_Ct.*\s(\d+)$',
-                    r'196\s+Reallocated_Event_Count.*\s(\d+)$',
-                    r'197\s+Current_Pending_Sector.*\s(\d+)$',
-                    r'198\s+Offline_Uncorrectable.*\s(\d+)$'
-            ]:
-                match = re.search(item, line)
-                if match:
-                    count = count + int(match.group(1))
-        return count
-
-    def __getTemperature(self):
-        for line in helpers.getOutput('{} -a {}'.format(smartctl, self.PhysicalDevice)):
-            match = re.search(r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', line)
-            if match:
-                return match.group(1)
-        return '-'

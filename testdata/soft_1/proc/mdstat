@@ -1,0 +1,14 @@
+Personalities : [raid1] [raid6] [raid5] [raid4] 
+md126 : active raid1 sdd3[3](S) sdc3[4](S) sdb3[0] sda3[2]
+      67117056 blocks super 1.2 [2/2] [UU]
+      bitmap: 1/1 pages [4KB], 65536KB chunk
+
+md122 : active raid6 sdc4[4] sdd4[5] sdb4[0] sda4[1]
+      11585387520 blocks super 1.2 level 6, 512k chunk, algorithm 2 [4/4] [UUUU]
+      bitmap: 1/44 pages [4KB], 65536KB chunk
+
+md127 : active raid1 sdd2[4](S) sdc2[3](S) sdb2[0] sda2[2]
+      512704 blocks super 1.2 [2/2] [UU]
+      bitmap: 0/1 pages [0KB], 65536KB chunk
+
+unused devices: <none>

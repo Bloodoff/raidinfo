@@ -1,6 +1,6 @@
 class RaidController(object):
     def __init__(self, name):
-        self.Name = name
+        self.Name = name.strip()
         self.LDs = []
 
     # Searches for raid controllers of all technology
@@ -65,7 +65,8 @@ class RaidPD(object):
         self.SectorSizes.append('-')
         self.SectorSizes.append('-')
         self.FormFactor = '-'
-        self.Speed = '-'
+        self.PHYCount = 0
+        self.PHYSpeed = None
         self.RPM = '-'
         self.Tempreature = '-'
         self.PowerOnHours = '-'
@@ -73,11 +74,14 @@ class RaidPD(object):
 
     @staticmethod
     def printTitle():
-        print('Device       |Slot| State      | Tech | Model                    | Serial number    | Firmware | Capacity   | Sector size |  FF  |  RPM  | Speed     | Temp | Hours  | Errors')
+        print('Device       |Slot| State      | Tech | Model                    | Serial number    | Firmware | Capacity   | Sector size |  FF  |  RPM  | PHY Speed | Temp | Hours  | Errors')
         print('-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
 
     def printInfo(self):
-        print('{:12} | {:>2} | {:10} | {:4} | {:24} | {:16} | {:8} | {:>10} | {:>4} / {:>4} | {:3}  | {:>5} | {:>4} Gbps | {:>4} | {:>6} | {:>6}'.format(
+        phy = '-'
+        if (self.PHYCount > 0) and (self.PHYSpeed is not None):
+            phy = '{} x {}'.format(self.PHYCount, self.PHYSpeed)
+        print('{!s:12} | {!s:>2} | {!s:10} | {!s:4} | {!s:24} | {!s:16} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3}  | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
             self.Device,
             self.Slot,
             self.State,
@@ -90,7 +94,7 @@ class RaidPD(object):
             self.SectorSizes[1],
             self.FormFactor,
             self.RPM,
-            self.Speed,
+            phy,
             self.Tempreature,
             self.PowerOnHours,
             self.BadSectorsCount

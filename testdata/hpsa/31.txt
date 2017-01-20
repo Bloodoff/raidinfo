@@ -1,0 +1,20 @@
+Smart Array P212 in Slot 2
+
+   array A
+
+      Logical Drive: 1
+         Size: 18.2 TB
+         Fault Tolerance: RAID 5
+         Heads: 255
+         Sectors Per Track: 32
+         Cylinders: 65535
+         Strip Size: 256 KB
+         Full Stripe Size: 2560 KB
+         Status: OK
+         Caching:  Enabled
+         Parity Initialization Status: Initialization Completed
+         Unique Identifier: 600508B1001CEC03D50FEB6500B38DA9
+         Disk Name: /dev/sdb
+         Mount Points: None
+         Logical Drive Label: A57D69F4PACCPID1150061HD88A
+         Drive Type: Data

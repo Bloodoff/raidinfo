@@ -1,0 +1,21 @@
+Smart Array P410i in Slot 0 (Embedded)
+
+   array A
+
+      Logical Drive: 1
+         Size: 1.9 TB
+         Fault Tolerance: RAID 5
+         Heads: 255
+         Sectors Per Track: 32
+         Cylinders: 65535
+         Strip Size: 64 KB
+         Full Stripe Size: 448 KB
+         Status: OK
+         Caching:  Enabled
+         Parity Initialization Status: Initialization Completed
+         Unique Identifier: 600508B1001037383941424344450500
+         Disk Name: /dev/sda
+         Mount Points: /boot 500 MB
+         OS Status: LOCKED
+         Logical Drive Label: A003E4FB50123456789ABCDE177D
+         Drive Type: Data

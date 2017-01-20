@@ -16,7 +16,6 @@ class RaidControllerHPSA(RaidController):
         self.Type = 'HPSA'
         self.CacheStatusDetails = ''
         self.__fill_data()
-        self.__load_all_smart()
         self.__enumerate_ld()
 
     @staticmethod
@@ -31,45 +30,6 @@ class RaidControllerHPSA(RaidController):
                 controllers.append(match.group(1))
         return controllers
 
-    def __enumerate_all_hpsa_scsi_host(self):
-        output = helpers.readFile('/proc/scsi/scsi')
-        hp_scsi_controllers = []
-        current_host = -1
-        current_vendor_hp = False
-        for line in output:
-            match = re.search(r'^Host:', line)
-            if match:
-                current_host = current_host + 1
-                current_vendor_hp = False
-            match = re.search(r'^Vendor:\sHP', line)
-            if match:
-                current_vendor_hp = True
-            match = re.search(r'^Type:\s+RAID', line)
-            if match and current_vendor_hp:
-                hp_scsi_controllers.append('/dev/sg{}'.format(current_host))
-        return hp_scsi_controllers
-
-    def __load_all_smart(self):
-        self.__smart = []
-
-        for host in self.__enumerate_all_hpsa_scsi_host():
-            i = 0
-            while True:
-                smart = SMARTinfo(' -d cciss,{}'.format(i), host)
-                if not smart.SMART:
-                    break
-                if not hasattr(smart, 'Serial'):
-                    break
-                self.__smart.append(smart)
-                i = i + 1
-
-    def search_smart_by_serial(self, serial):
-        for smart in self.__smart:
-            print('Compare "{}"<=>"{}"'.format(smart.Serial, serial))
-            if (smart.Serial in serial) or (serial in smart.Serial):
-                return smart
-        return None
-
     def __enumerate_ld(self):
         for line in helpers.getOutput('{} controller slot={} array all show'.format(raidUtil, self.Name)):
             match = re.search(r'^array\s(\S+)\s', line)
@@ -78,7 +38,7 @@ class RaidControllerHPSA(RaidController):
                 for line in helpers.getOutput('{} controller slot={} array {} logicaldrive all show'.format(raidUtil, self.Name, array_name)):
                     match = re.search(r'^logicaldrive\s(\d+)\s', line)
                     if match:
-                        self.LDs.append(RaidLDvHPSA(match.group(1), self, array_name))
+                        self.LDs.append(RaidLDvendorHPSA(match.group(1), self, array_name))
 
     def printSpecificInfo(self):
         print('Model: {}, s/n: {}, fw: {}, Status: {}'.format(self.Model, self.Serial, self.Firmware, self.Status))
@@ -124,14 +84,15 @@ class RaidControllerHPSA(RaidController):
                 self.CacheBatteryCount = match.group(1)
 
 
-class RaidLDvHPSA(RaidLD):
+class RaidLDvendorHPSA(RaidLD):
     def __init__(self, name, controller, array_name):
         super(self.__class__, self).__init__(name, controller)
-        self.Device = self.Name
         self.ArrayName = array_name
         self.Level = ''
         self.State = ''
         self.Size = ''
+        self.__fill_data()
+        self.__load_all_smart()
         self.__enumerate_pd()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
@@ -140,10 +101,43 @@ class RaidLDvHPSA(RaidLD):
         for line in helpers.getOutput('{} controller slot={} array {} physicaldrive all show'.format(raidUtil, self.Controller.Name, self.ArrayName)):
             match = re.search(r'^physicaldrive\s(\S+)', line)
             if match:
-                self.PDs.append(RaidPDvHPSA(match.group(1), self))
+                self.PDs.append(RaidPDvendorHPSA(match.group(1), self))
+
+    def __fill_data(self):
+        for line in helpers.getOutput('{} controller slot={} logicaldrive {} show'.format(raidUtil, self.Controller.Name, self.Name)):
+            match = re.search(r'^Disk\sName:\s(\S.*)$', line)
+            if match:
+                self.Device = match.group(1)
+            match = re.search(r'^Size:\s(\S.*)$', line)
+            if match:
+                self.Size = match.group(1)
+            match = re.search(r'^Fault\sTolerance:\s(\S.*)$', line)
+            if match:
+                self.Level = match.group(1)
+            match = re.search(r'^Status:\s(\S.*)$', line)
+            if match:
+                self.State = {'OK': 'Optimal'}.get(match.group(1), match.group(1))
+
+    def __load_all_smart(self):
+        self.__smart = []
+        i = 0
+        while True:
+            smart = SMARTinfo(' -d cciss,{}'.format(i), self.Device)
+            if not smart.SMART:
+                break
+            if not hasattr(smart, 'Serial'):
+                break
+            self.__smart.append(smart)
+            i = i + 1
+
+    def search_smart_by_serial(self, serial):
+        for smart in self.__smart:
+            if (smart.Serial in serial) or (serial in smart.Serial):
+                return smart
+        return None
 
 
-class RaidPDvHPSA(RaidPD):
+class RaidPDvendorHPSA(RaidPD):
 
     def __init__(self, name, ld):
         super(self.__class__, self).__init__(name, ld)
@@ -177,10 +171,8 @@ class RaidPDvHPSA(RaidPD):
                 self.Serial = match.group(1)
 
     def __fill_advanced_info(self):
-        smart = self.LD.Controller.search_smart_by_serial(self.Serial)
+        smart = self.LD.search_smart_by_serial(self.Serial)
         if smart is not None:
             for prop in ['Model', 'Serial', 'Firmware', 'SectorSizes', 'FormFactor', 'PowerOnHours', 'ErrorCount', 'Temperature', 'Capacity']:
                 if hasattr(smart, prop):
                     setattr(self, prop, getattr(smart, prop))
-
-

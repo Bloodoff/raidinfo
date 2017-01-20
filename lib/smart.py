@@ -18,13 +18,14 @@ class SMARTinfo(object):
 
     def __load_values(self):
         for line in helpers.getOutput(self.__cmd):
+            # SATA
             match = re.search(r'Model\sFamily:\s+(.*)$', line)
             if match:
                 self.Vendor = match.group(1)
             match = re.search(r'Device\sModel:\s+(.*)$', line)
             if match:
                 self.Model = match.group(1)
-            match = re.search(r'Serial\sNumber:\s+(.*)$', line)
+            match = re.search(r'Serial\s[N|n]umber:\s+(.*)$', line)
             if match:
                 self.Serial = match.group(1)
             match = re.search(r'Firmware\sVersion:\s+(.*)$', line)
@@ -60,7 +61,23 @@ class SMARTinfo(object):
             match = re.search(r'9\sPower_On_Hours+.*\s(\d+)$', line)
             if match:
                 self.PowerOnHours = match.group(1)
-
+            # SAS
+            match = re.search(r'Vendor:\s+(\S.*)$', line)
+            if match:
+                self.Vendor = match.group(1)
+            match = re.search(r'Product:\s+(\S.*)$', line)
+            if match:
+                self.Model = '{} {}'.format(self.Vendor, match.group(1))
+            match = re.search(r'Revision:\s+(\S.*)$', line)
+            if match:
+                self.Firmware = match.group(1)
+            match = re.search(r'Current\sDrive\sTemperature:\s+(\d.*)', line)
+            if match:
+                self.Temperature = match.group(1)
+            match = re.search(r'number\sof\shours\spowered\sup\s=\s+(\d*)', line)
+            if match:
+                self.PowerOnHours = match.group(1)
+            # Common errors
             match = re.search(r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', line)
             if match:
                 self.SMART = False

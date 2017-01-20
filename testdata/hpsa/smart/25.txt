@@ -1,0 +1,4 @@
+smartctl 6.5 2016-05-07 r4318 [x86_64-linux-4.7.7-200.fc24.x86_64] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+Smartctl open device: /dev/sg3 [cciss_disk_14] [SCSI/SAT] failed: INQUIRY [SAT]: No such device or address

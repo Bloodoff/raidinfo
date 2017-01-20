@@ -8,6 +8,7 @@ smartctl = "/usr/sbin/smartctl"
 class SMARTinfo(object):
     def __init__(self, options, device):
         self.SMART = True
+        self.Disk = True
         self.ErrorCount = 0
         self.Technology = 'SATA'
         self.PHYCount = 1
@@ -65,4 +66,4 @@ class SMARTinfo(object):
                 self.SMART = False
             match = re.search(r'.*Terminate\scommand\searly\sdue', line)
             if match:
-                self.SMART = False
+                self.Disk = False

@@ -110,18 +110,9 @@ class RaidPDsoft(RaidPD):
         self.Slot = self.__getSlot()
         self.State = self.__getState()
         smart = SMARTinfo('', self.PhysicalDevice)
-        self.Model = smart.Model
-        self.Serial = smart.Serial
-        self.Firmware = smart.Firmware
-        self.Capacity = smart.Capacity
-        self.SectorSizes = smart.SectorSizes
-        self.FormFactor = smart.FormFactor
-        self.PHYCount = smart.PHYCount
-        self.PHYSpeed = smart.PHYSpeed
-        self.RPM = smart.RPM
-        self.PowerOnHours = smart.PowerOnHours
-        self.BadSectorsCount = smart.ErrorCount
-        self.Tempreature = smart.Temperature
+        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature']:
+            if hasattr(smart, prop):
+                setattr(self, prop, getattr(smart, prop))
 
     def __getSlot(self):
         slot = helpers.readFile('{}/{}/md/dev-{}/slot'.format(syspath, self.LD.Name, self.Name))

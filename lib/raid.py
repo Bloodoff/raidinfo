@@ -70,7 +70,7 @@ class RaidPD(object):
         self.RPM = '-'
         self.Tempreature = '-'
         self.PowerOnHours = '-'
-        self.BadSectorsCount = '-'
+        self.ErrorCount = '-'
 
     @staticmethod
     def printTitle():
@@ -97,5 +97,5 @@ class RaidPD(object):
             phy,
             self.Tempreature,
             self.PowerOnHours,
-            self.BadSectorsCount
+            self.ErrorCount
         ))

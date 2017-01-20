@@ -1,0 +1,5 @@
+TEAC    	DV-28S-V        	C.0F
+HP      	P410i           	6.64
+HP      	LOGICAL VOLUME  	6.64
+HP      	P212            	6.64
+HP      	LOGICAL VOLUME  	6.64

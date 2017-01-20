@@ -1,0 +1,16 @@
+Attached devices:
+Host: scsi0 Channel: 00 Id: 00 Lun: 00
+  Vendor: TEAC     Model: DV-28S-V         Rev: C.0F
+  Type:   CD-ROM                           ANSI  SCSI revision: 05
+Host: scsi2 Channel: 00 Id: 00 Lun: 00
+  Vendor: HP       Model: P410i            Rev: 6.64
+  Type:   RAID                             ANSI  SCSI revision: 05
+Host: scsi2 Channel: 01 Id: 00 Lun: 00
+  Vendor: HP       Model: LOGICAL VOLUME   Rev: 6.64
+  Type:   Direct-Access                    ANSI  SCSI revision: 05
+Host: scsi3 Channel: 00 Id: 00 Lun: 00
+  Vendor: HP       Model: P212             Rev: 6.64
+  Type:   RAID                             ANSI  SCSI revision: 05
+Host: scsi3 Channel: 01 Id: 00 Lun: 00
+  Vendor: HP       Model: LOGICAL VOLUME   Rev: 6.64
+  Type:   Direct-Access                    ANSI  SCSI revision: 05

@@ -4,6 +4,7 @@ import re
 from . import helpers
 
 from .raid import RaidController, RaidLD, RaidPD
+from .smart import SMARTinfo
 
 raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
 
@@ -15,7 +16,7 @@ class RaidControllerHPSA(RaidController):
         self.Type = 'HPSA'
         self.CacheStatusDetails = ''
         self.__fill_data()
-        self.__enumerate_all_hpsa_drives()
+        self.__load_all_smart()
         self.__enumerate_ld()
 
     @staticmethod
@@ -30,7 +31,7 @@ class RaidControllerHPSA(RaidController):
                 controllers.append(match.group(1))
         return controllers
 
-    def __enumerate_all_hpsa_drives(self):
+    def __enumerate_all_hpsa_scsi_host(self):
         output = helpers.readFile('/proc/scsi/scsi')
         hp_scsi_controllers = []
         current_host = -1
@@ -46,7 +47,19 @@ class RaidControllerHPSA(RaidController):
             match = re.search(r'^Type:\s+RAID', line)
             if match and current_vendor_hp:
                 hp_scsi_controllers.append('/dev/sg{}'.format(current_host))
-        print(hp_scsi_controllers)
+        return hp_scsi_controllers
+
+    def __load_all_smart(self):
+        self.__smart = []
+
+        for host in self.__enumerate_all_hpsa_scsi_host():
+            i = 0
+            while True:
+                smart = SMARTinfo(' -d cciss,{}'.format(i), host)
+                if not smart.SMART:
+                    break
+                self.__smart.append(smart)
+                i = i + 1
 
     def __enumerate_ld(self):
         for line in helpers.getOutput('{} controller slot={} array all show'.format(raidUtil, self.Name)):

@@ -1,0 +1,112 @@
+smartctl 6.5 2016-05-07 r4318 [x86_64-linux-4.7.7-200.fc24.x86_64] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Vendor:               HP
+Product:              EG0300FCVBF
+Revision:             HPD3
+Compliance:           SPC-4
+User Capacity:        300,000,000,000 bytes [300 GB]
+Logical block size:   512 bytes
+LU is fully provisioned
+Rotation Rate:        10500 rpm
+Form Factor:          2.5 inches
+Logical Unit id:      0x5000c5006c005a77
+Serial number:        S0K18A8E0000B415CPGD
+Device type:          disk
+Transport protocol:   SAS (SPL-3)
+Local Time is:        Fri Jan 20 15:42:38 2017 +05
+SMART support is:     Available - device has SMART capability.
+SMART support is:     Enabled
+Temperature Warning:  Enabled
+Read Cache is:        Enabled
+Writeback Cache is:   Disabled
+
+=== START OF READ SMART DATA SECTION ===
+SMART Health Status: OK
+
+Current Drive Temperature:     27 C
+Drive Trip Temperature:        60 C
+
+Manufactured in week 42 of year 2013
+Specified cycle count over device lifetime:  10000
+Accumulated start-stop cycles:  99
+Specified load-unload count over device lifetime:  300000
+Accumulated load-unload cycles:  1189
+Elements in grown defect list: 0
+
+Vendor (Seagate) cache information
+  Blocks sent to initiator = 116138420
+  Blocks received from initiator = 1444171652
+  Blocks read from cache and sent to initiator = 3071983681
+  Number of read and write commands whose size <= segment size = 517723879
+  Number of read and write commands whose size > segment size = 0
+
+Vendor (Seagate/Hitachi) factory information
+  number of hours powered up = 26066.62
+  number of minutes until next internal SMART test = 4
+
+Error counter log:
+           Errors Corrected by           Total   Correction     Gigabytes    Total
+               ECC          rereads/    errors   algorithm      processed    uncorrected
+           fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:          0        0         0         0          0     321116.858           0
+write:         0        0         0         0          0      13096.789           0
+
+Non-medium error count:      381
+
+No self-tests have been logged
+
+Background scan results log
+  Status: waiting until BMS interval timer expires
+    Accumulated power on time, hours:minutes 26066:38 [1563998 minutes]
+    Number of background scans performed: 1016,  scan progress: 0.00%
+    Number of background medium scans performed: 1016
+
+Protocol Specific port log page for SAS SSP
+relative target port id = 1
+  generation code = 1
+  number of phys = 1
+  phy identifier = 0
+    attached device type: SAS or SATA device
+    attached reason: unknown
+    reason: unknown
+    negotiated logical link rate: phy enabled; 3 Gbps
+    attached initiator port: ssp=1 stp=1 smp=1
+    attached target port: ssp=0 stp=0 smp=0
+    SAS address = 0x5000c5006c005a75
+    attached SAS address = 0x50123456789abcde
+    attached phy identifier = 2
+    Invalid DWORD count = 0
+    Running disparity error count = 0
+    Loss of DWORD synchronization = 11
+    Phy reset problem = 0
+    Phy event descriptors:
+     Invalid word count: 0
+     Running disparity error count: 0
+     Loss of dword synchronization count: 11
+     Phy reset problem count: 0
+relative target port id = 2
+  generation code = 1
+  number of phys = 1
+  phy identifier = 1
+    attached device type: no device attached
+    attached reason: unknown
+    reason: unknown
+    negotiated logical link rate: phy enabled; unknown
+    attached initiator port: ssp=0 stp=0 smp=0
+    attached target port: ssp=0 stp=0 smp=0
+    SAS address = 0x5000c5006c005a76
+    attached SAS address = 0x0
+    attached phy identifier = 0
+    Invalid DWORD count = 0
+    Running disparity error count = 0
+    Loss of DWORD synchronization = 0
+    Phy reset problem = 0
+    Phy event descriptors:
+     Invalid word count: 0
+     Running disparity error count: 0
+     Loss of dword synchronization count: 0
+     Phy reset problem count: 0
+
+

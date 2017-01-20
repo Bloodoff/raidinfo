@@ -58,8 +58,17 @@ class RaidControllerHPSA(RaidController):
                 smart = SMARTinfo(' -d cciss,{}'.format(i), host)
                 if not smart.SMART:
                     break
+                if not hasattr(smart, 'Serial'):
+                    break
                 self.__smart.append(smart)
                 i = i + 1
+
+    def search_smart_by_serial(self, serial):
+        for smart in self.__smart:
+            print('Compare "{}"<=>"{}"'.format(smart.Serial, serial))
+            if (smart.Serial in serial) or (serial in smart.Serial):
+                return smart
+        return None
 
     def __enumerate_ld(self):
         for line in helpers.getOutput('{} controller slot={} array all show'.format(raidUtil, self.Name)):
@@ -140,6 +149,7 @@ class RaidPDvHPSA(RaidPD):
         super(self.__class__, self).__init__(name, ld)
         self.Device = name
         self.__fill_basic_info()
+        self.__fill_advanced_info()
 
     def __fill_basic_info(self):
         for line in helpers.getOutput('{} controller slot={} physicaldrive {} show'.format(raidUtil, self.LD.Controller.Name, self.Device)):
@@ -165,5 +175,12 @@ class RaidPDvHPSA(RaidPD):
             match = re.search(r'^Serial\sNumber:\s+(\S+)', line)
             if match:
                 self.Serial = match.group(1)
+
+    def __fill_advanced_info(self):
+        smart = self.LD.Controller.search_smart_by_serial(self.Serial)
+        if smart is not None:
+            for prop in ['Model', 'Serial', 'Firmware', 'SectorSizes', 'FormFactor', 'PowerOnHours', 'ErrorCount', 'Temperature', 'Capacity']:
+                if hasattr(smart, prop):
+                    setattr(self, prop, getattr(smart, prop))
 
 

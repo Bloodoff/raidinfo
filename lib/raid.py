@@ -68,7 +68,7 @@ class RaidPD(object):
         self.PHYCount = 0
         self.PHYSpeed = None
         self.RPM = '-'
-        self.Tempreature = '-'
+        self.Temperature = '-'
         self.PowerOnHours = '-'
         self.ErrorCount = '-'
 
@@ -95,7 +95,7 @@ class RaidPD(object):
             self.FormFactor,
             self.RPM,
             phy,
-            self.Tempreature,
+            self.Temperature,
             self.PowerOnHours,
             self.ErrorCount
         ))

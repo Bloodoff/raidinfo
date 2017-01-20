@@ -49,6 +49,14 @@ def fake_isfile(filename):
     return False
 
 
+def fake_readFile(filename):
+    file = open('testdata/hpsa{}'.format(filename))
+    lines = [line.strip() for line in file]
+    if len(lines) == 1:
+        return lines[0]
+    return lines
+
+
 def fake_getOutput(cmd):
     lines = []
     testfile = FakeResponses.get(cmd, False)
@@ -63,6 +71,7 @@ def fake_getOutput(cmd):
 
 @mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
+@mock.patch('lib.helpers.readFile', fake_readFile)
 def test_hpsa_1(monkeypatch):
     controllers = raid.RaidController.probe()
     for controller in controllers:

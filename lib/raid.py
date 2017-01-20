@@ -74,14 +74,14 @@ class RaidPD(object):
 
     @staticmethod
     def printTitle():
-        print('Device       |Slot| State      | Tech | Model                    | Serial number    | Firmware | Capacity   | Sector size |  FF  |  RPM  | PHY Speed | Temp | Hours  | Errors')
-        print('-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        print('Device       |Slot| State      | Tech | Model                    | Serial number        | Firmware | Capacity   | Sector size | F F |  RPM  | PHY Speed | Temp | Hours  | Errors')
+        print('--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
 
     def printInfo(self):
         phy = '-'
         if (self.PHYCount > 0) and (self.PHYSpeed is not None):
             phy = '{} x {}'.format(self.PHYCount, self.PHYSpeed)
-        print('{!s:12} | {!s:>2} | {!s:10} | {!s:4} | {!s:24} | {!s:16} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3}  | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
+        print('{!s:12} | {!s:>2} | {!s:10} | {!s:4} | {!s:24} | {!s:20} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3} | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
             self.Device,
             self.Slot,
             self.State,

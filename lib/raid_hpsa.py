@@ -27,8 +27,6 @@ class RaidControllerHPSA(RaidController):
             match = re.search(r'^Smart\s.*Slot\s(\d+)\s', line)
             if match:
                 controllers.append(match.group(1))
-        print('controllers detected')
-        print(controllers)
         return controllers
 
     def __enumerateLD(self):
@@ -109,3 +107,30 @@ class RaidPDvHPSA(RaidPD):
     def __init__(self, name, ld):
         super(self.__class__, self).__init__(name, ld)
         self.Device = name
+        self.__fill_basic_info()
+
+    def __fill_basic_info(self):
+        for line in helpers.getOutput('{} controller slot={} physicaldrive {} show'.format(raidUtil, self.LD.Controller.Name, self.Device)):
+            match = re.search(r'^Status:\s+(\S.*)$', line)
+            if match:
+                self.State = {'OK': 'Optimal'}.get(match.group(1), match.group(1))
+            match = re.search(r'^Drive\sType:\s+(\S.*$)', line)
+            if match:
+                print(match.group(1))
+                if (match.group(1) == 'Spare Drive') and (self.State == 'Optimal'):
+                    self.State = 'Hot spare'
+            match = re.search(r'^Interface\sType:\s+(\S+)', line)
+            if match:
+                self.Technology = match.group(1)
+            match = re.search(r'^Rotational\sSpeed:\s+(\d+)', line)
+            if match:
+                self.RPM = match.group(1)
+            match = re.search(r'^PHY\sCount:\s+(\d+)', line)
+            if match:
+                self.PHYCount = int(match.group(1))
+            match = re.search(r'^PHY\sTransfer\sRate:\s+(\S+)Gbps', line)
+            if match:
+                self.PHYSpeed = match.group(1)
+            match = re.search(r'^Serial\sNumber:\s+(\S+)', line)
+            if match:
+                self.Serial = match.group(1)

@@ -7,6 +7,7 @@ smartctl = "/usr/sbin/smartctl"
 
 class SMARTinfo(object):
     def __init__(self, options, device):
+        self.SMART = True
         self.ErrorCount = 0
         self.Technology = 'SATA'
         self.PHYCount = 1
@@ -58,3 +59,10 @@ class SMARTinfo(object):
             match = re.search(r'9\sPower_On_Hours+.*\s(\d+)$', line)
             if match:
                 self.PowerOnHours = match.group(1)
+
+            match = re.search(r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', line)
+            if match:
+                self.SMART = False
+            match = re.search(r'.*Terminate\scommand\searly\sdue', line)
+            if match:
+                self.SMART = False

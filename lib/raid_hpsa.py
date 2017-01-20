@@ -4,6 +4,7 @@ import re
 from . import helpers
 
 from .raid import RaidController, RaidLD, RaidPD
+from .smart import SMARTinfo
 
 raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
 
@@ -15,7 +16,8 @@ class RaidControllerHPSA(RaidController):
         self.Type = 'HPSA'
         self.CacheStatusDetails = ''
         self.__fill_data()
-        self.__enumerateLD()
+        self.__load_all_smart()
+        self.__enumerate_ld()
 
     @staticmethod
     def probe():
@@ -29,7 +31,37 @@ class RaidControllerHPSA(RaidController):
                 controllers.append(match.group(1))
         return controllers
 
-    def __enumerateLD(self):
+    def __enumerate_all_hpsa_scsi_host(self):
+        output = helpers.readFile('/proc/scsi/scsi')
+        hp_scsi_controllers = []
+        current_host = -1
+        current_vendor_hp = False
+        for line in output:
+            match = re.search(r'^Host:', line)
+            if match:
+                current_host = current_host + 1
+                current_vendor_hp = False
+            match = re.search(r'^Vendor:\sHP', line)
+            if match:
+                current_vendor_hp = True
+            match = re.search(r'^Type:\s+RAID', line)
+            if match and current_vendor_hp:
+                hp_scsi_controllers.append('/dev/sg{}'.format(current_host))
+        return hp_scsi_controllers
+
+    def __load_all_smart(self):
+        self.__smart = []
+
+        for host in self.__enumerate_all_hpsa_scsi_host():
+            i = 0
+            while True:
+                smart = SMARTinfo(' -d cciss,{}'.format(i), host)
+                if not smart.SMART:
+                    break
+                self.__smart.append(smart)
+                i = i + 1
+
+    def __enumerate_ld(self):
         for line in helpers.getOutput('{} controller slot={} array all show'.format(raidUtil, self.Name)):
             match = re.search(r'^array\s(\S+)\s', line)
             if match:
@@ -116,7 +148,6 @@ class RaidPDvHPSA(RaidPD):
                 self.State = {'OK': 'Optimal'}.get(match.group(1), match.group(1))
             match = re.search(r'^Drive\sType:\s+(\S.*$)', line)
             if match:
-                print(match.group(1))
                 if (match.group(1) == 'Spare Drive') and (self.State == 'Optimal'):
                     self.State = 'Hot spare'
             match = re.search(r'^Interface\sType:\s+(\S+)', line)
@@ -134,3 +165,5 @@ class RaidPDvHPSA(RaidPD):
             match = re.search(r'^Serial\sNumber:\s+(\S+)', line)
             if match:
                 self.Serial = match.group(1)
+
+

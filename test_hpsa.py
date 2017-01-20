@@ -35,22 +35,23 @@ FakeResponses = {'/opt/compaq/hpacucli/bld/hpacucli controller all show'   : 'te
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:6 show': 'testdata/hpsa/27.txt',
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:7 show': 'testdata/hpsa/28.txt',
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:8 show': 'testdata/hpsa/29.txt',
-                 'smartctl -x -d cciss,0 /dev/sg1': 'testdata/hpsa/smart/1.txt',
-                 'smartctl -x -d cciss,1 /dev/sg1': 'testdata/hpsa/smart/2.txt',
-                 'smartctl -x -d cciss,2 /dev/sg1': 'testdata/hpsa/smart/3.txt',
-                 'smartctl -x -d cciss,3 /dev/sg1': 'testdata/hpsa/smart/4.txt',
-                 'smartctl -x -d cciss,4 /dev/sg1': 'testdata/hpsa/smart/5.txt',
-                 'smartctl -x -d cciss,5 /dev/sg1': 'testdata/hpsa/smart/6.txt',
-                 'smartctl -x -d cciss,6 /dev/sg1': 'testdata/hpsa/smart/7.txt',
-                 'smartctl -x -d cciss,7 /dev/sg1': 'testdata/hpsa/smart/8.txt',
-                 'smartctl -x -d cciss,0 /dev/sg3': 'testdata/hpsa/smart/10.txt',
-                 'smartctl -x -d cciss,1 /dev/sg3': 'testdata/hpsa/smart/11.txt',
-                 'smartctl -x -d cciss,2 /dev/sg3': 'testdata/hpsa/smart/12.txt',
-                 'smartctl -x -d cciss,3 /dev/sg3': 'testdata/hpsa/smart/13.txt',
-                 'smartctl -x -d cciss,4 /dev/sg3': 'testdata/hpsa/smart/14.txt',
-                 'smartctl -x -d cciss,5 /dev/sg3': 'testdata/hpsa/smart/15.txt',
-                 'smartctl -x -d cciss,6 /dev/sg3': 'testdata/hpsa/smart/16.txt',
-                }
+                 '/usr/sbin/smartctl -x -d cciss,0 /dev/sg1': 'testdata/hpsa/smart/1.txt',
+                 '/usr/sbin/smartctl -x -d cciss,1 /dev/sg1': 'testdata/hpsa/smart/2.txt',
+                 '/usr/sbin/smartctl -x -d cciss,2 /dev/sg1': 'testdata/hpsa/smart/3.txt',
+                 '/usr/sbin/smartctl -x -d cciss,3 /dev/sg1': 'testdata/hpsa/smart/4.txt',
+                 '/usr/sbin/smartctl -x -d cciss,4 /dev/sg1': 'testdata/hpsa/smart/5.txt',
+                 '/usr/sbin/smartctl -x -d cciss,5 /dev/sg1': 'testdata/hpsa/smart/6.txt',
+                 '/usr/sbin/smartctl -x -d cciss,6 /dev/sg1': 'testdata/hpsa/smart/7.txt',
+                 '/usr/sbin/smartctl -x -d cciss,7 /dev/sg1': 'testdata/hpsa/smart/8.txt',
+                 '/usr/sbin/smartctl -x -d cciss,8 /dev/sg1': 'testdata/hpsa/smart/9.txt',
+                 '/usr/sbin/smartctl -x -d cciss,0 /dev/sg3': 'testdata/hpsa/smart/10.txt',
+                 '/usr/sbin/smartctl -x -d cciss,1 /dev/sg3': 'testdata/hpsa/smart/11.txt',
+                 '/usr/sbin/smartctl -x -d cciss,2 /dev/sg3': 'testdata/hpsa/smart/12.txt',
+                 '/usr/sbin/smartctl -x -d cciss,3 /dev/sg3': 'testdata/hpsa/smart/13.txt',
+                 '/usr/sbin/smartctl -x -d cciss,4 /dev/sg3': 'testdata/hpsa/smart/14.txt',
+                 '/usr/sbin/smartctl -x -d cciss,5 /dev/sg3': 'testdata/hpsa/smart/15.txt',
+                 '/usr/sbin/smartctl -x -d cciss,6 /dev/sg3': 'testdata/hpsa/smart/16.txt',
+}
 
 
 def read_file(filename):
@@ -62,6 +63,14 @@ def fake_isfile(filename):
     if filename == '/opt/compaq/hpacucli/bld/hpacucli':
         return True
     return False
+
+
+def fake_readFile(filename):
+    file = open('testdata/hpsa{}'.format(filename))
+    lines = [line.strip() for line in file]
+    if len(lines) == 1:
+        return lines[0]
+    return lines
 
 
 def fake_getOutput(cmd):
@@ -78,6 +87,7 @@ def fake_getOutput(cmd):
 
 @mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
+@mock.patch('lib.helpers.readFile', fake_readFile)
 def test_hpsa_1(monkeypatch):
     controllers = raid.RaidController.probe()
     for controller in controllers:

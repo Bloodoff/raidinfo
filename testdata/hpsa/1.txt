@@ -1,0 +1,4 @@
+
+Smart Array P212 in Slot 2                (sn: PACCPID1150061H)
+Smart Array P410i in Slot 0 (Embedded)    (sn: 50123456789ABCDE)
+

@@ -66,6 +66,7 @@ class RaidPD(object):
         self.SectorSizes.append('-')
         self.FormFactor = '-'
         self.Speed = '-'
+        self.RPM = '-'
         self.Tempreature = '-'
         self.PowerOnHours = '-'
         self.BadSectorsCount = '-'

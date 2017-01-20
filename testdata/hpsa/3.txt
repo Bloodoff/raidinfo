@@ -1,0 +1,34 @@
+
+Smart Array P410i in Slot 0 (Embedded)
+   Bus Interface: PCI
+   Slot: 0
+   Serial Number: 50123456789ABCDE
+   Cache Serial Number: PAAVP9SXOK8N
+   RAID 6 (ADG) Status: Disabled
+   Controller Status: OK
+   Hardware Revision: C
+   Firmware Version: 6.64
+   Rebuild Priority: High
+   Expand Priority: Medium
+   Surface Scan Delay: 15 secs
+   Surface Scan Mode: Idle
+   Queue Depth: Automatic
+   Monitor and Performance Delay: 60  min
+   Elevator Sort: Enabled
+   Degraded Performance Optimization: Disabled
+   Inconsistency Repair Policy: Disabled
+   Wait for Cache Room: Disabled
+   Surface Analysis Inconsistency Notification: Disabled
+   Post Prompt Timeout: 0 secs
+   Cache Board Present: True
+   Cache Status: Temporarily Disabled
+   Cache Status Details: Cache disabled; low batteries.
+   Cache Ratio: 25% Read / 75% Write
+   Drive Write Cache: Disabled
+   Total Cache Size: 512 MB
+   Total Cache Memory Available: 400 MB
+   No-Battery Write Cache: Disabled
+   Cache Backup Power Source: Batteries
+   Battery/Capacitor Count: 1
+   Battery/Capacitor Status: Failed (Replace Batteries)
+   SATA NCQ Supported: True

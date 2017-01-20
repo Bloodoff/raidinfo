@@ -1,0 +1,31 @@
+
+Smart Array P212 in Slot 2
+   Bus Interface: PCI
+   Slot: 2
+   Serial Number: PACCPID1150061H
+   Cache Serial Number: PACCQID1149195H
+   RAID 6 (ADG) Status: Disabled
+   Controller Status: OK
+   Hardware Revision: C
+   Firmware Version: 6.64
+   Rebuild Priority: Medium
+   Expand Priority: Medium
+   Surface Scan Delay: 15 secs
+   Surface Scan Mode: Idle
+   Queue Depth: Automatic
+   Monitor and Performance Delay: 60  min
+   Elevator Sort: Enabled
+   Degraded Performance Optimization: Disabled
+   Inconsistency Repair Policy: Disabled
+   Wait for Cache Room: Disabled
+   Surface Analysis Inconsistency Notification: Disabled
+   Post Prompt Timeout: 0 secs
+   Cache Board Present: True
+   Cache Status: OK
+   Cache Ratio: 100% Read / 0% Write
+   Drive Write Cache: Disabled
+   Total Cache Size: 256 MB
+   Total Cache Memory Available: 144 MB
+   No-Battery Write Cache: Disabled
+   Battery/Capacitor Count: 0
+   SATA NCQ Supported: True

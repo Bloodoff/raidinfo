@@ -1,0 +1,7 @@
+
+Smart Array P212 in Slot 2
+
+   array A
+
+      logicaldrive 1 (18.2 TB, RAID 5, OK)
+

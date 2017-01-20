@@ -1,0 +1,6 @@
+
+Smart Array P410i in Slot 0 (Embedded)
+
+   array A (SAS, Unused Space: 0  MB)
+
+

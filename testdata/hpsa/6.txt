@@ -1,0 +1,6 @@
+
+Smart Array P212 in Slot 2
+
+   array A (SATA, Unused Space: 0  MB)
+
+

@@ -20,6 +20,12 @@ def read_file(filename):
     return [line.strip() for line in file]
 
 
+def fake_isfile(filename):
+    if filename == '/usr/sbin/tw_cli':
+        return True
+    return False
+
+
 def fake_getOutput(cmd):
     lines = []
     testfile = FakeResponses.get(cmd, False)
@@ -32,9 +38,9 @@ def fake_getOutput(cmd):
     return lines
 
 
-@mock.patch('os.path.isfile', return_value=True)
+@mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
-def test_3ware_1(mock):
+def test_3ware_1(monkeypatch):
     controllers = raid.RaidController.probe()
     for controller in controllers:
         controller.printInfo()

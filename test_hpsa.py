@@ -35,6 +35,14 @@ FakeResponses = {'/opt/compaq/hpacucli/bld/hpacucli controller all show'   : 'te
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:6 show': 'testdata/hpsa/27.txt',
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:7 show': 'testdata/hpsa/28.txt',
                  '/opt/compaq/hpacucli/bld/hpacucli controller slot=0 physicaldrive 2I:1:8 show': 'testdata/hpsa/29.txt',
+                 'smartctl -x -d cciss,0 /dev/sg1': 'testdata/hpsa/smart/1.txt',
+                 'smartctl -x -d cciss,1 /dev/sg1': 'testdata/hpsa/smart/2.txt',
+                 'smartctl -x -d cciss,2 /dev/sg1': 'testdata/hpsa/smart/3.txt',
+                 'smartctl -x -d cciss,3 /dev/sg1': 'testdata/hpsa/smart/4.txt',
+                 'smartctl -x -d cciss,4 /dev/sg1': 'testdata/hpsa/smart/5.txt',
+                 'smartctl -x -d cciss,5 /dev/sg1': 'testdata/hpsa/smart/6.txt',
+                 'smartctl -x -d cciss,6 /dev/sg1': 'testdata/hpsa/smart/7.txt',
+                 'smartctl -x -d cciss,7 /dev/sg1': 'testdata/hpsa/smart/8.txt',
                 }
 
 

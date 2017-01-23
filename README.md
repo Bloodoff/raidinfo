@@ -1,4 +1,4 @@
-# Raidinfo
+# Raidinfo [![Build Status](https://travis-ci.org/Bloodoff/raidinfo.svg?branch=master)](https://travis-ci.org/Bloodoff/raidinfo)
 Scripts for generating compact reports for RAID controllers, for now it's only basic support, for extending need more outputs of verndor raid utilities
 
 Supported:

@@ -1,1 +1,1 @@
-__all__ = ["helpers", "raid", "raid_soft", "raid_3ware", "raid_hpsa"]
+__all__ = ["helpers", "smart", "raid", "raid_soft", "raid_3ware", "raid_hpsa"]

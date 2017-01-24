@@ -125,8 +125,6 @@ class RaidLDvendorHPSA(RaidLD):
             smart = SMARTinfo(' -d cciss,{}'.format(i), self.Device)
             if not smart.SMART:
                 break
-            if not hasattr(smart, 'Serial'):
-                break
             self.__smart.append(smart)
             i = i + 1
 

@@ -36,14 +36,17 @@ class SMARTinfo(object):
                 self.Capacity = match.group(1)
             match = re.search(r'Sector\sSizes:\s+(\d+)\D+(\d+)', line)
             if match:
-                self.SectorSizes = [match.group(1), match.group(2)]
+                self.SectorSizes = [int(match.group(1)), int(match.group(2))]
+            match = re.search(r'Sector\sSize:\s+(\d+)', line)
+            if match:
+                self.SectorSizes = [int(match.group(1)), int(match.group(1))]
             match = re.search(r'Rotation\sRate:\s+(\d+)', line)
             if match:
                 self.RPM = match.group(1)
             match = re.search(r'Form\sFactor:\s+(\S+)', line)
             if match:
                 self.FormFactor = match.group(1)
-            match = re.search(r'SATA Version is:.+current:\s(\S+)', line)
+            match = re.search(r'SATA Version is:.+\s(\S+)\sGb\/s', line)
             if match:
                 self.PHYSpeed = match.group(1)
             for item in [

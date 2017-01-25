@@ -81,7 +81,7 @@ class RaidPD(object):
         phy = '-'
         if (self.PHYCount > 0) and (self.PHYSpeed is not None):
             phy = '{} x {}'.format(self.PHYCount, self.PHYSpeed)
-        print('{!s:12} | {!s:>2} | {!s:10} | {!s:4} | {!s:24} | {!s:20} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3} | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
+        print('{!s:12} |{!s:>4}| {!s:10} | {!s:4} | {!s:24} | {!s:20} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3} | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
             self.Device,
             self.Slot,
             self.State,

@@ -1,0 +1,374 @@
+Controllers found: 1
+----------------------------------------------------------------------
+Controller information
+----------------------------------------------------------------------
+   Controller Status                        : Optimal
+   Channel description                      : SAS/SATA
+   Controller Model                         : Adaptec 6805Q
+   Controller Serial Number                 : 2B46121D3CE
+   Controller World Wide Name               : 50000D1105EED080
+   Controller Alarm                         : Enabled
+   Physical Slot                            : 0
+   Temperature                              : 60 C/ 140 F (Normal)
+   Installed memory                         : 512 MB
+   Global task priority                     : High
+   Performance Mode                         : Default/Dynamic
+   Host bus type                            : PCIe
+   Host bus speed                           : 5000 MHz
+   Host bus link width                      : 8 bit(s)/link(s)
+   PCI Device ID                            : 651
+   Stayawake period                         : Disabled
+   Spinup limit internal drives             : 0
+   Spinup limit external drives             : 0
+   Defunct disk drive count                 : 0
+   Logical devices/Failed/Degraded          : 1/0/0
+   NCQ status                               : Enabled
+   Statistics data collection mode          : Enabled
+   --------------------------------------------------------
+   RAID Properties
+   --------------------------------------------------------
+   Copyback                                 : Disabled
+   Automatic Failover                       : Enabled
+   Background consistency check             : Enabled
+   Background consistency check period      : 30
+   SSDs assigned to maxCache pool           : 0
+   Maximum SSDs allowed in maxCache pool    : 8
+   maxCache Read Cache Pool Size            : 0.000 GB
+   maxCache flush and fetch rate            : 0
+   maxCache Read, Write Balance Factor      : 1,1
+   --------------------------------------------------------
+   Controller Version Information
+   --------------------------------------------------------
+   BIOS                                     : 5.2-0 (19176)
+   Firmware                                 : 5.2-0 (19176)
+   Driver                                   : 1.2-1 (41066)
+   Boot Flash                               : 5.2-0 (19176)
+   SEEPROM (Load version/ Flash version)    : 2/ 8
+   --------------------------------------------------------
+   Controller ZMM Information
+   --------------------------------------------------------
+   Status                                   : ZMM Optimal
+
+----------------------------------------------------------------------
+Logical device information
+----------------------------------------------------------------------
+Logical Device number 0
+   Logical Device name                      : ARRAY1
+   Block Size of member drives              : 512 Bytes
+   RAID level                               : 6 Reed-Solomon
+   Unique Identifier                        : F771262D
+   Status of Logical Device                 : Optimal
+   Additional details                       : Initialized with Build/Clear
+   Size                                     : 8570870 MB
+   Parity space                             : 5713920 MB
+   Stripe-unit size                         : 256 KB
+   Read-cache setting                       : Enabled
+   Read-cache status                        : On
+   Write-cache setting                      : On when protected by battery/ZMM
+   Write-cache status                       : On
+   maxCache read cache setting              : Enabled
+   maxCache read cache status               : Off
+   Partitioned                              : Yes
+   Protected by Hot-Spare                   : No
+   Bootable                                 : Yes
+   Failed stripes                           : No
+   Power settings                           : Disabled
+   --------------------------------------------------------
+   Logical Device segment information
+   --------------------------------------------------------
+   Segment 0                                : Present (2861588MB, SATA, HDD, Connector:1, Device:1)       PN2231P8HE17ZR
+   Segment 1                                : Present (2861588MB, SATA, HDD, Connector:0, Device:0)       PN2231P8HE1B8R
+   Segment 2                                : Present (2861588MB, SATA, HDD, Connector:0, Device:1)       PN2231P8HDWU7R
+   Segment 3                                : Present (2861588MB, SATA, HDD, Connector:0, Device:2)       PN2231P8HDY4BR
+   Segment 4                                : Present (2861588MB, SATA, HDD, Connector:1, Device:0)       PN2231P8HDY2YR
+
+
+----------------------------------------------------------------------
+Physical Device information
+----------------------------------------------------------------------
+      Device #0
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,0(0:0)
+         Reported Location                  : Connector 0, Device 0
+         Vendor                             : HGST
+         Model                              : HUS724030ALA640
+         Firmware                           : MF8OAA70
+         Serial number                      : PN2231P8HE1B8R
+         World-wide name                    : 5000CCA22CD40572
+         Reserved Size                      : 4739480 KB
+         Used Size                          : 2856960 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 2861588 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full rpm
+         Supported Power States             : Full rpm,Powered off,Reduced rpm
+         SSD                                : No
+         maxCache Capable                   : No
+         maxCache Assigned                  : No
+         Temperature                        : Not Supported
+         NCQ status                         : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                  : 0
+            SAS Address                     : 3000000000000003
+            Attached PHY Identifier         : 3
+            Attached SAS Address            : 50000D1105EED080
+
+      Device #1
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,1(1:0)
+         Reported Location                  : Connector 0, Device 1
+         Vendor                             : HGST
+         Model                              : HUS724030ALA640
+         Firmware                           : MF8OAA70
+         Serial number                      : PN2231P8HDWU7R
+         World-wide name                    : 5000CCA22CD3F45E
+         Reserved Size                      : 4739480 KB
+         Used Size                          : 2856960 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 2861588 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full rpm
+         Supported Power States             : Full rpm,Powered off,Reduced rpm
+         SSD                                : No
+         maxCache Capable                   : No
+         maxCache Assigned                  : No
+         Temperature                        : Not Supported
+         NCQ status                         : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                  : 0
+            SAS Address                     : 3000000000000002
+            Attached PHY Identifier         : 2
+            Attached SAS Address            : 50000D1105EED080
+
+      Device #2
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,2(2:0)
+         Reported Location                  : Connector 0, Device 2
+         Vendor                             : HGST
+         Model                              : HUS724030ALA640
+         Firmware                           : MF8OAA70
+         Serial number                      : PN2231P8HDY4BR
+         World-wide name                    : 5000CCA22CD3F959
+         Reserved Size                      : 4739480 KB
+         Used Size                          : 2856960 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 2861588 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full rpm
+         Supported Power States             : Full rpm,Powered off,Reduced rpm
+         SSD                                : No
+         maxCache Capable                   : No
+         maxCache Assigned                  : No
+         Temperature                        : Not Supported
+         NCQ status                         : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                  : 0
+            SAS Address                     : 3000000000000001
+            Attached PHY Identifier         : 1
+            Attached SAS Address            : 50000D1105EED080
+
+      Device #3
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,4(4:0)
+         Reported Location                  : Connector 1, Device 0
+         Vendor                             : HGST
+         Model                              : HUS724030ALA640
+         Firmware                           : MF8OAA70
+         Serial number                      : PN2231P8HDY2YR
+         World-wide name                    : 5000CCA22CD3F92D
+         Reserved Size                      : 4739480 KB
+         Used Size                          : 2856960 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 2861588 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full rpm
+         Supported Power States             : Full rpm,Powered off,Reduced rpm
+         SSD                                : No
+         maxCache Capable                   : No
+         maxCache Assigned                  : No
+         Temperature                        : Not Supported
+         NCQ status                         : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                  : 0
+            SAS Address                     : 3000000000000007
+            Attached PHY Identifier         : 7
+            Attached SAS Address            : 50000D1105EED080
+
+      Device #4
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,5(5:0)
+         Reported Location                  : Connector 1, Device 1
+         Vendor                             : HGST
+         Model                              : HUS724030ALA640
+         Firmware                           : MF8OAA70
+         Serial number                      : PN2231P8HE17ZR
+         World-wide name                    : 5000CCA22CD4050C
+         Reserved Size                      : 4739480 KB
+         Used Size                          : 2856960 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 2861588 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full rpm
+         Supported Power States             : Full rpm,Powered off,Reduced rpm
+         SSD                                : No
+         maxCache Capable                   : No
+         maxCache Assigned                  : No
+         Temperature                        : Not Supported
+         NCQ status                         : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                  : 0
+            SAS Address                     : 3000000000000006
+            Attached PHY Identifier         : 6
+            Attached SAS Address            : 50000D1105EED080
+
+
+
+----------------------------------------------------------------------
+Connector information
+----------------------------------------------------------------------
+Connector #0
+   Connector Name                           : CN0
+
+   -------------------------------------------------------------------
+   Lane Information                         
+   -------------------------------------------------------------------
+   Lane #0                                  
+      Channel ID                            : 0
+      Device ID                             : 0
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 3
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #0           
+
+   Lane #1                                  
+      Channel ID                            : 0
+      Device ID                             : 1
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 2
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #1           
+
+   Lane #2                                  
+      Channel ID                            : 0
+      Device ID                             : 2
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 1
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #2           
+
+   Lane #3                                  
+      Channel ID                            : 0
+      Device ID                             : 3
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 0
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #3           
+
+
+Connector #1
+   Connector Name                           : CN1
+
+   -------------------------------------------------------------------
+   Lane Information                         
+   -------------------------------------------------------------------
+   Lane #0                                  
+      Channel ID                            : 0
+      Device ID                             : 4
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 7
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #0           
+
+   Lane #1                                  
+      Channel ID                            : 0
+      Device ID                             : 5
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 6
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #1           
+
+   Lane #2                                  
+      Channel ID                            : 0
+      Device ID                             : 6
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 5
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #2           
+
+   Lane #3                                  
+      Channel ID                            : 0
+      Device ID                             : 7
+      SAS Address                           : 50000D1105EED080
+      PHY Identifier                        : 4
+      ----------------------------------------------------------------
+      Lane SAS Phy Information              
+      ----------------------------------------------------------------
+         No SAS Phy information available for lane #3           
+
+
+
+Command completed successfully.

@@ -5,6 +5,7 @@ Supported:
 * Linux SoftRAID
 * 3Ware (such as 9690SA)
 * HP SmartArray
+* Adaptec
 
 Sample output:
 ```

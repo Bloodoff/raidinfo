@@ -1,3 +1,37 @@
+import re
+
+
+class DeviceCapacity(object):
+    UNITS = {-1: 'unknown', 0: 'bytes', 1: 'KiB', 2: 'MiB', 3: 'GiB', 4: 'TiB'}
+
+    def __init__(self, capacity, units=None):
+        self.PassedValue = capacity
+        if units is None:
+            self.Units = -1
+            return
+        self.Value = int(re.sub(r'\D', '', str(capacity)))
+        for key, unit in self.UNITS.items():
+            if units.lower() == unit.lower():
+                self.Units = key
+                break
+        while self._upUnit():
+            pass
+
+    def _upUnit(self):
+        if self.Value < 1024:
+            return False
+        if self.Units == 4:
+            return False
+        self.Value = self.Value / 1024
+        self.Units = self.Units + 1
+        return True
+
+    def __str__(self):
+        if self.Units == -1:
+            return self.PassedValue
+        return '{} {}'.format(round(self.Value, 2), self.UNITS[self.Units])
+
+
 class RaidController(object):
     def __init__(self, name):
         self.Name = name.strip()

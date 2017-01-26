@@ -6,9 +6,15 @@ import mock
 
 from lib import *
 
-FakeResponses = {'/usr/sbin/arcconf LIST': 'testdata/adaptec/util-1.txt',
-                 '/usr/sbin/arcconf GETCONFIG 1': 'testdata/adaptec/util-2.txt',
-                 
+FakeResponses = {
+    '/usr/sbin/arcconf LIST': 'testdata/adaptec/util-1.txt',
+    '/usr/sbin/arcconf GETCONFIG 1': 'testdata/adaptec/util-2.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,0 /dev/null': 'testdata/adaptec/smart-0.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,1 /dev/null': 'testdata/adaptec/smart-1.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,2 /dev/null': 'testdata/adaptec/smart-2.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,4 /dev/null': 'testdata/adaptec/smart-4.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,5 /dev/null': 'testdata/adaptec/smart-5.txt',
+    '/usr/sbin/arcconf GETSMARTSTATS 1': 'testdata/adaptec/util-3.txt',
 }
 
 

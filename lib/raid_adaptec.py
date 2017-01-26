@@ -1,9 +1,10 @@
 import os
 import re
+import xml.etree.ElementTree as ET
 
 from . import helpers
 
-from .raid import RaidController, RaidLD, RaidPD
+from .raid import RaidController, RaidLD, RaidPD, DeviceCapacity
 from .smart import SMARTinfo
 
 raidUtil = '/usr/sbin/arcconf'
@@ -15,6 +16,7 @@ class RaidControllerAdaptec(RaidController):
         super(self.__class__, self).__init__(name)
         self.Type = 'Adaptec'
         self.__fill_data()
+        self.__load_SMART()
         self.__enumerate_ld()
 
     @staticmethod
@@ -42,6 +44,20 @@ class RaidControllerAdaptec(RaidController):
             match = re.search(r'Logical\sDevice\snumber\s(\d+)', line)
             if match:
                 self.LDs.append(RaidLDvendorAdaptec(match.group(1), self))
+
+    def __load_SMART(self):
+        self.SMART = []
+        lines = helpers.getOutput('{} GETSMARTSTATS {}'.format(raidUtil, self.Name))
+        lines = filter(lambda line: re.match(r'^<', line), lines)
+        root = ET.fromstring('<data>' + ''.join(lines) + '</data>')
+        for child in root:
+            for child in child:
+                self.SMART.append(child)
+
+    def find_SMART(self, channel, id):
+        for smart in self.SMART:
+            if (smart.tag == 'PhysicalDriveSmartStats') and (smart.attrib['channel'] == channel) and (smart.attrib['id'] == id):
+                return smart
 
     def printSpecificInfo(self):
         print('Model: {}, s/n {}, cache: {}, status: {}'.format(self.Model, self.Serial, self.CacheSize, self.Status))
@@ -81,6 +97,7 @@ class RaidControllerAdaptec(RaidController):
                 self.Firmware = match.group(1)
                 continue
 
+
 class RaidLDvendorAdaptec(RaidLD):
     def __init__(self, name, controller):
         super(self.__class__, self).__init__(name, controller)
@@ -88,8 +105,6 @@ class RaidLDvendorAdaptec(RaidLD):
         self.State = ''
         self.Size = ''
         self.__fill_data()
-        #self.__load_all_smart()
-        #self.__enumerate_pd()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
 
@@ -125,7 +140,7 @@ class RaidLDvendorAdaptec(RaidLD):
                 continue
             match = re.search(r'Size\s+:\s(.*)$', line)
             if match:
-                self.Size = match.group(1)
+                self.Size = DeviceCapacity(match.group(1), 'MiB')
                 continue
             match = re.search(r'Read-cache\ssetting\s+:\s(.*)$', line)
             if match:
@@ -155,6 +170,7 @@ class RaidLDvendorAdaptec(RaidLD):
             if match:
                 self.PDs.append(RaidPDvendorAdaptec(match.group(1), self, match.group(2)))
 
+
 class RaidPDvendorAdaptec(RaidPD):
 
     def __init__(self, name, ld, serial):
@@ -163,9 +179,9 @@ class RaidPDvendorAdaptec(RaidPD):
         self.Device = name
         self.PHYCount = 0
         self.__fill_basic_info()
-        #self.__fill_advanced_info()
-        #
-    
+        self.__fill_smart_info()
+        self.__fill_advanced_info()
+
     def __fill_basic_info(self):
         pd_section = False
         searched_pd = False
@@ -211,10 +227,43 @@ class RaidPDvendorAdaptec(RaidPD):
                 continue
             match = re.search(r'^Total\sSize\s+:\s(.*)$', line)
             if match:
-                self.Capacity = match.group(1)
+                self.Capacity = DeviceCapacity(match.group(1), 'MiB')
                 continue
             match = re.search(r'^Phy\s#\d+$', line)
             if match:
                 self.PHYCount = self.PHYCount + 1
                 continue
-            
+
+    def __fill_smart_info(self):
+        coordinates = self.Slot.split(':')
+        smart = SMARTinfo('-d aacraid,{},{},{}'.format(int(self.LD.Controller.Name) - 1, coordinates[1], coordinates[0]), '/dev/null')
+        if smart is not None:
+            for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM']:
+                if hasattr(smart, prop):
+                    setattr(self, prop, getattr(smart, prop))
+
+    def __fill_advanced_info(self):
+        coordinates = self.Slot.split(':')
+        smart = self.LD.Controller.find_SMART(coordinates[1], coordinates[0])
+        if smart is None:
+            return
+        self.ErrorCount = 0
+        for attribute in smart:
+            if attribute.attrib['name'] == 'Power-On Hours':
+                self.PowerOnHours = int(attribute.attrib['rawValue'])
+                continue
+            if attribute.attrib['name'] == 'Current Internal Temperature':
+                self.Temperature = int(attribute.attrib['rawValue'])
+                continue
+            if attribute.attrib['name'] == 'Reallocated Sectors Count':
+                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
+                continue
+            if attribute.attrib['name'] == 'Reallocation Event Count':
+                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
+                continue
+            if attribute.attrib['name'] == 'Current Pending Sector Count':
+                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
+                continue
+            if attribute.attrib['name'] == 'Uncorrectable Sector Count':
+                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
+                continue

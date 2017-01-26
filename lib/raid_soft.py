@@ -3,7 +3,7 @@ import re
 
 from . import helpers
 
-from .raid import RaidController, RaidLD, RaidPD
+from .raid import RaidController, RaidLD, RaidPD, DeviceCapacity
 from .smart import SMARTinfo
 
 syspath = "/sys/block"
@@ -85,14 +85,7 @@ class RaidLDsoft(RaidLD):
     def __getLDsize(self):
         blockcount = int(helpers.readFile('{}/{}/size'.format(syspath, self.Name)))
         blocksize = int(helpers.readFile('{}/{}/queue/logical_block_size'.format(syspath, self.Name)))
-        size = blockcount / 1024 * blocksize / 1024
-        if size < 1024:
-            return '{} MiB'.format(round(size))
-        size = size / 1024
-        if size < 1024:
-            return '{} GiB'.format(round(size))
-        size = size / 1024
-        return '{} TiB'.format(round(size))
+        return DeviceCapacity(round(blockcount / 1024 * blocksize), 'KiB')
 
     def __getLDdriveCount(self):
         return helpers.readFile('{}/{}/md/raid_disks'.format(syspath, self.Name))

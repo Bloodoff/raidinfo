@@ -1,0 +1,112 @@
+Controllers found: 1
+
+SMART STATS FOR SATA:
+---------------------
+
+<SmartStats controllerID="0" time="1485415302" deviceVendor="Adaptec" deviceName="6805Q" serialNumber="2B46121D3CE">
+<PhysicalDriveSmartStats channel="0" id="2" nonSpinning="false" isDescriptionAvailable="true" >
+<Attribute id="0x01" name="Read Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x02" name="Throughput Performance" normalizedCurrent="137" normalizedWorst="137" rawValue="77" />
+<Attribute id="0x03" name="Spin-Up Time in millisecs" normalizedCurrent="130" normalizedWorst="130" rawValue="38686491100" />
+<Attribute id="0x04" name="Start/Stop Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0x05" name="Reallocated Sectors Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x07" name="Seek Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x08" name="Seek Time Performance in millisecs" normalizedCurrent="140" normalizedWorst="140" rawValue="26" />
+<Attribute id="0x09" name="Power-On Hours" normalizedCurrent="98" normalizedWorst="98" rawValue="15251" />
+<Attribute id="0x0A" name="Spin Retry Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x0C" name="Power Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0xC0" name="Power-off Retract Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC1" name="Load/Unload Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC2" name="Current Internal Temperature" normalizedCurrent="206" normalizedWorst="206" rawValue="29" />
+<Attribute id="0xC4" name="Reallocation Event Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC5" name="Current Pending Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC6" name="Uncorrectable Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC7" name="UltraDMA CRC Error Count" normalizedCurrent="200" normalizedWorst="200" rawValue="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="4" nonSpinning="false" isDescriptionAvailable="true" >
+<Attribute id="0x01" name="Read Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x02" name="Throughput Performance" normalizedCurrent="137" normalizedWorst="137" rawValue="78" />
+<Attribute id="0x03" name="Spin-Up Time in millisecs" normalizedCurrent="129" normalizedWorst="129" rawValue="38686687708" />
+<Attribute id="0x04" name="Start/Stop Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0x05" name="Reallocated Sectors Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x07" name="Seek Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x08" name="Seek Time Performance in millisecs" normalizedCurrent="142" normalizedWorst="142" rawValue="25" />
+<Attribute id="0x09" name="Power-On Hours" normalizedCurrent="98" normalizedWorst="98" rawValue="15251" />
+<Attribute id="0x0A" name="Spin Retry Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x0C" name="Power Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0xC0" name="Power-off Retract Count" normalizedCurrent="100" normalizedWorst="100" rawValue="391" />
+<Attribute id="0xC1" name="Load/Unload Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="391" />
+<Attribute id="0xC2" name="Current Internal Temperature" normalizedCurrent="200" normalizedWorst="200" rawValue="30" />
+<Attribute id="0xC4" name="Reallocation Event Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC5" name="Current Pending Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC6" name="Uncorrectable Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC7" name="UltraDMA CRC Error Count" normalizedCurrent="200" normalizedWorst="200" rawValue="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="5" nonSpinning="false" isDescriptionAvailable="true" >
+<Attribute id="0x01" name="Read Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x02" name="Throughput Performance" normalizedCurrent="137" normalizedWorst="137" rawValue="77" />
+<Attribute id="0x03" name="Spin-Up Time in millisecs" normalizedCurrent="131" normalizedWorst="131" rawValue="38686294487" />
+<Attribute id="0x04" name="Start/Stop Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0x05" name="Reallocated Sectors Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x07" name="Seek Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x08" name="Seek Time Performance in millisecs" normalizedCurrent="142" normalizedWorst="142" rawValue="25" />
+<Attribute id="0x09" name="Power-On Hours" normalizedCurrent="98" normalizedWorst="98" rawValue="15251" />
+<Attribute id="0x0A" name="Spin Retry Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x0C" name="Power Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0xC0" name="Power-off Retract Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC1" name="Load/Unload Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC2" name="Current Internal Temperature" normalizedCurrent="200" normalizedWorst="200" rawValue="30" />
+<Attribute id="0xC4" name="Reallocation Event Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC5" name="Current Pending Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC6" name="Uncorrectable Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC7" name="UltraDMA CRC Error Count" normalizedCurrent="200" normalizedWorst="200" rawValue="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="1" nonSpinning="false" isDescriptionAvailable="true" >
+<Attribute id="0x01" name="Read Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x02" name="Throughput Performance" normalizedCurrent="137" normalizedWorst="137" rawValue="77" />
+<Attribute id="0x03" name="Spin-Up Time in millisecs" normalizedCurrent="128" normalizedWorst="128" rawValue="38686884319" />
+<Attribute id="0x04" name="Start/Stop Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0x05" name="Reallocated Sectors Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x07" name="Seek Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x08" name="Seek Time Performance in millisecs" normalizedCurrent="142" normalizedWorst="142" rawValue="25" />
+<Attribute id="0x09" name="Power-On Hours" normalizedCurrent="98" normalizedWorst="98" rawValue="15251" />
+<Attribute id="0x0A" name="Spin Retry Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x0C" name="Power Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0xC0" name="Power-off Retract Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC1" name="Load/Unload Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="390" />
+<Attribute id="0xC2" name="Current Internal Temperature" normalizedCurrent="193" normalizedWorst="193" rawValue="31" />
+<Attribute id="0xC4" name="Reallocation Event Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC5" name="Current Pending Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC6" name="Uncorrectable Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC7" name="UltraDMA CRC Error Count" normalizedCurrent="200" normalizedWorst="200" rawValue="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="0" nonSpinning="false" isDescriptionAvailable="true" >
+<Attribute id="0x01" name="Read Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x02" name="Throughput Performance" normalizedCurrent="138" normalizedWorst="138" rawValue="76" />
+<Attribute id="0x03" name="Spin-Up Time in millisecs" normalizedCurrent="130" normalizedWorst="130" rawValue="38686360025" />
+<Attribute id="0x04" name="Start/Stop Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0x05" name="Reallocated Sectors Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x07" name="Seek Error Rate" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x08" name="Seek Time Performance in millisecs" normalizedCurrent="142" normalizedWorst="142" rawValue="25" />
+<Attribute id="0x09" name="Power-On Hours" normalizedCurrent="98" normalizedWorst="98" rawValue="15251" />
+<Attribute id="0x0A" name="Spin Retry Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0x0C" name="Power Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="27" />
+<Attribute id="0xC0" name="Power-off Retract Count" normalizedCurrent="100" normalizedWorst="100" rawValue="396" />
+<Attribute id="0xC1" name="Load/Unload Cycle Count" normalizedCurrent="100" normalizedWorst="100" rawValue="396" />
+<Attribute id="0xC2" name="Current Internal Temperature" normalizedCurrent="206" normalizedWorst="206" rawValue="29" />
+<Attribute id="0xC4" name="Reallocation Event Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC5" name="Current Pending Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC6" name="Uncorrectable Sector Count" normalizedCurrent="100" normalizedWorst="100" rawValue="0" />
+<Attribute id="0xC7" name="UltraDMA CRC Error Count" normalizedCurrent="200" normalizedWorst="200" rawValue="0" />
+</PhysicalDriveSmartStats>
+</SmartStats>
+
+
+SMART STATS FOR SAS:
+--------------------
+
+<SASSmartStats controllerID="0" time="1485415303" deviceVendor="Adaptec" deviceName="6805Q" serialNumber="2B46121D3CE">
+</SASSmartStats>
+
+
+Command completed successfully.

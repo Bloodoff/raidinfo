@@ -104,14 +104,18 @@ class RaidLDvendorAdaptec(RaidLD):
         self.Level = ''
         self.State = ''
         self.Size = ''
+        self.Device = ''
         self.__fill_data()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
 
     def printSpecificInfo(self):
-        print('Read cache: {} - {}'.format(self.CacheRSet, self.CacheRStatus))
-        print('Write cache: {} - {}'.format(self.CacheWSet, self.CacheWStatus))
-        print('maxCache: {} - {}'.format(self.CacheMSet, self.CacheMStatus))
+        if hasattr(self, 'CacheRSet'):
+            print('Read cache: {} - {}'.format(self.CacheRSet, self.CacheRStatus))
+        if hasattr(self, 'CacheWSet'):
+            print('Write cache: {} - {}'.format(self.CacheWSet, self.CacheWStatus))
+        if hasattr(self, 'CacheMSet'):
+            print('maxCache: {} - {}'.format(self.CacheMSet, self.CacheMStatus))
 
     def __fill_data(self):
         start_string = 'Logical Device number {}'.format(self.Name)
@@ -130,7 +134,7 @@ class RaidLDvendorAdaptec(RaidLD):
             if match:
                 self.Device = match.group(1)
                 continue
-            match = re.search(r'RAID\slevel\s+:\s(\d*)\s', line)
+            match = re.search(r'RAID\slevel\s+:\s(\d*)', line)
             if match:
                 self.Level = 'RAID{}'.format(match.group(1))
                 continue
@@ -212,6 +216,9 @@ class RaidPDvendorAdaptec(RaidPD):
             match = re.search(r'^Reported\sChannel.*:.*\((\S+)\)$', line)
             if match:
                 self.Slot = match.group(1)
+                continue
+            if re.match(r'^Vendor\s+:$', line):
+                self.Model = ''
                 continue
             match = re.search(r'^Vendor\s+:\s(.*)$', line)
             if match:

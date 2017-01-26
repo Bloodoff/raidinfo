@@ -70,7 +70,10 @@ class SMARTinfo(object):
                 self.Vendor = match.group(1)
             match = re.search(r'Product:\s+(\S.*)$', line)
             if match:
-                self.Model = '{} {}'.format(self.Vendor, match.group(1))
+                if hasattr(self, 'Vendor'):
+                    self.Model = '{} {}'.format(self.Vendor, match.group(1))
+                    continue
+                self.Model = match.group(1)
             match = re.search(r'Revision:\s+(\S.*)$', line)
             if match:
                 self.Firmware = match.group(1)

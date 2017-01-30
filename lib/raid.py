@@ -113,9 +113,7 @@ class RaidPD(object):
                 titleline = titleline + ' |'
             titleline = titleline + '{!s:{}{}}'.format(title, align, lenght)
         print(titleline)
-        for i in range(0, len(titleline)):
-            print('-', end="")
-        print()
+        print('-' * len(titleline))
 
     def _formatPHYInfo(self):
         if not hasattr(self, 'PHYCount'):

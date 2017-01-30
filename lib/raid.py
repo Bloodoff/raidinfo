@@ -107,11 +107,10 @@ class RaidPD(object):
 
     @staticmethod
     def printTitle():
-        titleline = ''
+        line_elements = []
         for title, lenght, align, _, _, _ in RaidPD.__fields:
-            if len(titleline) != 0:
-                titleline = titleline + ' |'
-            titleline = titleline + '{!s:{}{}}'.format(title, align, lenght)
+            line_elements.append('{!s:{}{}}'.format(title, align, lenght))
+        titleline = ' |'.join(line_elements)
         print(titleline)
         print('-' * len(titleline))
 
@@ -121,18 +120,10 @@ class RaidPD(object):
         return '{!s:1}x{}'.format(self.PHYCount, self.PHYSpeed)
 
     def printInfo(self):
-        line = ''
+        line_elements = []
         for title, lenght, align, default, attr, format_func in RaidPD.__fields:
-            if len(line) != 0:
-                line = line + ' |'
-            if hasattr(self, attr):
-                value = getattr(self, attr)
-            else:
-                value = default
+            value = getattr(self, attr) if hasattr(self, attr) else default
             if format_func is not None:
-                if callable(format_func):
-                    value = format_func(value)
-                else:
-                    value = getattr(self, format_func)()
-            line = line + '{!s:{}{}}'.format(value, align, lenght)
-        print(line)
+                value = format_func(value) if callable(format_func) else getattr(self, format_func)()
+            line_elements.append('{!s:{}{}}'.format(value, align, lenght))
+        print(' |'.join(line_elements))

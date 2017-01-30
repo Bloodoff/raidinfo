@@ -94,7 +94,7 @@ class RaidPD(object):
         ('Capacity', 10, '>', '-', 'Capacity', None),
         ('Sector size', 11, '>', ['-', '-'], 'SectorSizes', lambda value: '{}/{}'.format(value[0], value[1])),
         ('FF', 3, '>', '-', 'FormFactor', None),
-        ('RPM', 5, '>', '-', 'RPM', None),
+        ('RPM', 6, '>', '-', 'RPM', None),
         ('PHY', 6, '>', None, 'PHYSpeed', '_formatPHYInfo'),
         ('Temp', 4, '>', '-', 'Temperature', None),
         ('Hours', 6, '>', '-', 'PowerOnHours', None),

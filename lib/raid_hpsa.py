@@ -4,12 +4,26 @@ import re
 from . import helpers
 
 from .raid import RaidController, RaidLD, RaidPD
+from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
 raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
 
 
-class RaidControllerHPSA(RaidController):
+class RaidControllerHPSA(TextAttributeParser, RaidController):
+
+    _attributes = [
+        (r'^Smart\sArray\s(\S*)', 'Model', None, None),
+        (r'^Serial\sNumber:\s(.*)$', 'Serial', None, None),
+        (r'^Controller\sStatus:\s(.*)$', 'Status', None, None),
+        (r'^Firmware\sVersion:\s(.*)$', 'Firmware', None, None),
+        (r'^Cache\sBoard\sPresent:\s(.*)$', 'Cache', None, lambda match: match.group(1) == 'True'),
+        (r'^Cache\sSerial\sNumber:\s(.*)$', 'CacheSerial', None, None),
+        (r'^Cache\sStatus:\s(.*)$', 'CacheStatus', None, None),
+        (r'^Cache\sStatus\sDetails:\s(.*)$', 'CacheStatusDetails', None, None),
+        (r'^Total\sCache\sSize:\s(.*)$', 'CacheSize', None, None),
+        (r'^Battery/Capacitor\sCount:\s(.*)$', 'CacheBatteryCount', None, None)
+    ]
 
     def __init__(self, name):
         super(self.__class__, self).__init__(name)
@@ -43,48 +57,29 @@ class RaidControllerHPSA(RaidController):
     def printSpecificInfo(self):
         print('Model: {}, s/n: {}, fw: {}, Status: {}'.format(self.Model, self.Serial, self.Firmware, self.Status))
         if self.Cache:
-            print('Cache: {}, s/n {}, Battery count: {}, Status: {} / {}'.format(self.CacheSize, self.CacheSerial, self.CacheBatteryCount, self.CacheStatus, self.CacheStatusDetails))
+            print('Cache: {}, s/n {}, Battery count: {}, Status: {} / {}'.format(self.CacheSize,
+                                                                                 self.CacheSerial,
+                                                                                 self.CacheBatteryCount,
+                                                                                 self.CacheStatus,
+                                                                                 self.CacheStatusDetails))
         else:
             print('NO Cache module')
 
     def __fill_data(self):
         for line in helpers.getOutput('{} controller slot={} show'.format(raidUtil, self.Name)):
-            match = re.search(r'^Smart\sArray\s(\S*)', line)
-            if match:
-                self.Model = match.group(1)
-            match = re.search(r'^Serial\sNumber:\s(.*)$', line)
-            if match:
-                self.Serial = match.group(1)
-            match = re.search(r'^Controller\sStatus:\s(.*)$', line)
-            if match:
-                self.Status = match.group(1)
-            match = re.search(r'^Firmware\sVersion:\s(.*)$', line)
-            if match:
-                self.Firmware = match.group(1)
-            match = re.search(r'^Cache\sBoard\sPresent:\s(.*)$', line)
-            if match:
-                if match.group(1) == 'True':
-                    self.Cache = True
-                else:
-                    self.Cache = False
-            match = re.search(r'^Cache\sSerial\sNumber:\s(.*)$', line)
-            if match:
-                self.CacheSerial = match.group(1)
-            match = re.search(r'^Cache\sStatus:\s(.*)$', line)
-            if match:
-                self.CacheStatus = match.group(1)
-            match = re.search(r'^Cache\sStatus\sDetails:\s(.*)$', line)
-            if match:
-                self.CacheStatusDetails = match.group(1)
-            match = re.search(r'^Total\sCache\sSize:\s(.*)$', line)
-            if match:
-                self.CacheSize = match.group(1)
-            match = re.search(r'^Battery/Capacitor\sCount:\s(.*)$', line)
-            if match:
-                self.CacheBatteryCount = match.group(1)
+            if self._process_attributes_line(line):
+                continue
 
 
-class RaidLDvendorHPSA(RaidLD):
+class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
+
+    _attributes = [
+        (r'^Disk\sName:\s(\S.*)$', 'Device', None, None),
+        (r'^Size:\s(\S.*)$', 'Size', None, None),
+        (r'^Fault\sTolerance:\s(\S.*)$', 'Level', None, None),
+        (r'^Status:\s(\S.*)$', 'Status', None, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
+    ]
+
     def __init__(self, name, controller, array_name):
         super(self.__class__, self).__init__(name, controller)
         self.ArrayName = array_name
@@ -105,18 +100,8 @@ class RaidLDvendorHPSA(RaidLD):
 
     def __fill_data(self):
         for line in helpers.getOutput('{} controller slot={} logicaldrive {} show'.format(raidUtil, self.Controller.Name, self.Name)):
-            match = re.search(r'^Disk\sName:\s(\S.*)$', line)
-            if match:
-                self.Device = match.group(1)
-            match = re.search(r'^Size:\s(\S.*)$', line)
-            if match:
-                self.Size = match.group(1)
-            match = re.search(r'^Fault\sTolerance:\s(\S.*)$', line)
-            if match:
-                self.Level = match.group(1)
-            match = re.search(r'^Status:\s(\S.*)$', line)
-            if match:
-                self.State = {'OK': 'Optimal'}.get(match.group(1), match.group(1))
+            if self._process_attributes_line(line):
+                continue
 
     def __load_all_smart(self):
         self.__smart = []
@@ -135,7 +120,16 @@ class RaidLDvendorHPSA(RaidLD):
         return None
 
 
-class RaidPDvendorHPSA(RaidPD):
+class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
+
+    _attributes = [
+        (r'^Status:\s(\S.*)$', 'State', None, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1))),
+        (r'^Interface\sType:\s+(\S+)', 'Technology', None, None),
+        (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, None),
+        (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, None),
+        (r'^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, None),
+        (r'^Serial\sNumber:\s+(\S+)', 'Serial', None, None)
+    ]
 
     def __init__(self, name, ld):
         super(self.__class__, self).__init__(name, ld)
@@ -145,28 +139,13 @@ class RaidPDvendorHPSA(RaidPD):
 
     def __fill_basic_info(self):
         for line in helpers.getOutput('{} controller slot={} physicaldrive {} show'.format(raidUtil, self.LD.Controller.Name, self.Device)):
-            match = re.search(r'^Status:\s+(\S.*)$', line)
-            if match:
-                self.State = {'OK': 'Optimal'}.get(match.group(1), match.group(1))
+            if self._process_attributes_line(line):
+                continue
             match = re.search(r'^Drive\sType:\s+(\S.*$)', line)
             if match:
                 if (match.group(1) == 'Spare Drive') and (self.State == 'Optimal'):
                     self.State = 'Hot spare'
-            match = re.search(r'^Interface\sType:\s+(\S+)', line)
-            if match:
-                self.Technology = match.group(1)
-            match = re.search(r'^Rotational\sSpeed:\s+(\d+)', line)
-            if match:
-                self.RPM = match.group(1)
-            match = re.search(r'^PHY\sCount:\s+(\d+)', line)
-            if match:
-                self.PHYCount = int(match.group(1))
-            match = re.search(r'^PHY\sTransfer\sRate:\s+(\S+)Gbps', line)
-            if match:
-                self.PHYSpeed = match.group(1)
-            match = re.search(r'^Serial\sNumber:\s+(\S+)', line)
-            if match:
-                self.Serial = match.group(1)
+                continue
 
     def __fill_advanced_info(self):
         smart = self.LD.search_smart_by_serial(self.Serial)

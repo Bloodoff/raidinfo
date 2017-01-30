@@ -7,6 +7,7 @@ from .raid import RaidController, RaidLD, RaidPD
 
 raidUtil = '/usr/sbin/tw_cli'
 
+
 class RaidController3ware(RaidController):
 
     def __init__(self, name):
@@ -104,9 +105,7 @@ class RaidPD3ware(RaidPD):
         self.Serial = self.__getSerial()
         self.Firmware = self.__getFirmware()
         self.Capacity = self.__getCapacity()
-        self.SectorSizes = self.__getSectorSizes()
         self.RPM = self.__getRPM()
-        self.FormFactor = self.__getFormFactor()
         self.Speed = self.__getSpeed()
         self.PowerOnHours = self.__getPowerOnHours()
         self.BadSectorsCount = self.__getBadSectorsCount()
@@ -147,17 +146,11 @@ class RaidPD3ware(RaidPD):
                 return match.group(1)
         return 0
 
-    def __getSectorSizes(self):
-        return [0, 0]
-
     def __getRPM(self):
         for line in helpers.getOutput('{} /c{}/p{} show all'.format(raidUtil, self.LD.Controller.Name, self.Name)):
             match = re.search(r'\/c\d+\/p\d+\sSpindle\sSpeed\s=\s(\d*)\s', line)
             if match:
                 return match.group(1)
-        return '-'
-
-    def __getFormFactor(self):
         return '-'
 
     def __getSpeed(self):

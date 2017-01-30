@@ -82,54 +82,59 @@ class RaidLD(object):
 
 
 class RaidPD(object):
+    # Printed fields
+    __fields = [
+        ('Device', 9, '>', '-', 'Device', None),
+        ('Slot', 4, '>', '-', 'Slot', None),
+        ('State', 10, '>', '-', 'State', None),
+        ('Tech', 4, '>', '-', 'Technology', None),
+        ('Model', 24, '>', '-', 'Model', None),
+        ('Serial number', 20, '>', '-', 'Serial', None),
+        ('Firmware', 10, '>', '-', 'Firmware', None),
+        ('Capacity', 10, '>', '-', 'Capacity', None),
+        ('Sector size', 11, '>', ['-', '-'], 'SectorSizes', lambda value: '{}/{}'.format(value[0], value[1])),
+        ('FF', 3, '>', '-', 'FormFactor', None),
+        ('RPM', 5, '>', '-', 'RPM', None),
+        ('PHY', 6, '>', None, 'PHYSpeed', '_formatPHYInfo'),
+        ('Temp', 4, '>', '-', 'Temperature', None),
+        ('Hours', 6, '>', '-', 'PowerOnHours', None),
+        ('Errors', 6, '>', '-', 'ErrorCount', None)
+    ]
 
     def __init__(self, name, ld):
         self.LD = ld
         self.Name = name
-        # Set default values
-        self.Device = '-'
-        self.Slot = '-'
-        self.State = '-'
-        self.Technology = '-'
-        self.Model = '-'
-        self.Serial = '-'
-        self.Firmware = '-'
-        self.Capacity = '-'
-        self.SectorSizes = []
-        self.SectorSizes.append('-')
-        self.SectorSizes.append('-')
-        self.FormFactor = '-'
-        self.PHYCount = 0
-        self.PHYSpeed = None
-        self.RPM = '-'
-        self.Temperature = '-'
-        self.PowerOnHours = '-'
-        self.ErrorCount = '-'
 
     @staticmethod
     def printTitle():
-        print('Device       |Slot| State      | Tech | Model                    | Serial number        | Firmware | Capacity   | Sector size | F F |  RPM  | PHY Speed | Temp | Hours  | Errors')
-        print('--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+        titleline = ''
+        for title, lenght, align, _, _, _ in RaidPD.__fields:
+            if len(titleline) != 0:
+                titleline = titleline + ' |'
+            titleline = titleline + '{!s:{}{}}'.format(title, align, lenght)
+        print(titleline)
+        for i in range(0, len(titleline)):
+            print('-', end="")
+        print()
+
+    def _formatPHYInfo(self):
+        if not hasattr(self, 'PHYCount'):
+            return '-'
+        return '{!s:1}x{}'.format(self.PHYCount, self.PHYSpeed)
 
     def printInfo(self):
-        phy = '-'
-        if (self.PHYCount > 0) and (self.PHYSpeed is not None):
-            phy = '{} x {}'.format(self.PHYCount, self.PHYSpeed)
-        print('{!s:12} |{!s:>4}| {!s:10} | {!s:4} | {!s:24} | {!s:20} | {!s:8} | {!s:>10} | {!s:>4} / {!s:>4} | {!s:3} | {!s:>5} | {!s:>9} | {!s:>4} | {!s:>6} | {!s:>6}'.format(
-            self.Device,
-            self.Slot,
-            self.State,
-            self.Technology,
-            self.Model,
-            self.Serial,
-            self.Firmware,
-            self.Capacity,
-            self.SectorSizes[0],
-            self.SectorSizes[1],
-            self.FormFactor,
-            self.RPM,
-            phy,
-            self.Temperature,
-            self.PowerOnHours,
-            self.ErrorCount
-        ))
+        line = ''
+        for title, lenght, align, default, attr, format_func in RaidPD.__fields:
+            if len(line) != 0:
+                line = line + ' |'
+            if hasattr(self, attr):
+                value = getattr(self, attr)
+            else:
+                value = default
+            if format_func is not None:
+                if callable(format_func):
+                    value = format_func(value)
+                else:
+                    value = getattr(self, format_func)()
+            line = line + '{!s:{}{}}'.format(value, align, lenght)
+        print(line)

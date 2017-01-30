@@ -20,7 +20,7 @@ class SMARTinfo(TextAttributeParser):
         (r'9\sPower_On_Hours+.*\s(\d+)$'               , 'PowerOnHours', None, None),
         (r'Vendor:\s+(\S.*)$'                          , 'Vendor'      , None, None),
         (r'Revision:\s+(\S.*)$'                        , 'Firmware'    , None, None),
-        (r'Current\sDrive\sTemperature:\s+(\d.*)'      , 'Temperature' , None, None),
+        (r'Current\sDrive\sTemperature:\s+(\d*)'      , 'Temperature' , None, None),
         (r'number\sof\shours\spowered\sup\s=\s+(\d*)'  , 'PowerOnHours', None, None),
         (r'Sector\sSizes:\s+(\d+)\D+(\d+)'             , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(2))]),
         (r'Sector\sSize:\s+(\d+)'                      , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(1))]),
@@ -34,7 +34,7 @@ class SMARTinfo(TextAttributeParser):
     ]
 
     def __init__(self, options, device):
-        self._set_default_attributes
+        self._set_default_attributes()
         self.Technology = 'SATA'
         self.PHYCount = 1
         self.__cmd = '{} {}'.format(options, device)

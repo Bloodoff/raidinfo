@@ -5,12 +5,23 @@ import xml.etree.ElementTree as ET
 from . import helpers
 
 from .raid import RaidController, RaidLD, RaidPD, DeviceCapacity
+from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
 raidUtil = '/usr/sbin/arcconf'
 
 
-class RaidControllerAdaptec(RaidController):
+class RaidControllerAdaptec(TextAttributeParser, RaidController):
+
+    _attributes = [
+        (r'Controller\sModel\s+:\s(.*)$', 'Model', None, None),
+        (r'Controller\sSerial\sNumber\s+:\s(.*)$', 'Serial', None, None),
+        (r'Temperature\s+:\s(\d+)', 'Temperature', None, None),
+        (r'Installed\smemory\s+:\s(.*)$', 'CacheSize', None, None),
+        (r'Controller\sStatus\s+:\s(.*)$', 'Status', None, None),
+        (r'BIOS\s+:\s(.*)$', 'BIOS', None, None),
+        (r'Firmware\s+:\s(.*)$', 'Firmware', None, None)
+    ]
 
     def __init__(self, name):
         super(self.__class__, self).__init__(name)
@@ -60,62 +71,49 @@ class RaidControllerAdaptec(RaidController):
                 return smart
 
     def printSpecificInfo(self):
-        print('Model: {}, s/n {}, cache: {}, status: {}'.format(self.Model, self.Serial, self.CacheSize, self.Status))
-        print('BIOS version: {}, FW version: {}'.format(self.BIOS, self.Firmware))
+        print('Model: {}, s/n {}'.format(self.Model, self.Serial))
+        print('Cache: {}, status: {}'.format(self.CacheSize, self.Status))
+        print('BIOS version: {}'.format(self.BIOS))
+        print('FW version  : {}'.format(self.Firmware))
         print('CPU temperature: {}'.format(self.Temperature))
 
     def __fill_data(self):
         for line in helpers.getOutput('{} GETCONFIG {}'.format(raidUtil, self.Name)):
             if line == 'Logical device information':
                 break
-            match = re.search(r'Controller\sModel\s+:\s(.*)$', line)
-            if match:
-                self.Model = match.group(1)
-                continue
-            match = re.search(r'Controller\sSerial\sNumber\s+:\s(.*)$', line)
-            if match:
-                self.Serial = match.group(1)
-                continue
-            match = re.search(r'Temperature\s+:\s(\d+)', line)
-            if match:
-                self.Temperature = int(match.group(1))
-                continue
-            match = re.search(r'Installed\smemory\s+:\s(.*)$', line)
-            if match:
-                self.CacheSize = match.group(1)
-                continue
-            match = re.search(r'Controller\sStatus\s+:\s(.*)$', line)
-            if match:
-                self.Status = match.group(1)
-                continue
-            match = re.search(r'BIOS\s+:\s(.*)$', line)
-            if match:
-                self.BIOS = match.group(1)
-                continue
-            match = re.search(r'Firmware\s+:\s(.*)$', line)
-            if match:
-                self.Firmware = match.group(1)
+            if self._process_attributes_line(line):
                 continue
 
 
-class RaidLDvendorAdaptec(RaidLD):
+class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
+
+    _attributes = [
+        (r'Logical\sDevice\sname\s+:\s(.*)$', 'Device', '-', None),
+        (r'RAID\slevel\s+:\s(\d*)', 'Level', '-', lambda match: 'RAID{}'.format(match.group(1))),
+        (r'Status\sof\sLogical\sDevice\s+:\s(.*)$', 'State', '-', None),
+        (r'Size\s+:\s(.*)$', 'Size', '-', lambda match: '{}'.format(DeviceCapacity(match.group(1), 'MiB'))),
+        (r'Read-cache\ssetting\s+:\s(.*)$', 'CacheRSet', None, None),
+        (r'Read-cache\sstatus\s+:\s(.*)$', 'CacheRStatus', None, None),
+        (r'Write-cache\sstatus\s+:\s(.*)$', 'CacheWSet', None, None),
+        (r'Write-cache\ssetting\s+:\s(.*)$', 'CacheWStatus', None, None),
+        (r'maxCache\sread\scache\ssetting\s+:\s(.*)$', 'CacheMSet', None, None),
+        (r'maxCache\sread\scache\sstatus\s+:\s(.*)$', 'CacheMStatus', None, None)
+    ]
+
     def __init__(self, name, controller):
         super(self.__class__, self).__init__(name, controller)
-        self.Level = ''
-        self.State = ''
-        self.Size = ''
-        self.Device = ''
+        self._set_default_attributes()
         self.__fill_data()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
 
     def printSpecificInfo(self):
         if hasattr(self, 'CacheRSet'):
-            print('Read cache: {} - {}'.format(self.CacheRSet, self.CacheRStatus))
+            print('Read cache : {} - {}'.format(self.CacheRSet, self.CacheRStatus))
         if hasattr(self, 'CacheWSet'):
             print('Write cache: {} - {}'.format(self.CacheWSet, self.CacheWStatus))
         if hasattr(self, 'CacheMSet'):
-            print('maxCache: {} - {}'.format(self.CacheMSet, self.CacheMStatus))
+            print('maxCache   : {} - {}'.format(self.CacheMSet, self.CacheMStatus))
 
     def __fill_data(self):
         start_string = 'Logical Device number {}'.format(self.Name)
@@ -130,49 +128,12 @@ class RaidLDvendorAdaptec(RaidLD):
                 break
             if re.search(r'Logical\sDevice\snumber\s(\d+)', line):
                 break
-            match = re.search(r'Logical\sDevice\sname\s+:\s(.*)$', line)
-            if match:
-                self.Device = match.group(1)
-                continue
-            match = re.search(r'RAID\slevel\s+:\s(\d*)', line)
-            if match:
-                self.Level = 'RAID{}'.format(match.group(1))
-                continue
-            match = re.search(r'Status\sof\sLogical\sDevice\s+:\s(.*)$', line)
-            if match:
-                self.State = match.group(1)
-                continue
-            match = re.search(r'Size\s+:\s(.*)$', line)
-            if match:
-                self.Size = DeviceCapacity(match.group(1), 'MiB')
-                continue
-            match = re.search(r'Read-cache\ssetting\s+:\s(.*)$', line)
-            if match:
-                self.CacheRSet = match.group(1)
-                continue
-            match = re.search(r'Read-cache\sstatus\s+:\s(.*)$', line)
-            if match:
-                self.CacheRStatus = match.group(1)
-                continue
-            match = re.search(r'Write-cache\ssetting\s+:\s(.*)$', line)
-            if match:
-                self.CacheWSet = match.group(1)
-                continue
-            match = re.search(r'Write-cache\sstatus\s+:\s(.*)$', line)
-            if match:
-                self.CacheWStatus = match.group(1)
-                continue
-            match = re.search(r'maxCache\sread\scache\ssetting\s+:\s(.*)$', line)
-            if match:
-                self.CacheMSet = match.group(1)
-                continue
-            match = re.search(r'maxCache\sread\scache\sstatus\s+:\s(.*)$', line)
-            if match:
-                self.CacheMStatus = match.group(1)
+            if self._process_attributes_line(line):
                 continue
             match = re.search(r'Segment\s(\d+)\s.*\s(\S+)$', line)
             if match:
                 self.PDs.append(RaidPDvendorAdaptec(match.group(1), self, match.group(2)))
+                continue
 
 
 class RaidPDvendorAdaptec(RaidPD):
@@ -262,15 +223,6 @@ class RaidPDvendorAdaptec(RaidPD):
             if attribute.attrib['name'] == 'Current Internal Temperature':
                 self.Temperature = int(attribute.attrib['rawValue'])
                 continue
-            if attribute.attrib['name'] == 'Reallocated Sectors Count':
-                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
-                continue
-            if attribute.attrib['name'] == 'Reallocation Event Count':
-                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
-                continue
-            if attribute.attrib['name'] == 'Current Pending Sector Count':
-                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
-                continue
-            if attribute.attrib['name'] == 'Uncorrectable Sector Count':
+            if attribute.attrib['name'] in ['Reallocated Sectors Count', 'Reallocation Event Count', 'Current Pending Sector Count', 'Uncorrectable Sector Count']:
                 self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
                 continue

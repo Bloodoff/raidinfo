@@ -1,12 +1,13 @@
 import re
 
 from . import helpers
+from .mixins import TextAttributeParser
 
 smartctl = "/usr/sbin/smartctl"
 
 
-class SMARTinfo(object):
-    __attributes = [
+class SMARTinfo(TextAttributeParser):
+    _attributes = [
         (r'Model\sFamily:\s+(.*)$'                     , 'Vendor'      , None, None),
         (r'Device\sModel:\s+(.*)$'                     , 'Model'       , None, None),
         (r'Serial\s[N|n]umber:\s+(.*)$'                , 'Serial'      , None, None),
@@ -33,33 +34,16 @@ class SMARTinfo(object):
     ]
 
     def __init__(self, options, device):
-        self.__set_defaults()
+        self._set_default_attributes
         self.Technology = 'SATA'
         self.PHYCount = 1
         self.__cmd = '{} {}'.format(options, device)
         self.__cmd = '{} -x {}'.format(smartctl, self.__cmd.strip())
         self.__load_values()
 
-    def __set_defaults(self):
-        for (regexp, attr, default, convert_func) in self.__attributes:
-            if default is not None:
-                setattr(self, attr, default)
-
     def __load_values(self):
-        def __process_common_attributes(line):
-            for (regexp, attr, default, convert_func) in self.__attributes:
-                match = re.search(regexp, line)
-                if match:
-                    value = match.group(1) if (convert_func is None) else convert_func(match)
-                    if hasattr(self, attr) and getattr(self, attr) != default:
-                        setattr(self, attr, getattr(self, attr) + value)
-                    else:
-                        setattr(self, attr, value)
-                    return True
-            return False
-
         for line in helpers.getOutput(self.__cmd):
-            if __process_common_attributes(line):
+            if self._process_attributes_line(line):
                 continue
             # SAS
             match = re.search(r'Product:\s+(\S.*)$', line)

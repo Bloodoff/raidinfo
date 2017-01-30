@@ -6,87 +6,63 @@ smartctl = "/usr/sbin/smartctl"
 
 
 class SMARTinfo(object):
+    __attributes = [
+        (r'Model\sFamily:\s+(.*)$'                     , 'Vendor'      , None, None),
+        (r'Device\sModel:\s+(.*)$'                     , 'Model'       , None, None),
+        (r'Serial\s[N|n]umber:\s+(.*)$'                , 'Serial'      , None, None),
+        (r'Firmware\sVersion:\s+(.*)$'                 , 'Firmware'    , None, None),
+        (r'User\sCapacity:.*\[(.*)\]$'                 , 'Capacity'    , None, None),
+        (r'Rotation\sRate:\s+(\d+)'                    , 'RPM'         , None, None),
+        (r'Form\sFactor:\s+(\S+)'                      , 'FormFactor'  , None, None),
+        (r'SATA Version is:.+\s(\S+)\sGb\/s'           , 'PHYSpeed'    , None, None),
+        (r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', 'Temperature' , None, None),
+        (r'9\sPower_On_Hours+.*\s(\d+)$'               , 'PowerOnHours', None, None),
+        (r'Vendor:\s+(\S.*)$'                          , 'Vendor'      , None, None),
+        (r'Revision:\s+(\S.*)$'                        , 'Firmware'    , None, None),
+        (r'Current\sDrive\sTemperature:\s+(\d.*)'      , 'Temperature' , None, None),
+        (r'number\sof\shours\spowered\sup\s=\s+(\d*)'  , 'PowerOnHours', None, None),
+        (r'Sector\sSizes:\s+(\d+)\D+(\d+)'             , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(2))]),
+        (r'Sector\sSize:\s+(\d+)'                      , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(1))]),
+        (r'5\s+Reallocated_Sector_Ct.*\s(\d+)$'        , 'ErrorCount'  ,    0, lambda match: int(match.group(1))),
+        (r'196\s+Reallocated_Event_Count.*\s(\d+)$'    , 'ErrorCount'  ,    0, lambda match: int(match.group(1))),
+        (r'197\s+Current_Pending_Sector.*\s(\d+)$'     , 'ErrorCount'  ,    0, lambda match: int(match.group(1))),
+        (r'198\s+Offline_Uncorrectable.*\s(\d+)$'      , 'ErrorCount'  ,    0, lambda match: int(match.group(1))),
+        # Common errors
+        (r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', 'SMART', True, lambda match: False),
+        (r'.*Terminate\scommand\searly\sdue'                     , 'Disk' , True, lambda match: False)
+    ]
+
     def __init__(self, options, device):
-        self.SMART = True
-        self.Disk = True
-        self.ErrorCount = 0
+        self.__set_defaults()
         self.Technology = 'SATA'
         self.PHYCount = 1
         self.__cmd = '{} {}'.format(options, device)
         self.__cmd = '{} -x {}'.format(smartctl, self.__cmd.strip())
         self.__load_values()
 
+    def __set_defaults(self):
+        for (regexp, attr, default, convert_func) in self.__attributes:
+            if default is not None:
+                setattr(self, attr, default)
+
     def __load_values(self):
-        for line in helpers.getOutput(self.__cmd):
-            # SATA
-            match = re.search(r'Model\sFamily:\s+(.*)$', line)
-            if match:
-                self.Vendor = match.group(1)
-            match = re.search(r'Device\sModel:\s+(.*)$', line)
-            if match:
-                self.Model = match.group(1)
-            match = re.search(r'Serial\s[N|n]umber:\s+(.*)$', line)
-            if match:
-                self.Serial = match.group(1)
-            match = re.search(r'Firmware\sVersion:\s+(.*)$', line)
-            if match:
-                self.Firmware = match.group(1)
-            match = re.search(r'User\sCapacity:.*\[(.*)\]$', line)
-            if match:
-                self.Capacity = match.group(1)
-            match = re.search(r'Sector\sSizes:\s+(\d+)\D+(\d+)', line)
-            if match:
-                self.SectorSizes = [int(match.group(1)), int(match.group(2))]
-            match = re.search(r'Sector\sSize:\s+(\d+)', line)
-            if match:
-                self.SectorSizes = [int(match.group(1)), int(match.group(1))]
-            match = re.search(r'Rotation\sRate:\s+(\d+)', line)
-            if match:
-                self.RPM = match.group(1)
-            match = re.search(r'Form\sFactor:\s+(\S+)', line)
-            if match:
-                self.FormFactor = match.group(1)
-            match = re.search(r'SATA Version is:.+\s(\S+)\sGb\/s', line)
-            if match:
-                self.PHYSpeed = match.group(1)
-            for item in [
-                    r'5\s+Reallocated_Sector_Ct.*\s(\d+)$',
-                    r'196\s+Reallocated_Event_Count.*\s(\d+)$',
-                    r'197\s+Current_Pending_Sector.*\s(\d+)$',
-                    r'198\s+Offline_Uncorrectable.*\s(\d+)$'
-            ]:
-                match = re.search(item, line)
+        def __process_common_attributes(line):
+            for (regexp, attr, default, convert_func) in self.__attributes:
+                match = re.search(regexp, line)
                 if match:
-                    self.ErrorCount = self.ErrorCount + int(match.group(1))
-            match = re.search(r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', line)
-            if match:
-                self.Temperature = match.group(1)
-            match = re.search(r'9\sPower_On_Hours+.*\s(\d+)$', line)
-            if match:
-                self.PowerOnHours = match.group(1)
+                    value = match.group(1) if (convert_func is None) else convert_func(match)
+                    if hasattr(self, attr) and getattr(self, attr) != default:
+                        setattr(self, attr, getattr(self, attr) + value)
+                    else:
+                        setattr(self, attr, value)
+                    return True
+            return False
+
+        for line in helpers.getOutput(self.__cmd):
+            if __process_common_attributes(line):
+                continue
             # SAS
-            match = re.search(r'Vendor:\s+(\S.*)$', line)
-            if match:
-                self.Vendor = match.group(1)
             match = re.search(r'Product:\s+(\S.*)$', line)
             if match:
-                if hasattr(self, 'Vendor'):
-                    self.Model = '{} {}'.format(self.Vendor, match.group(1))
-                    continue
-                self.Model = match.group(1)
-            match = re.search(r'Revision:\s+(\S.*)$', line)
-            if match:
-                self.Firmware = match.group(1)
-            match = re.search(r'Current\sDrive\sTemperature:\s+(\d.*)', line)
-            if match:
-                self.Temperature = match.group(1)
-            match = re.search(r'number\sof\shours\spowered\sup\s=\s+(\d*)', line)
-            if match:
-                self.PowerOnHours = match.group(1)
-            # Common errors
-            match = re.search(r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', line)
-            if match:
-                self.SMART = False
-            match = re.search(r'.*Terminate\scommand\searly\sdue', line)
-            if match:
-                self.Disk = False
+                self.Model = '{} {}'.format(self.Vendor, match.group(1)) if hasattr(self, 'Vendor') else match.group(1)
+                continue

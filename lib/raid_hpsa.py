@@ -130,7 +130,7 @@ class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
         (r'^Interface\sType:\s+(\S+)', 'Technology', None, None),
         (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, None),
         (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, None),
-        (r'^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, None),
+        (r'(?i)^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, None),
         (r'^Serial\sNumber:\s+(.+)$', 'Serial', None, None),
         (r'^Firmware\sRevision:\s+(.+)$', 'Firmware', None, None),
         (r'^Size:\s+(.+)$', 'Capacity', None, None),

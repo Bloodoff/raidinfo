@@ -10,9 +10,10 @@ def printUsage():
     print('Usage: softraid.py')
 
 if __name__ == '__main__':
-    if os.getenv('USER') != 'root':
-        print('This script requires Administrator privileges')
-        sys.exit(5)
+    if not os.name == 'nt':
+        if os.getenv('USER') != 'root':
+            print('This script requires Administrator privileges')
+            sys.exit(5)
 
 if len(sys.argv) > 1:
     printUsage()

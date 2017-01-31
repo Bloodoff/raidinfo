@@ -1,3 +1,4 @@
+import subprocess
 import os
 import re
 
@@ -17,7 +18,19 @@ def getOutput(cmd):
     if (cmd in Outputs):
         lines = Outputs[cmd]
     else:
-        output = os.popen(cmd)
+        startupinfo = None
+        shell = True
+        if os.name == 'nt':
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            shell = False
+        output = subprocess.Popen(cmd,
+                                  stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE,
+                                  stdin=subprocess.PIPE,
+                                  shell=shell,
+                                  startupinfo=startupinfo).communicate()
+        output = output[0].decode('utf-8').split('\r\n')
         for line in output:
             if not re.match(r'^$', line.strip()):
                 lines.append(line.strip())

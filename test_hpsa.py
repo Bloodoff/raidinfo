@@ -71,7 +71,7 @@ def read_file(filename):
 
 
 def fake_isfile(filename):
-    if filename == '/opt/compaq/hpacucli/bld/hpacucli':
+    if filename in ['/opt/compaq/hpacucli/bld/hpacucli', '/usr/sbin/smartctl']:
         return True
     return False
 

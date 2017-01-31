@@ -1,4 +1,5 @@
 import re
+import os
 
 from . import helpers
 from .mixins import TextAttributeParser
@@ -34,6 +35,9 @@ class SMARTinfo(TextAttributeParser):
     ]
 
     def __init__(self, options, device):
+        if not os.path.isfile(smartctl):
+            self.SMART = False
+            return
         self._set_default_attributes()
         self.Technology = 'SATA'
         self.PHYCount = 1

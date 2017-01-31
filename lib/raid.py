@@ -117,6 +117,8 @@ class RaidPD(object):
     def _formatPHYInfo(self):
         if not hasattr(self, 'PHYCount'):
             return '-'
+        if not hasattr(self, 'PHYSpeed'):
+            return '-'
         return '{!s:1}x{}'.format(self.PHYCount, self.PHYSpeed)
 
     def printInfo(self):

@@ -7,7 +7,10 @@ from .raid import RaidController, RaidLD, RaidPD
 from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
-raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
+if os.name == 'nt':
+    raidUtil = 'C:\Program Files (x86)\Compaq\Hpacucli\Bin\hpacucli.exe'
+else:
+    raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
 
 
 class RaidControllerHPSA(TextAttributeParser, RaidController):
@@ -128,7 +131,10 @@ class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
         (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, None),
         (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, None),
         (r'^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, None),
-        (r'^Serial\sNumber:\s+(\S+)', 'Serial', None, None)
+        (r'^Serial\sNumber:\s+(.+)$', 'Serial', None, None),
+        (r'^Firmware\sRevision:\s+(.+)$', 'Firmware', None, None),
+        (r'^Size:\s+(.+)$', 'Capacity', None, None),
+        (r'^Model:\s+(.+)$', 'Model', None, None)
     ]
 
     def __init__(self, name, ld):

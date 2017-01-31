@@ -37,7 +37,7 @@ def read_file(filename):
 
 
 def fake_isfile(filename):
-    if filename == '/proc/mdstat':
+    if filename in ['/proc/mdstat', '/usr/sbin/smartctl']:
         return True
     return False
 

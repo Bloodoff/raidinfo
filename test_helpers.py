@@ -8,6 +8,6 @@ import time
 from lib import *
 
 def test_helpers_1(monkeypatch):
-    output1 = helpers.getOutput('dd if=/dev/urandom bs=512 count=1 | sha512sum')
-    output2 = helpers.getOutput('dd if=/dev/urandom bs=512 count=1 | sha512sum')
+    output1 = helpers.getOutput('/bin/shuf -i1-100000 -n1')
+    output2 = helpers.getOutput('/bin/shuf -i1-100000 -n1')
     assert output1 == output2

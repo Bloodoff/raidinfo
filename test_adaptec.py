@@ -24,7 +24,7 @@ def read_file(filename):
 
 
 def fake_isfile(filename):
-    if filename == '/usr/sbin/arcconf':
+    if filename in ['/usr/sbin/arcconf', '/usr/sbin/smartctl']:
         return True
     return False
 

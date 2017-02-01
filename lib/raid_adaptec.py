@@ -8,7 +8,10 @@ from .raid import RaidController, RaidLD, RaidPD, DeviceCapacity
 from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
-raidUtil = '/usr/sbin/arcconf'
+if os.name == 'nt':
+    raidUtil = 'C:\Program Files\Adaptec\maxView Storage Manager\arcconf.exe'
+else:
+    raidUtil = '/usr/sbin/arcconf'
 
 
 class RaidControllerAdaptec(TextAttributeParser, RaidController):
@@ -205,7 +208,7 @@ class RaidPDvendorAdaptec(RaidPD):
     def __fill_smart_info(self):
         coordinates = self.Slot.split(':')
         smart = SMARTinfo('-d aacraid,{},{},{}'.format(int(self.LD.Controller.Name) - 1, coordinates[1], coordinates[0]), '/dev/null')
-        if smart is not None:
+        if smart.SMART:
             for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM']:
                 if hasattr(smart, prop):
                     setattr(self, prop, getattr(smart, prop))

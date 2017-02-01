@@ -9,12 +9,23 @@ from lib import *
 FakeResponses = {
     '/usr/sbin/arcconf LIST': 'testdata/adaptec-2/util-1.txt',
     '/usr/sbin/arcconf GETCONFIG 1': 'testdata/adaptec-2/util-2.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,0 /dev/null': 'testdata/adaptec/smart-0.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,1 /dev/null': 'testdata/adaptec/smart-1.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,2 /dev/null': 'testdata/adaptec/smart-2.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,4 /dev/null': 'testdata/adaptec/smart-4.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,5 /dev/null': 'testdata/adaptec/smart-5.txt',
     '/usr/sbin/arcconf GETSMARTSTATS 1': 'testdata/adaptec-2/util-3.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,8 /dev/null': 'testdata/adaptec-2/smart-1.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,9 /dev/null': 'testdata/adaptec-2/smart-2.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,10 /dev/null': 'testdata/adaptec-2/smart-3.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,11 /dev/null': 'testdata/adaptec-2/smart-4.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,12 /dev/null': 'testdata/adaptec-2/smart-5.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,13 /dev/null': 'testdata/adaptec-2/smart-6.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,14 /dev/null': 'testdata/adaptec-2/smart-7.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,15 /dev/null': 'testdata/adaptec-2/smart-8.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,16 /dev/null': 'testdata/adaptec-2/smart-9.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,17 /dev/null': 'testdata/adaptec-2/smart-10.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,18 /dev/null': 'testdata/adaptec-2/smart-11.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,19 /dev/null': 'testdata/adaptec-2/smart-12.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,20 /dev/null': 'testdata/adaptec-2/smart-13.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,21 /dev/null': 'testdata/adaptec-2/smart-14.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,22 /dev/null': 'testdata/adaptec-2/smart-15.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,23 /dev/null': 'testdata/adaptec-2/smart-16.txt'
 }
 
 
@@ -24,7 +35,7 @@ def read_file(filename):
 
 
 def fake_isfile(filename):
-    if filename in ['/usr/sbin/arcconf']:
+    if filename in ['/usr/sbin/arcconf', '/usr/sbin/smartctl']:
         return True
     return False
 

@@ -136,11 +136,11 @@ class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
                 continue
             match = re.search(r'(?i)^Segment\s(\d+)\s.*\s(\S+)$', line)
             if match:
-                self.PDs.append(RaidPDvendorAdaptec(match.group(1), self, match.group(2)))
+                self.PDs.append(RaidPDvendorAdaptec('Seg: {}'.format(match.group(1)), self, match.group(2)))
                 continue
             match = re.search(r'(?i)^Group\s(\d+),\sSegment\s(\d+)\s.*\s(\S+)$', line)
             if match:
-                self.PDs.append(RaidPDvendorAdaptec(match.group(1) + ':' + match.group(2), self, match.group(3)))
+                self.PDs.append(RaidPDvendorAdaptec('G:{!s:2} Seg:{}'.format(match.group(1), match.group(2)), self, match.group(3)))
                 continue
 
 
@@ -154,9 +154,7 @@ class RaidPDvendorAdaptec(RaidPD):
         self.__fill_basic_info()
         self.__fill_smart_info()
         self.__fill_advanced_info()
-        if self.PHYCount == 0:
-            self.PHYCount = 1
-
+        
     def __fill_basic_info(self):
         pd_section = False
         searched_pd = False
@@ -216,9 +214,12 @@ class RaidPDvendorAdaptec(RaidPD):
         coordinates = self.Slot.split(':')
         smart = SMARTinfo('-d aacraid,{},{},{}'.format(int(self.LD.Controller.Name) - 1, coordinates[1], coordinates[0]), '/dev/null')
         if smart.SMART:
-            for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM']:
-                if hasattr(smart, prop):
-                    setattr(self, prop, getattr(smart, prop))
+            if self.PHYCount == 0:
+                delattr(self, 'PHYCount')
+            for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM', 'PHYCount']:
+                if not hasattr(self, prop):
+                    if hasattr(smart, prop):
+                        setattr(self, prop, getattr(smart, prop))
 
     def __fill_advanced_info(self):
         coordinates = self.Slot.split(':')

@@ -84,7 +84,7 @@ class RaidLD(object):
 class RaidPD(object):
     # Printed fields
     __fields = [
-        ('Device', 9, '>', '-', 'Device', None),
+        ('Device', 10, '>', '-', 'Device', None),
         ('Slot', 4, '>', '-', 'Slot', None),
         ('State', 10, '>', '-', 'State', None),
         ('Tech', 4, '>', '-', 'Technology', None),

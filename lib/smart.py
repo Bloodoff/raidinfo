@@ -4,8 +4,11 @@ import os
 from . import helpers
 from .mixins import TextAttributeParser
 
-smartctl = "/usr/sbin/smartctl"
-
+if os.name == 'nt':
+    raidUtil = 'C:\\Program Files\\smartmontools\\bin\\smartctl.exe'
+else:
+    smartctl = '/usr/sbin/smartctl'
+ 
 
 class SMARTinfo(TextAttributeParser):
     _attributes = [
@@ -17,11 +20,12 @@ class SMARTinfo(TextAttributeParser):
         (r'Rotation\sRate:\s+(\d+)'                    , 'RPM'         , None, None),
         (r'Form\sFactor:\s+(\S+)'                      , 'FormFactor'  , None, None),
         (r'SATA Version is:.+\s(\S+)\sGb\/s'           , 'PHYSpeed'    , None, None),
+        (r'number\sof\sphys\s=\s(\d+)'                 , 'PHYCount'    ,    1, lambda match: int(match.group(1))),
         (r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', 'Temperature' , None, None),
         (r'9\sPower_On_Hours+.*\s(\d+)$'               , 'PowerOnHours', None, None),
         (r'Vendor:\s+(\S.*)$'                          , 'Vendor'      , None, None),
         (r'Revision:\s+(\S.*)$'                        , 'Firmware'    , None, None),
-        (r'Current\sDrive\sTemperature:\s+(\d*)'      , 'Temperature' , None, None),
+        (r'Current\sDrive\sTemperature:\s+(\d*)'       , 'Temperature' , None, None),
         (r'number\sof\shours\spowered\sup\s=\s+(\d*)'  , 'PowerOnHours', None, None),
         (r'Sector\sSizes:\s+(\d+)\D+(\d+)'             , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(2))]),
         (r'Sector\sSize:\s+(\d+)'                      , 'SectorSizes' , None, lambda match: [int(match.group(1)), int(match.group(1))]),
@@ -40,7 +44,6 @@ class SMARTinfo(TextAttributeParser):
             return
         self._set_default_attributes()
         self.Technology = 'SATA'
-        self.PHYCount = 1
         self.__cmd = '{} {}'.format(options, device)
         self.__cmd = '{} -x {}'.format(smartctl, self.__cmd.strip())
         self.__load_values()

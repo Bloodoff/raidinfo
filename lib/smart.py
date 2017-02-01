@@ -5,7 +5,7 @@ from . import helpers
 from .mixins import TextAttributeParser
 
 if os.name == 'nt':
-    raidUtil = 'C:\\Program Files\\smartmontools\\bin\\smartctl.exe'
+    smartctl = 'C:\\Program Files\\smartmontools\\bin\\smartctl.exe'
 else:
     smartctl = '/usr/sbin/smartctl'
  

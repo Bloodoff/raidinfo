@@ -154,6 +154,8 @@ class RaidPDvendorAdaptec(RaidPD):
         self.__fill_basic_info()
         self.__fill_smart_info()
         self.__fill_advanced_info()
+        if self.PHYCount == 0:
+            self.PHYCount = 1
 
     def __fill_basic_info(self):
         pd_section = False

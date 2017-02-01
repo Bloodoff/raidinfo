@@ -28,13 +28,19 @@ def fake_getOutput(cmd):
             lines.append(line.strip())
     return lines
 
+def fake_isfile(filename):
+    if filename in ['/usr/sbin/smartctl']:
+        return True
+    return False
 
+
+@mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
 def test_smart_1(monkeypatch):
     smart = SMARTinfo('', '/dev/sda')
     assert smart.SectorSizes == [512, 512] 
     
-
+@mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
 def test_smart_2(monkeypatch):
     smart = SMARTinfo('', '/dev/sdb')

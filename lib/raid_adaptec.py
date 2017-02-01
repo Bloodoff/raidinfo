@@ -9,7 +9,7 @@ from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
 if os.name == 'nt':
-    raidUtil = 'C:\Program Files\Adaptec\maxView Storage Manager\arcconf.exe'
+    raidUtil = 'C:\\Program Files\\Adaptec\\maxView Storage Manager\\arcconf.exe'
 else:
     raidUtil = '/usr/sbin/arcconf'
 
@@ -20,7 +20,7 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
         (r'Controller\sModel\s+:\s(.*)$', 'Model', None, None),
         (r'Controller\sSerial\sNumber\s+:\s(.*)$', 'Serial', None, None),
         (r'Temperature\s+:\s(\d+)', 'Temperature', None, None),
-        (r'Installed\smemory\s+:\s(.*)$', 'CacheSize', None, None),
+        (r'(?i)Installed\smemory\s+:\s(.*)$', 'CacheSize', None, None),
         (r'Controller\sStatus\s+:\s(.*)$', 'Status', None, None),
         (r'BIOS\s+:\s(.*)$', 'BIOS', None, None),
         (r'Firmware\s+:\s(.*)$', 'Firmware', None, None)
@@ -29,6 +29,7 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
     def __init__(self, name):
         super(self.__class__, self).__init__(name)
         self.Type = 'Adaptec'
+        self.Serial = '-'
         self.__fill_data()
         self.__load_SMART()
         self.__enumerate_ld()
@@ -48,14 +49,14 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
     def __enumerate_ld(self):
         ld_section = False
         for line in helpers.getOutput('{} GETCONFIG {}'.format(raidUtil, self.Name)):
-            if line == 'Logical device information':
+            if re.match(r'(?i)Logical\sdevice\sinformation', line):
                 ld_section = True
                 continue
             if not ld_section:
                 continue
-            if line == 'Physical Device information':
+            if re.match(r'(?i)Physical\sdevice\sinformation', line):
                 break
-            match = re.search(r'Logical\sDevice\snumber\s(\d+)', line)
+            match = re.search(r'(?i)Logical\sDevice\snumber\s(\d+)', line)
             if match:
                 self.LDs.append(RaidLDvendorAdaptec(match.group(1), self))
 
@@ -82,7 +83,7 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
 
     def __fill_data(self):
         for line in helpers.getOutput('{} GETCONFIG {}'.format(raidUtil, self.Name)):
-            if line == 'Logical device information':
+            if re.match(r'(?i)Logical\sdevice\sinformation', line):
                 break
             if self._process_attributes_line(line):
                 continue
@@ -91,16 +92,16 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
 class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
 
     _attributes = [
-        (r'Logical\sDevice\sname\s+:\s(.*)$', 'Device', '-', None),
-        (r'RAID\slevel\s+:\s(\d*)', 'Level', '-', lambda match: 'RAID{}'.format(match.group(1))),
-        (r'Status\sof\sLogical\sDevice\s+:\s(.*)$', 'State', '-', None),
-        (r'Size\s+:\s(.*)$', 'Size', '-', lambda match: '{}'.format(DeviceCapacity(match.group(1), 'MiB'))),
-        (r'Read-cache\ssetting\s+:\s(.*)$', 'CacheRSet', None, None),
-        (r'Read-cache\sstatus\s+:\s(.*)$', 'CacheRStatus', None, None),
-        (r'Write-cache\sstatus\s+:\s(.*)$', 'CacheWSet', None, None),
-        (r'Write-cache\ssetting\s+:\s(.*)$', 'CacheWStatus', None, None),
-        (r'maxCache\sread\scache\ssetting\s+:\s(.*)$', 'CacheMSet', None, None),
-        (r'maxCache\sread\scache\sstatus\s+:\s(.*)$', 'CacheMStatus', None, None)
+        (r'(?i)^Logical\sDevice\sname\s+:\s(.*)$', 'Device', '-', None),
+        (r'(?i)^RAID\slevel\s+:\s(\d*)', 'Level', '-', lambda match: 'RAID{}'.format(match.group(1))),
+        (r'(?i)^Status\sof\sLogical\sDevice\s+:\s(.*)$', 'State', '-', None),
+        (r'(?i)^Size\s+:\s(.*)$', 'Size', '-', lambda match: '{}'.format(DeviceCapacity(match.group(1), 'MiB'))),
+        (r'(?i)^Read-cache\ssetting\s+:\s(.*)$', 'CacheRSet', None, None),
+        (r'(?i)^Read-cache\sstatus\s+:\s(.*)$', 'CacheRStatus', None, None),
+        (r'(?i)^Write-cache\sstatus\s+:\s(.*)$', 'CacheWSet', None, None),
+        (r'(?i)^Write-cache\ssetting\s+:\s(.*)$', 'CacheWStatus', None, None),
+        (r'(?i)^maxCache\sread\scache\ssetting\s+:\s(.*)$', 'CacheMSet', None, None),
+        (r'(?i)^maxCache\sread\scache\sstatus\s+:\s(.*)$', 'CacheMStatus', None, None)
     ]
 
     def __init__(self, name, controller):
@@ -119,23 +120,27 @@ class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
             print('maxCache   : {} - {}'.format(self.CacheMSet, self.CacheMStatus))
 
     def __fill_data(self):
-        start_string = 'Logical Device number {}'.format(self.Name)
+        start_string = r'(?i)Logical Device number {}'.format(self.Name)
         ld_section = False
         for line in helpers.getOutput('{} GETCONFIG {}'.format(raidUtil, self.Controller.Name)):
-            if line == start_string:
+            if re.match(start_string, line):
                 ld_section = True
                 continue
             if not ld_section:
                 continue
-            if line == 'Physical Device information':
+            if re.match(r'(?i)Physical\sDevice\sinformation', line):
                 break
-            if re.search(r'Logical\sDevice\snumber\s(\d+)', line):
+            if re.match(r'(?i)Logical\sDevice\snumber\s(\d+)', line):
                 break
             if self._process_attributes_line(line):
                 continue
-            match = re.search(r'Segment\s(\d+)\s.*\s(\S+)$', line)
+            match = re.search(r'(?i)^Segment\s(\d+)\s.*\s(\S+)$', line)
             if match:
                 self.PDs.append(RaidPDvendorAdaptec(match.group(1), self, match.group(2)))
+                continue
+            match = re.search(r'(?i)^Group\s(\d+),\sSegment\s(\d+)\s.*\s(\S+)$', line)
+            if match:
+                self.PDs.append(RaidPDvendorAdaptec(match.group(1) + ':' + match.group(2), self, match.group(3)))
                 continue
 
 
@@ -154,53 +159,53 @@ class RaidPDvendorAdaptec(RaidPD):
         pd_section = False
         searched_pd = False
         for line in helpers.getOutput('{} GETCONFIG {}'.format(raidUtil, self.LD.Controller.Name)):
-            if line == 'Physical Device information':
+            if re.match(r'(?i)Physical\sDevice\sinformation', line):
                 pd_section = True
                 continue
             if not pd_section:
                 continue
-            if line == 'Connector information':
+            if re.match(r'(?i)Connector\sinformation', line):
                 break
-            if searched_pd and re.search(r'Device\s#\d+$', line):
+            if searched_pd and re.search(r'(?i)Device\s#\d+$', line):
                 break
-            match = re.search(r'Serial\snumber\s+:\s(.*)$', line)
+            match = re.search(r'(?i)Serial\snumber\s+:\s(.*)$', line)
             if match and (match.group(1) == self.Serial):
                 searched_pd = True
                 continue
-            match = re.search(r'^State\s+:\s(.*)$', line)
+            match = re.search(r'(?i)^State\s+:\s(.*)$', line)
             if match:
                 self.State = match.group(1)
                 continue
-            match = re.search(r'^Transfer\sSpeed\s+:\s(\S*)\s(\S*)\s', line)
+            match = re.search(r'(?i)^Transfer\sSpeed\s+:\s(\S*)\s(\S*)\s', line)
             if match:
                 self.Technology = match.group(1)
                 self.PHYSpeed = match.group(2)
                 self.PHYCount = 0
                 continue
-            match = re.search(r'^Reported\sChannel.*:.*\((\S+)\)$', line)
+            match = re.search(r'(?i)^Reported\sChannel.*:.*\((\S+)\)$', line)
             if match:
                 self.Slot = match.group(1)
                 continue
-            if re.match(r'^Vendor\s+:$', line):
+            if re.match(r'(?i)^Vendor\s+:$', line):
                 self.Model = ''
                 continue
-            match = re.search(r'^Vendor\s+:\s(.*)$', line)
+            match = re.search(r'(?i)^Vendor\s+:\s(.*)$', line)
             if match:
                 self.Model = match.group(1)
                 continue
-            match = re.search(r'^Model\s+:\s(.*)$', line)
+            match = re.search(r'(?i)^Model\s+:\s(.*)$', line)
             if match:
                 self.Model = self.Model + ' ' + match.group(1)
                 continue
-            match = re.search(r'^Firmware\s+:\s(.*)$', line)
+            match = re.search(r'(?i)^Firmware\s+:\s(.*)$', line)
             if match:
                 self.Firmware = match.group(1)
                 continue
-            match = re.search(r'^Total\sSize\s+:\s(.*)$', line)
+            match = re.search(r'(?i)^Total\sSize\s+:\s(.*)$', line)
             if match:
                 self.Capacity = DeviceCapacity(match.group(1), 'MiB')
                 continue
-            match = re.search(r'^Phy\s#\d+$', line)
+            match = re.search(r'^(?i)Phy\s#\d+$', line)
             if match:
                 self.PHYCount = self.PHYCount + 1
                 continue
@@ -220,12 +225,20 @@ class RaidPDvendorAdaptec(RaidPD):
             return
         self.ErrorCount = 0
         for attribute in smart:
+            value = int(attribute.attrib['rawValue']) if ('rawValue' in attribute.attrib) else int(attribute.attrib['Value'])
             if attribute.attrib['name'] == 'Power-On Hours':
-                self.PowerOnHours = int(attribute.attrib['rawValue'])
+                self.PowerOnHours = value
                 continue
-            if attribute.attrib['name'] == 'Current Internal Temperature':
-                self.Temperature = int(attribute.attrib['rawValue'])
+            if attribute.attrib['name'] in ['Current Internal Temperature', 'Current Drive Temperature in Celcius']:
+                self.Temperature = value
                 continue
-            if attribute.attrib['name'] in ['Reallocated Sectors Count', 'Reallocation Event Count', 'Current Pending Sector Count', 'Uncorrectable Sector Count']:
-                self.ErrorCount = self.ErrorCount + int(attribute.attrib['rawValue'])
+            if attribute.attrib['name'] in ['Reallocated Sectors Count',
+                                            'Reallocation Event Count',
+                                            'Current Pending Sector Count',
+                                            'Uncorrectable Sector Count',
+                                            'Length of Defect List',
+                                            'Total Uncorrected Read Errors',
+                                            'Total Uncorrected Write Errors'
+                                            ]:
+                self.ErrorCount = value
                 continue

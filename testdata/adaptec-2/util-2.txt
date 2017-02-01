@@ -1,0 +1,593 @@
+Controllers Found: 1
+----------------------------------------------------------------------
+Controller Information
+----------------------------------------------------------------------
+   Controller Status                        : OK
+   Channel Description                      : SAS/SATA
+   Controller Model                         : Adaptec 6445
+   Controller World Wide Name               : 50000D1107798300
+   Controller Alarm                         : Enabled
+   Physical Slot                            : 2
+   Temperature                              : 79 C/ 174 F (Normal)
+   Installed Memory                         : 512 MB
+   Global task priority                     : High
+   Performance Mode                         : Default/Dynamic
+   Host Bus Type                            : PCIe
+   Host Bus Speed                           : 5000 MHz
+   Host Bus Link Width                      : 8 bit(s)/link(s)
+   Stayawake Period                         : Disabled
+   Spinup limit internal drives             : 0
+   Spinup limit external drives             : 0
+   Defunct Disk Drive Count                 : 0
+   Logical Devices/Failed/Degraded          : 1/0/0
+   NCQ Status                               : Enabled
+   Statistics Data Collection Mode          : Enabled
+   --------------------------------------------------------
+   RAID Properties
+   --------------------------------------------------------
+   Copyback                                 : Disabled
+   Automatic Failover                       : Enabled
+   Background consistency check             : Disabled
+   Background Consistency Check Period      : 30
+   --------------------------------------------------------
+   Controller Version Information
+   --------------------------------------------------------
+   BIOS                                     : 5.2-0 (19109)
+   Firmware                                 : 5.2-0 (19109)
+   Driver                                   : 7.5-0 (41013)
+   Boot Flash                               : 5.2-0 (19109)
+   --------------------------------------------------------
+   Controller ZMM Information
+   --------------------------------------------------------
+   Status                                   : ZMM Optimal
+
+----------------------------------------------------------------------
+Logical Device Information
+----------------------------------------------------------------------
+Logical Device Number 0
+   Logical Device Name                      : RAID10
+   Disk Name                                : C
+   Block Size Of Member Drives              : 512 Bytes
+   RAID Level                               : 10
+   Unique Identifier                        : BC75E92B
+   Status of Logical Device                 : Optimal
+   Additional details                       : Quick initialized
+   Size                                     : 2285558 MB
+   Parity Space                             : 2285568 MB
+   Stripe-unit Size                         : 256 KB
+   Read-cache setting                       : Enabled
+   Read-cache status                        : On
+   Write-cache setting                      : On when protected by battery/ZMM
+   Write-cache status                       : On
+   Partitioned                              : Yes
+   Protected by Hot-Spare                   : No
+   Bootable                                 : Yes
+   Failed Stripes                           : No
+   Power Settings                           : Disabled
+   --------------------------------------------------------
+   Logical Device Segment Information
+   --------------------------------------------------------
+   Group 0, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:0)             JXV86TPM
+   Group 0, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:1)             JXV87EKM
+   Group 1, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:2)             LVVY4NAN
+   Group 1, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:3)             LVVYJG1N
+   Group 2, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:4)             JXWJLYSM
+   Group 2, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:5)             JTWDL5AH
+   Group 3, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:6)             JTVPGD1L
+   Group 3, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:7)             LVVY4LJN
+   Group 4, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:8)             JXWUWEGM
+   Group 4, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:9)             JXWRLHMM
+   Group 5, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:10)             JXWUW33M
+   Group 5, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:11)             JXWVP85M
+   Group 6, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:12)             JTVV98GL
+   Group 6, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:13)             JXV78M2M
+   Group 7, Segment 0                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:14)             JXWVSXWM
+   Group 7, Segment 1                       : Present (286168MB, SAS, HDD, Enclosure:0, Slot:15)             JXWPN2LM
+
+
+----------------------------------------------------------------------
+Physical Device Information
+----------------------------------------------------------------------
+      Device #0
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,8(8:0)
+         Reported Location                  : Enclosure 0, Slot 0
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXV86TPM
+         World-wide Name                    : 5000CCA0180EF1EF
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #1
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,9(9:0)
+         Reported Location                  : Enclosure 0, Slot 1
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXV87EKM
+         World-wide Name                    : 5000CCA0180EFB8F
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #2
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,10(10:0)
+         Reported Location                  : Enclosure 0, Slot 2
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : LVVY4NAN
+         World-wide Name                    : 5000CCA02A3500F7
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #3
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,11(11:0)
+         Reported Location                  : Enclosure 0, Slot 3
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : LVVYJG1N
+         World-wide Name                    : 5000CCA02A35B21B
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #4
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,12(12:0)
+         Reported Location                  : Enclosure 0, Slot 4
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWJLYSM
+         World-wide Name                    : 5000CCA018569277
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #5
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,13(13:0)
+         Reported Location                  : Enclosure 0, Slot 5
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A510
+         Serial Number                      : JTWDL5AH
+         World-wide Name                    : 5000CCA00F4F40B3
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #6
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,14(14:0)
+         Reported Location                  : Enclosure 0, Slot 6
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A510
+         Serial Number                      : JTVPGD1L
+         World-wide Name                    : 5000CCA00F27073B
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #7
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,15(15:0)
+         Reported Location                  : Enclosure 0, Slot 7
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : LVVY4LJN
+         World-wide Name                    : 5000CCA02A350017
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #8
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,16(16:0)
+         Reported Location                  : Enclosure 0, Slot 8
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWUWEGM
+         World-wide Name                    : 5000CCA018676F13
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #9
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,17(17:0)
+         Reported Location                  : Enclosure 0, Slot 9
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWRLHMM
+         World-wide Name                    : 5000CCA018617487
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #10
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,18(18:0)
+         Reported Location                  : Enclosure 0, Slot 10
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWUW33M
+         World-wide Name                    : 5000CCA018676A0F
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #11
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,19(19:0)
+         Reported Location                  : Enclosure 0, Slot 11
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWVP85M
+         World-wide Name                    : 5000CCA01868E3E7
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #12
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,20(20:0)
+         Reported Location                  : Enclosure 0, Slot 12
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A510
+         Serial Number                      : JTVV98GL
+         World-wide Name                    : 5000CCA00F2FD1D7
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #13
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,21(21:0)
+         Reported Location                  : Enclosure 0, Slot 13
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXV78M2M
+         World-wide Name                    : 5000CCA0180D3BC3
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #14
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,22(22:0)
+         Reported Location                  : Enclosure 0, Slot 14
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWVSXWM
+         World-wide Name                    : 5000CCA018690BF7
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #15
+         Device is a Hard drive
+         State                              : Online
+         Block Size                         : 512 Bytes
+         Supported                          : Yes
+         Transfer Speed                     : SAS 6.0 Gb/s
+         Reported Channel,Device(T:L)       : 0,23(23:0)
+         Reported Location                  : Enclosure 0, Slot 15
+         Reported ESD(T:L)                  : 2,0(0:0)
+         Vendor                             : HITACHI
+         Model                              : HUS156030VLS600
+         Firmware                           : A5D0
+         Serial Number                      : JXWPN2LM
+         World-wide Name                    : 5000CCA0185FBAC3
+         Reserved Size                      : 483416 KB
+         Used Size                          : 285696 MB
+         Unused Size                        : 64 KB
+         Total Size                         : 286168 MB
+         Write Cache                        : Enabled (write-back)
+         FRU                                : None
+         S.M.A.R.T.                         : No
+         S.M.A.R.T. warnings                : 0
+         Power State                        : Full RPM
+         Supported Power States             : Full RPM,Powered Off
+         SSD                                : No
+         Temperature                        : Not Supported
+      ----------------------------------------------------------------
+      Device Phy Information                
+      ----------------------------------------------------------------
+
+      Device #16
+         Device is an Enclosure Services Device
+         Reported Channel,Device(T:L)       : 2,0(0:0)
+         Enclosure ID                       : 0
+         Expander ID                        : 0
+         Enclosure Logical Identifier       : 50030480004CDDBF
+         Type                               : SES2
+         Vendor                             : LSI CORP
+         Model                              : SAS2X28
+         Firmware                           : 0717
+         Status of Enclosure Services Device
+            Fan 1 Status                    : 0 rpm (Not Installed)
+            Fan 2 Status                    : 0 rpm (Not Installed)
+            Fan 3 Status                    : 0 rpm (Not Installed)
+            Fan 4 Status                    : 0 rpm (Unknown)
+            Fan 5 Status                    : 0 rpm (Unknown)
+            Power Supply 1 Status           : Not Installed
+            Power Supply 2 Status           : Not Installed
+            Temperature Sensor Status 1     : 31 C/ 87 F (Normal)
+            Speaker Status                  : On
+
+
+Command completed successfully.

@@ -1,0 +1,129 @@
+Controllers Found: 1
+
+SMART STATS FOR SATA:
+---------------------
+
+<SmartStats controllerID="0" time="1485953695" deviceVendor="Adaptec" deviceName="6445" serialNumber="3B49134C5BA">
+</SmartStats>
+
+
+SMART STATS FOR SAS:
+--------------------
+
+<SASSmartStats controllerID="0" time="1485953695" deviceVendor="Adaptec" deviceName="6445" serialNumber="3B49134C5BA">
+<PhysicalDriveSmartStats channel="0" id="23" >
+<Attribute name="Current Drive Temperature in Celcius" Value="31" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="22" >
+<Attribute name="Current Drive Temperature in Celcius" Value="34" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="21" >
+<Attribute name="Current Drive Temperature in Celcius" Value="35" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="20" >
+<Attribute name="Current Drive Temperature in Celcius" Value="36" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="19" >
+<Attribute name="Current Drive Temperature in Celcius" Value="31" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="18" >
+<Attribute name="Current Drive Temperature in Celcius" Value="33" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="17" >
+<Attribute name="Current Drive Temperature in Celcius" Value="33" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="16" >
+<Attribute name="Current Drive Temperature in Celcius" Value="35" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="15" >
+<Attribute name="Current Drive Temperature in Celcius" Value="30" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="14" >
+<Attribute name="Current Drive Temperature in Celcius" Value="32" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="13" >
+<Attribute name="Current Drive Temperature in Celcius" Value="34" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="12" >
+<Attribute name="Current Drive Temperature in Celcius" Value="34" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="11" >
+<Attribute name="Current Drive Temperature in Celcius" Value="30" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="10" >
+<Attribute name="Current Drive Temperature in Celcius" Value="31" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="9" >
+<Attribute name="Current Drive Temperature in Celcius" Value="31" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+<PhysicalDriveSmartStats channel="0" id="8" >
+<Attribute name="Current Drive Temperature in Celcius" Value="33" />
+<Attribute name="Drive Trip Temperature in Celcius" Value="85" />
+<Attribute name="Length of Defect List" Value="0" />
+<Attribute name="Total Uncorrected Read Errors" Value="0" />
+<Attribute name="Total Uncorrected Write Errors" Value="0" />
+</PhysicalDriveSmartStats>
+</SASSmartStats>
+
+
+Command completed successfully.

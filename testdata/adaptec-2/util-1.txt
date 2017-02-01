@@ -1,0 +1,10 @@
+Controllers Found: 1
+Controllers Found: 1
+----------------------------------------------------------------------
+Controller Information
+----------------------------------------------------------------------
+   Controller ID                            : Status, Slot, Mode, Name, SerialNumber, WWN
+----------------------------------------------------------------------
+   Controller 1:                            : OK, Slot 2, RAID (Expose RAW), 6445, 3B49134C5BA, 50000D1107798300
+
+Command completed successfully.

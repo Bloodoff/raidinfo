@@ -7,8 +7,8 @@ import mock
 from lib import *
 
 FakeResponses = {
-    'C:\Program Files\OCZ Storage Solutions\clout.exe --list': 'testdata/ocz-1/clout-1.txt',
-    'C:\Program Files\OCZ Storage Solutions\clout.exe --smart 1': 'testdata/ocz-1/clout-2.txt',
+    'C:\\Program Files\\OCZ Storage Solutions\\clout.exe --list': 'testdata/ocz-1/clout-1.txt',
+    'C:\\Program Files\\OCZ Storage Solutions\\clout.exe --smart 1': 'testdata/ocz-1/clout-2.txt',
 }
 
 
@@ -18,7 +18,7 @@ def read_file(filename):
 
 
 def fake_isfile(filename):
-    if filename in ['/usr/sbin/arcconf', '/usr/sbin/smartctl']:
+    if filename in ['C:\\Program Files\\OCZ Storage Solutions\\clout.exe']:
         return True
     return False
 
@@ -37,7 +37,7 @@ def fake_getOutput(cmd):
 
 @mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
-def test_adaptec_1(monkeypatch):
+def test_ocz_1(monkeypatch):
     controllers = raid.RaidController.probe()
     for controller in controllers:
         controller.printInfo()

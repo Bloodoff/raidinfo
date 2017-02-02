@@ -1,0 +1,33 @@
+clout.exe v4.02.00.695: cli ssd drive tool
+
+\\.\physicaldrive1
+	Model Number     : OCZ-REVODRIVE3
+	Serial Number    : OCZ-TE2QX9V2ZQ60F1IJ
+	Firmware Revision: 2.25
+	Bios Version     : 1.5.9.1021
+	Capacity         : 480.1GB
+	Interface Type   : PCIe Gen2 (4x5.0GT/s)
+
+Attributes:
+ ID ATTRIBUTE                          STATUS   CURRENT WORST THRESHOLD TYPE      UPDATED  RAW
+  1 Raw Read Error Rate                0x000f   118     118   50        Pre-fail  Always   0/206337096
+  5 Retired Block Count                0x0033   100     100   3         Pre-fail  Always   0
+  9 Power-On Hours                     0x0032   61      61    0         Old age   Always   34207h+22m+00.655s
+ 12 Device Power Cycle Count           0x0032   100     100   0         Old age   Always   19
+171 Program Fail Count                 0x0032   0       0     0         Old age   Always   0
+172 Erase Fail Count                   0x0032   0       0     0         Old age   Always   0
+174 Unexpected Power Loss              0x0030   0       0     0         Old age   Offline  18
+177 Wear Range Delta                   0x0000   0       0     0         Old age   Offline  11
+181 Program Fail Count                 0x0032   0       0     0         Old age   Always   0
+182 Erase Fail Count                   0x0032   0       0     0         Old age   Always   0
+187 Reported Uncorrectable             0x0032   100     100   0         Old age   Always   0
+194 Temperature Celsius                0x0022   30      30    0         Old age   Always   30 (Min/Max 30/30)
+195 ECC On-the-Fly Error Count         0x001c   120     120   0         Old age   Offline  0/206337096
+196 Reallocation Event Count           0x0033   100     100   3         Pre-fail  Always   0
+201 Uncorrectable Soft Read Error Rate 0x001c   120     120   0         Old age   Offline  0/206337096
+204 Soft ECC Correction Rate           0x001c   120     120   0         Old age   Offline  0/206337096
+230 Life Curve Status                  0x0013   100     100   0         Pre-fail  Always   100
+231 SSD Life Left                      0x0013   99      99    10        Pre-fail  Always   0
+241 Lifetime Writes from Host          0x0032   0       0     0         Old age   Always   198022
+242 Lifetime Reads to Host             0x0032   0       0     0         Old age   Always   227561
+

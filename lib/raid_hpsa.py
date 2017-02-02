@@ -16,16 +16,16 @@ else:
 class RaidControllerHPSA(TextAttributeParser, RaidController):
 
     _attributes = [
-        (r'^Smart\sArray\s(\S*)', 'Model', None, None),
-        (r'^Serial\sNumber:\s(.*)$', 'Serial', None, None),
-        (r'^Controller\sStatus:\s(.*)$', 'Status', None, None),
-        (r'^Firmware\sVersion:\s(.*)$', 'Firmware', None, None),
-        (r'^Cache\sBoard\sPresent:\s(.*)$', 'Cache', None, lambda match: match.group(1) == 'True'),
-        (r'^Cache\sSerial\sNumber:\s(.*)$', 'CacheSerial', None, None),
-        (r'^Cache\sStatus:\s(.*)$', 'CacheStatus', None, None),
-        (r'^Cache\sStatus\sDetails:\s(.*)$', 'CacheStatusDetails', None, None),
-        (r'^Total\sCache\sSize:\s(.*)$', 'CacheSize', None, None),
-        (r'^Battery/Capacitor\sCount:\s(.*)$', 'CacheBatteryCount', None, None)
+        (r'^Smart\sArray\s(\S*)', 'Model', None, False, None),
+        (r'^Serial\sNumber:\s(.*)$', 'Serial', None, False, None),
+        (r'^Controller\sStatus:\s(.*)$', 'Status', None, False, None),
+        (r'^Firmware\sVersion:\s(.*)$', 'Firmware', None, False, None),
+        (r'^Cache\sBoard\sPresent:\s(.*)$', 'Cache', None, False, lambda match: match.group(1) == 'True'),
+        (r'^Cache\sSerial\sNumber:\s(.*)$', 'CacheSerial', None, False, None),
+        (r'^Cache\sStatus:\s(.*)$', 'CacheStatus', None, False, None),
+        (r'^Cache\sStatus\sDetails:\s(.*)$', 'CacheStatusDetails', None, False, None),
+        (r'^Total\sCache\sSize:\s(.*)$', 'CacheSize', None, False, None),
+        (r'^Battery/Capacitor\sCount:\s(.*)$', 'CacheBatteryCount', None, False, None)
     ]
 
     def __init__(self, name):
@@ -77,10 +77,10 @@ class RaidControllerHPSA(TextAttributeParser, RaidController):
 class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
 
     _attributes = [
-        (r'^Disk\sName:\s(\S.*)$', 'Device', None, None),
-        (r'^Size:\s(\S.*)$', 'Size', None, None),
-        (r'^Fault\sTolerance:\s(\S.*)$', 'Level', None, None),
-        (r'^Status:\s(\S.*)$', 'Status', None, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
+        (r'^Disk\sName:\s(\S.*)$', 'Device', None, False, None),
+        (r'^Size:\s(\S.*)$', 'Size', None, False, None),
+        (r'^Fault\sTolerance:\s(\S.*)$', 'Level', None, False, None),
+        (r'^Status:\s(\S.*)$', 'Status', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
     ]
 
     def __init__(self, name, controller, array_name):
@@ -126,15 +126,15 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
 class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
 
     _attributes = [
-        (r'^Status:\s(\S.*)$', 'State', None, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1))),
-        (r'^Interface\sType:\s+(\S+)', 'Technology', None, None),
-        (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, None),
-        (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, None),
-        (r'(?i)^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, None),
-        (r'^Serial\sNumber:\s+(.+)$', 'Serial', None, None),
-        (r'^Firmware\sRevision:\s+(.+)$', 'Firmware', None, None),
-        (r'^Size:\s+(.+)$', 'Capacity', None, None),
-        (r'^Model:\s+(.+)$', 'Model', None, None)
+        (r'^Status:\s(\S.*)$', 'State', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1))),
+        (r'^Interface\sType:\s+(\S+)', 'Technology', None, False, None),
+        (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, False, None),
+        (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, False, None),
+        (r'(?i)^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, False, None),
+        (r'^Serial\sNumber:\s+(.+)$', 'Serial', None, False, None),
+        (r'^Firmware\sRevision:\s+(.+)$', 'Firmware', None, False, None),
+        (r'^Size:\s+(.+)$', 'Capacity', None, False, None),
+        (r'^Model:\s+(.+)$', 'Model', None, False, None)
     ]
 
     def __init__(self, name, ld):

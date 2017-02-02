@@ -17,13 +17,13 @@ else:
 class RaidControllerAdaptec(TextAttributeParser, RaidController):
 
     _attributes = [
-        (r'Controller\sModel\s+:\s(.*)$', 'Model', None, None),
-        (r'Controller\sSerial\sNumber\s+:\s(.*)$', 'Serial', None, None),
-        (r'Temperature\s+:\s(\d+)', 'Temperature', None, None),
-        (r'(?i)Installed\smemory\s+:\s(.*)$', 'CacheSize', None, None),
-        (r'Controller\sStatus\s+:\s(.*)$', 'Status', None, None),
-        (r'BIOS\s+:\s(.*)$', 'BIOS', None, None),
-        (r'Firmware\s+:\s(.*)$', 'Firmware', None, None)
+        (r'Controller\sModel\s+:\s(.*)$', 'Model', None, False, None),
+        (r'Controller\sSerial\sNumber\s+:\s(.*)$', 'Serial', None, False, None),
+        (r'Temperature\s+:\s(\d+)', 'Temperature', None, False, None),
+        (r'(?i)Installed\smemory\s+:\s(.*)$', 'CacheSize', None, False, None),
+        (r'Controller\sStatus\s+:\s(.*)$', 'Status', None, False, None),
+        (r'BIOS\s+:\s(.*)$', 'BIOS', None, False, None),
+        (r'Firmware\s+:\s(.*)$', 'Firmware', None, False, None)
     ]
 
     def __init__(self, name):
@@ -92,16 +92,16 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
 class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
 
     _attributes = [
-        (r'(?i)^Logical\sDevice\sname\s+:\s(.*)$', 'Device', '-', None),
-        (r'(?i)^RAID\slevel\s+:\s(\d*)', 'Level', '-', lambda match: 'RAID{}'.format(match.group(1))),
-        (r'(?i)^Status\sof\sLogical\sDevice\s+:\s(.*)$', 'State', '-', None),
-        (r'(?i)^Size\s+:\s(.*)$', 'Size', '-', lambda match: '{}'.format(DeviceCapacity(match.group(1), 'MiB'))),
-        (r'(?i)^Read-cache\ssetting\s+:\s(.*)$', 'CacheRSet', None, None),
-        (r'(?i)^Read-cache\sstatus\s+:\s(.*)$', 'CacheRStatus', None, None),
-        (r'(?i)^Write-cache\sstatus\s+:\s(.*)$', 'CacheWSet', None, None),
-        (r'(?i)^Write-cache\ssetting\s+:\s(.*)$', 'CacheWStatus', None, None),
-        (r'(?i)^maxCache\sread\scache\ssetting\s+:\s(.*)$', 'CacheMSet', None, None),
-        (r'(?i)^maxCache\sread\scache\sstatus\s+:\s(.*)$', 'CacheMStatus', None, None)
+        (r'(?i)^Logical\sDevice\sname\s+:\s(.*)$', 'Device', '-', False, None),
+        (r'(?i)^RAID\slevel\s+:\s(\d*)', 'Level', '-', False, lambda match: 'RAID{}'.format(match.group(1))),
+        (r'(?i)^Status\sof\sLogical\sDevice\s+:\s(.*)$', 'State', '-', False, None),
+        (r'(?i)^Size\s+:\s(.*)$', 'Size', '-', False, lambda match: '{}'.format(DeviceCapacity(match.group(1), 'MiB'))),
+        (r'(?i)^Read-cache\ssetting\s+:\s(.*)$', 'CacheRSet', None, False, None),
+        (r'(?i)^Read-cache\sstatus\s+:\s(.*)$', 'CacheRStatus', None, False, None),
+        (r'(?i)^Write-cache\sstatus\s+:\s(.*)$', 'CacheWSet', None, False, None),
+        (r'(?i)^Write-cache\ssetting\s+:\s(.*)$', 'CacheWStatus', None, False, None),
+        (r'(?i)^maxCache\sread\scache\ssetting\s+:\s(.*)$', 'CacheMSet', None, False, None),
+        (r'(?i)^maxCache\sread\scache\sstatus\s+:\s(.*)$', 'CacheMStatus', None, False, None)
     ]
 
     def __init__(self, name, controller):
@@ -154,7 +154,7 @@ class RaidPDvendorAdaptec(RaidPD):
         self.__fill_basic_info()
         self.__fill_smart_info()
         self.__fill_advanced_info()
-        
+
     def __fill_basic_info(self):
         pd_section = False
         searched_pd = False

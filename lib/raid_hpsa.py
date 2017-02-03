@@ -80,7 +80,7 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
         (r'^Disk\sName:\s(\S.*)$', 'Device', None, False, None),
         (r'^Size:\s(\S.*)$', 'Size', None, False, None),
         (r'^Fault\sTolerance:\s(\S.*)$', 'Level', None, False, None),
-        (r'^Status:\s(\S.*)$', 'Status', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
+        (r'^Status:\s(\S.*)$', 'State', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
     ]
 
     def __init__(self, name, controller, array_name):

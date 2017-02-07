@@ -1,0 +1,103 @@
+smartctl 6.5 2016-05-07 r4318 [x86_64-linux-4.6.7-300.fc24.x86_64] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Vendor:               HITACHI
+Product:              HUS723020ALS640
+Revision:             A222
+Compliance:           SPC-4
+User Capacity:        2,000,398,934,016 bytes [2.00 TB]
+Logical block size:   512 bytes
+Rotation Rate:        7200 rpm
+Form Factor:          3.5 inches
+Logical Unit id:      0x5000cca01b471f94
+Serial number:        YFH83KVD
+Device type:          disk
+Transport protocol:   SAS (SPL-3)
+Local Time is:        Tue Feb  7 16:28:39 2017 YEKT
+SMART support is:     Available - device has SMART capability.
+SMART support is:     Enabled
+Temperature Warning:  Enabled
+Read Cache is:        Enabled
+Writeback Cache is:   Enabled
+
+=== START OF READ SMART DATA SECTION ===
+SMART Health Status: OK
+
+Current Drive Temperature:     29 C
+Drive Trip Temperature:        85 C
+
+Manufactured in week 16 of year 2012
+Specified cycle count over device lifetime:  50000
+Accumulated start-stop cycles:  52
+Specified load-unload count over device lifetime:  600000
+Accumulated load-unload cycles:  22132
+Elements in grown defect list: 1
+
+Vendor (Seagate) cache information
+  Blocks sent to initiator = 16369706969595904
+
+Error counter log:
+           Errors Corrected by           Total   Correction     Gigabytes    Total
+               ECC          rereads/    errors   algorithm      processed    uncorrected
+           fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:          0   297551         0    297551   23207332     154502.285           1
+write:         0  9369131         0   9369131     547115      56646.984           0
+verify:        0    10344         0     10344     241297      18135.716           0
+
+Non-medium error count:        0
+
+No self-tests have been logged
+
+Background scan results log
+  Status: scan is active
+    Accumulated power on time, hours:minutes 32644:33 [1958673 minutes]
+    Number of background scans performed: 169,  scan progress: 73.64%
+    Number of background medium scans performed: 169
+
+Protocol Specific port log page for SAS SSP
+relative target port id = 1
+  generation code = 1
+  number of phys = 1
+  phy identifier = 0
+    attached device type: SAS or SATA device
+    attached reason: unknown
+    reason: unknown
+    negotiated logical link rate: phy enabled; 3 Gbps
+    attached initiator port: ssp=1 stp=1 smp=1
+    attached target port: ssp=0 stp=0 smp=0
+    SAS address = 0x5000cca01b471f95
+    attached SAS address = 0x500605b001a02e40
+    attached phy identifier = 2
+    Invalid DWORD count = 65
+    Running disparity error count = 65
+    Loss of DWORD synchronization = 20
+    Phy reset problem = 0
+    Phy event descriptors:
+     Invalid word count: 65
+     Running disparity error count: 65
+     Loss of dword synchronization count: 20
+     Phy reset problem count: 0
+relative target port id = 2
+  generation code = 1
+  number of phys = 1
+  phy identifier = 1
+    attached device type: no device attached
+    attached reason: unknown
+    reason: power on
+    negotiated logical link rate: phy enabled; unknown
+    attached initiator port: ssp=0 stp=0 smp=0
+    attached target port: ssp=0 stp=0 smp=0
+    SAS address = 0x5000cca01b471f96
+    attached SAS address = 0x0
+    attached phy identifier = 0
+    Invalid DWORD count = 0
+    Running disparity error count = 0
+    Loss of DWORD synchronization = 0
+    Phy reset problem = 0
+    Phy event descriptors:
+     Invalid word count: 0
+     Running disparity error count: 0
+     Loss of dword synchronization count: 0
+     Phy reset problem count: 0
+

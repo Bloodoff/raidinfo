@@ -3,14 +3,14 @@ Status = Success
 Description = Show Drive Information Succeeded.
 
 
-Drive /c0/e252/s5 :
+Drive /c0/e253/s6 :
 =================
 
-----------------------------------------------------------------------------
-EID:Slt DID State DG     Size Intf Med SED PI SeSz Model            Sp Type 
-----------------------------------------------------------------------------
-252:5    41 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640  U  -    
-----------------------------------------------------------------------------
+------------------------------------------------------------------------------
+EID:Slt DID State DG     Size Intf Med SED PI SeSz Model              Sp Type 
+------------------------------------------------------------------------------
+253:6    47 Onln   0 1.817 TB SATA HDD N   N  512B ST2000DM001-1CH164 U  -    
+------------------------------------------------------------------------------
 
 EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup
 DHS-Dedicated Hot Spare|UGood-Unconfigured Good|GHS-Global Hotspare
@@ -21,24 +21,24 @@ UGUnsp-Unsupported|UGShld-UnConfigured shielded|HSPShld-Hotspare shielded
 CFShld-Configured shielded|Cpybck-CopyBack|CBShld-Copyback Shielded
 
 
-Drive /c0/e252/s5 - Detailed Information :
+Drive /c0/e253/s6 - Detailed Information :
 ========================================
 
-Drive /c0/e252/s5 State :
+Drive /c0/e253/s6 State :
 =======================
 Shield Counter = 0
 Media Error Count = 0
-Other Error Count = 3
-Drive Temperature =  27C (80.60 F)
+Other Error Count = 55
+Drive Temperature = N/A
 Predictive Failure Count = 0
 S.M.A.R.T alert flagged by drive = No
 
 
-Drive /c0/e252/s5 Device attributes :
+Drive /c0/e253/s6 Device attributes :
 ===================================
-SN =         YFH83LLD
-Manufacturer Id = HITACHI 
-Model Number = HUS723020ALS640 
+SN =             Z1E3EZJ9
+Manufacturer Id = ATA     
+Model Number = ST2000DM001-1CH164
 NAND Vendor = NA
 WWN = 
 Raw size = 1.819 TB [0xe8e088b0 Sectors]
@@ -51,11 +51,11 @@ Sector Size = 512B
 Connector Name = 
 
 
-Drive /c0/e252/s5 Policies/Settings :
+Drive /c0/e253/s6 Policies/Settings :
 ===================================
-Drive position = DriveGroup:0, Span:0, Row:0
+Drive position = DriveGroup:0, Span:0, Row:6
 Enclosure position = 0
-Connected Port Number = 5(path0) 
+Connected Port Number = 14(path0) 
 Sequence Number = 2
 Commissioned Spare = No
 Emergency Spare = No
@@ -77,20 +77,19 @@ Port Information :
 -----------------------------------------
 Port Status Linkspeed SAS address        
 -----------------------------------------
-   0 Active Unknown   0x5000cca01b471ff1 
-   1 Active Unknown   0x0                
+   0 Active Unknown   0x3b2552327e934e37 
 -----------------------------------------
 
 
 Inquiry Data = 
-00 00 06 12 9f 01 10 02 48 49 54 41 43 48 49 20 
-48 55 53 37 32 33 30 32 30 41 4c 53 36 34 30 20 
-41 32 32 32 59 46 48 38 33 4c 4c 44 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-43 6f 70 79 72 69 67 68 74 20 48 69 74 61 63 68 
-69 20 43 6f 72 70 2e 20 32 30 30 33 2e 20 41 6c 
+5a 0c ff 3f 37 c8 10 00 00 00 00 00 3f 00 00 00 
+00 00 00 00 20 20 20 20 20 20 20 20 20 20 20 20 
+31 5a 33 45 5a 45 39 4a 00 00 00 00 04 00 43 43 
+36 32 20 20 20 20 54 53 30 32 30 30 4d 44 30 30 
+2d 31 43 31 31 48 34 36 20 20 20 20 20 20 20 20 
+20 20 20 20 20 20 20 20 20 20 20 20 20 20 10 80 
+00 40 00 2f 00 40 00 02 00 02 07 00 ff 3f 10 00 
+3f 00 10 fc fb 00 10 00 ff ff ff 0f 00 00 07 00 
 
 
 

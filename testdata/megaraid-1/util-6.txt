@@ -3,13 +3,13 @@ Status = Success
 Description = Show Drive Information Succeeded.
 
 
-Drive /c0/e252/s5 :
+Drive /c0/e252/s3 :
 =================
 
 ----------------------------------------------------------------------------
 EID:Slt DID State DG     Size Intf Med SED PI SeSz Model            Sp Type 
 ----------------------------------------------------------------------------
-252:5    41 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640  U  -    
+252:3    43 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640  U  -    
 ----------------------------------------------------------------------------
 
 EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup
@@ -21,22 +21,22 @@ UGUnsp-Unsupported|UGShld-UnConfigured shielded|HSPShld-Hotspare shielded
 CFShld-Configured shielded|Cpybck-CopyBack|CBShld-Copyback Shielded
 
 
-Drive /c0/e252/s5 - Detailed Information :
+Drive /c0/e252/s3 - Detailed Information :
 ========================================
 
-Drive /c0/e252/s5 State :
+Drive /c0/e252/s3 State :
 =======================
 Shield Counter = 0
 Media Error Count = 0
-Other Error Count = 3
+Other Error Count = 9
 Drive Temperature =  27C (80.60 F)
 Predictive Failure Count = 0
 S.M.A.R.T alert flagged by drive = No
 
 
-Drive /c0/e252/s5 Device attributes :
+Drive /c0/e252/s3 Device attributes :
 ===================================
-SN =         YFH83LLD
+SN =         YFH83L9D
 Manufacturer Id = HITACHI 
 Model Number = HUS723020ALS640 
 NAND Vendor = NA
@@ -51,11 +51,11 @@ Sector Size = 512B
 Connector Name = 
 
 
-Drive /c0/e252/s5 Policies/Settings :
+Drive /c0/e252/s3 Policies/Settings :
 ===================================
-Drive position = DriveGroup:0, Span:0, Row:0
+Drive position = DriveGroup:0, Span:0, Row:2
 Enclosure position = 0
-Connected Port Number = 5(path0) 
+Connected Port Number = 3(path0) 
 Sequence Number = 2
 Commissioned Spare = No
 Emergency Spare = No
@@ -77,7 +77,7 @@ Port Information :
 -----------------------------------------
 Port Status Linkspeed SAS address        
 -----------------------------------------
-   0 Active Unknown   0x5000cca01b471ff1 
+   0 Active Unknown   0x5000cca01b471fcd 
    1 Active Unknown   0x0                
 -----------------------------------------
 
@@ -85,7 +85,7 @@ Port Status Linkspeed SAS address
 Inquiry Data = 
 00 00 06 12 9f 01 10 02 48 49 54 41 43 48 49 20 
 48 55 53 37 32 33 30 32 30 41 4c 53 36 34 30 20 
-41 32 32 32 59 46 48 38 33 4c 4c 44 00 00 00 00 
+41 32 32 32 59 46 48 38 33 4c 39 44 00 00 00 00 
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 

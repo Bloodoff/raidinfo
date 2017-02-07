@@ -23,6 +23,19 @@ FakeResponses = {
     '/opt/MegaRAID/storcli/storcli64 /c0/e253/s2 show all': 'testdata/megaraid-1/util-4.txt',
     '/opt/MegaRAID/storcli/storcli64 /c0/e253/s5 show all': 'testdata/megaraid-1/util-4.txt',
     '/opt/MegaRAID/storcli/storcli64 /c0/e253/s3 show all': 'testdata/megaraid-1/util-4.txt',
+    '/usr/sbin/smartctl -x -d megaraid,41 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,42 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,43 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,44 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,45 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,46 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,47 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,48 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,49 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,50 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,51 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,52 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt',
+    '/usr/sbin/smartctl -x -d megaraid,53 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-1.txt'
 }
 
 
@@ -37,8 +50,11 @@ def fake_isfile(filename):
     return False
 
 __original_listdir = os.listdir
+
+
 def fake_listdir(dir):
     return __original_listdir('testdata/megaraid-1{}'.format(dir))
+
 
 def fake_getOutput(cmd):
     lines = []
@@ -50,6 +66,7 @@ def fake_getOutput(cmd):
         if not re.match(r'^$', line.strip()):
             lines.append(line.strip())
     return lines
+
 
 @mock.patch('os.listdir', fake_listdir)
 @mock.patch('os.path.isfile', fake_isfile)

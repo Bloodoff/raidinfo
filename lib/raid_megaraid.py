@@ -1,6 +1,5 @@
 import os
 import re
-import xml.etree.ElementTree as ET
 
 from . import helpers
 
@@ -86,10 +85,10 @@ class RaidLDvendorLSI(RaidLD):
         self.State = ''
         self.Size = ''
         self.__fill_data()
+        self.__find_devicename()
         self.__enumerate_pd()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
-        self.__find_devicename()
 
     def __enumerate_pd(self):
         pd_section = False
@@ -120,12 +119,22 @@ class RaidLDvendorLSI(RaidLD):
 
     def __find_devicename(self):
         for filename in [f for f in os.listdir('/dev/disk/by-id')]:
+            print(filename)
             match = re.search(r'^scsi-\d+' + self.NAA, filename)
             if match:
                 self.Device = '/dev/disk/by-id/' + filename
 
 
-class RaidPDvendorLSI(RaidPD):
+class RaidPDvendorLSI(TextAttributeParser, RaidPD):
+
+    _attributes = [
+        (r'(?i)^SN\s+=\s+(.*)$', 'Serial', None, False, None),
+        (r'(?i)^Manufacturer\sId\s=\s+(.*)$', 'Vendor', None, False, None),
+        (r'(?i)^Drive\sTemperature\s=\s+(\d+)C', 'Temperature', None, False, None),
+        (r'(?i)^Model\sNumber\s=\s+(.*)$', 'Model', None, False, None),
+        (r'(?i)^Media\sError\sCount\s=\s+(\d+)', 'ErrorCount', None, True, lambda match: int(match.group(1))),
+        (r'(?i)^Predictive\sFailure\sCount\s=\s+(\d+)', 'ErrorCount', None, True, lambda match: int(match.group(1)))
+    ]
 
     def __init__(self, enclosure, slot, did, ld):
         super(self.__class__, self).__init__('{}:{}'.format(enclosure, slot), ld)
@@ -134,8 +143,9 @@ class RaidPDvendorLSI(RaidPD):
         self.Device = did
         self.PHYCount = 0
         self.__fill_basic_info()
-        #self.__fill_smart_info()
-        #self.__fill_advanced_info()
+        if hasattr(self, 'Vendor'):
+            self.Model = self.Vendor + ' ' + self.Model
+        self.__fill_smart_info()
 
     def __fill_basic_info(self):
         for line in helpers.getOutput('{} /c{}/e{}/s{} show all'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
@@ -143,14 +153,19 @@ class RaidPDvendorLSI(RaidPD):
             if match:
                 self.Capacity = DeviceCapacity(int(float(match.group(6)) * 1024), {'TB': 'GiB', 'GB': 'MiB', 'MB': 'KiB'}.get(match.group(7), None))
                 self.Technology = match.group(8)
-                self.Model = match.group(13)
                 self.State = {'DHS': 'Dedicated Hot Spare',
                               'UGood': 'Unconfigured Good',
                               'GHS': 'Global Hotspare',
                               'UBad': 'Unconfigured Bad',
                               'Onln': 'Optimal',
                               'Offln': 'Offline'}.get(match.group(4), match.group(4))
+            if self._process_attributes_line(line):
+                continue
 
-
-
-            
+    def __fill_smart_info(self):
+        smart = SMARTinfo('-d megaraid,{}'.format(int(self.Device)), self.LD.Device)
+        if not smart.SMART:
+            return
+        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature']:
+            if hasattr(smart, prop):
+                setattr(self, prop, getattr(smart, prop))

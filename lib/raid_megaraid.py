@@ -8,7 +8,7 @@ from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
 if os.name == 'nt':
-    raidUtil = 'C:\\Program Files\\Adaptec\\maxView Storage Manager\\arcconf.exe'
+    raidUtil = 'C:\\Program Files (x86)\\MegaRAID Storage Manager\\StorCLI64.exe'
 else:
     raidUtil = '/opt/MegaRAID/storcli/storcli64'
 
@@ -119,7 +119,6 @@ class RaidLDvendorLSI(RaidLD):
 
     def __find_devicename(self):
         for filename in [f for f in os.listdir('/dev/disk/by-id')]:
-            print(filename)
             match = re.search(r'^scsi-\d+' + self.NAA, filename)
             if match:
                 self.Device = '/dev/disk/by-id/' + filename

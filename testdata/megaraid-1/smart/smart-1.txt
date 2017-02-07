@@ -14,7 +14,7 @@ Logical Unit id:      0x5000cca01b471ff0
 Serial number:        YFH83LLD
 Device type:          disk
 Transport protocol:   SAS (SPL-3)
-Local Time is:        Tue Feb  7 14:22:50 2017 YEKT
+Local Time is:        Tue Feb  7 16:28:39 2017 YEKT
 SMART support is:     Available - device has SMART capability.
 SMART support is:     Enabled
 Temperature Warning:  Enabled
@@ -35,15 +35,15 @@ Accumulated load-unload cycles:  23251
 Elements in grown defect list: 0
 
 Vendor (Seagate) cache information
-  Blocks sent to initiator = 15565249277067264
+  Blocks sent to initiator = 15565251793649664
 
 Error counter log:
            Errors Corrected by           Total   Correction     Gigabytes    Total
                ECC          rereads/    errors   algorithm      processed    uncorrected
            fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
-read:          0   410791         0    410791   26623098     156652.171           0
-write:         0  8618808         0   8618808     444812      55481.550           0
-verify:        0     1710         0      1710      79419      18135.774           0
+read:          0   410791         0    410791   26623098     156652.173           0
+write:         0  8618809         0   8618809     444812      55481.553           0
+verify:        0     1710         0      1710      79448      18135.774           0
 
 Non-medium error count:        0
 
@@ -51,8 +51,8 @@ No self-tests have been logged
 
 Background scan results log
   Status: scan is active
-    Accumulated power on time, hours:minutes 32637:47 [1958267 minutes]
-    Number of background scans performed: 172,  scan progress: 30.77%
+    Accumulated power on time, hours:minutes 32639:53 [1958393 minutes]
+    Number of background scans performed: 172,  scan progress: 77.14%
     Number of background medium scans performed: 172
 
 Protocol Specific port log page for SAS SSP

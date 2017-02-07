@@ -1,0 +1,23 @@
+Status Code = 0
+Status = Success
+Description = None
+
+Number of Controllers = 1
+Host Name = test.test.int
+Operating System  = Linux4.6.7-300.fc24.x86_64
+
+System Overview :
+===============
+
+------------------------------------------------------------------------------
+Ctl Model             Ports PDs DGs DNOpt VDs VNOpt BBU  sPR DS EHS ASOs Hlth 
+------------------------------------------------------------------------------
+  0 MegaRAIDSAS84016E    16  13   1     0   1     0 Msng On  2  N      0 Opt  
+------------------------------------------------------------------------------
+
+Ctl=Controller Index|DGs=Drive groups|VDs=Virtual drives|Fld=Failed
+PDs=Physical drives|DNOpt=DG NotOptimal|VNOpt=VD NotOptimal|Opt=Optimal
+Msng=Missing|Dgd=Degraded|NdAtn=Need Attention|Unkwn=Unknown
+sPR=Scheduled Patrol Read|DS=DimmerSwitch|EHS=Emergency Hot Spare
+Y=Yes|N=No|ASOs=Advanced Software Options|BBU=Battery backup unit
+Hlth=Health|Safe=Safe-mode boot

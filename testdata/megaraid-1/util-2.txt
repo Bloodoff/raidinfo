@@ -1,0 +1,433 @@
+Generating detailed summary of the adapter, it may take a while to complete.
+
+Controller = 0
+Status = Success
+Description = None
+
+
+Basics :
+======
+Controller = 0
+Model = MegaRAID SAS 84016E
+Serial Number = P707044809
+Current Controller Date/Time = 02/07/2017, 05:58:39
+Current System Date/time = 02/07/2017, 10:31:08
+SAS Address = 500605b001a02e40
+PCI Address = 00:03:0e:00
+Mfg Date = 12/08/09
+Rework Date = 00/00/00
+Revision No = (
+
+
+Version :
+=======
+Firmware Package Build = 7.0.1-0083
+Firmware Version = 1.12.330-1300
+Boot Block Version = R.2.3.15
+Bios Version = MT33
+MPT Version = MPTFW-01.18.172.00-IT
+WebBIOS Version = 1.1-33j-e_11-Rel
+Ctrl-R Version = 1.04-019A
+Preboot CLI Version = 01.00-011:#%00001
+Driver Name = megaraid_sas
+Driver Version = 06.810.09.00-rc1
+
+
+Bus :
+===
+Vendor Id = 0x1000
+Device Id = 0x411
+SubVendor Id = 0x1000
+SubDevice Id = 0x1008
+Host Interface = PCI-E
+Device Interface = SAS-3G
+Bus Number = 3
+Device Number = 14
+Function Number = 0
+
+
+Pending Images in Flash :
+=======================
+Image name = No pending images
+
+
+Status :
+======
+Controller Status = Optimal
+Memory Correctable Errors = 0
+Memory Uncorrectable Errors = 0
+ECC Bucket Count = 0
+Any Offline VD Cache Preserved = No
+BBU Status = NA
+Support PD Firmware Download = No
+Lock Key Assigned = No
+Failed to get lock key on bootup = No
+Lock key has not been backed up = No
+Bios was not detected during boot = No
+Controller must be rebooted to complete security operation = No
+A rollback operation is in progress = No
+At least one PFK exists in NVRAM = No
+SSC Policy is WB = No
+Controller has booted into safe mode = No
+
+
+Supported Adapter Operations :
+============================
+Rebuild Rate = Yes
+CC Rate = Yes
+BGI Rate  = Yes
+Reconstruct Rate = Yes
+Patrol Read Rate = Yes
+Alarm Control = Yes
+Cluster Support = No
+BBU  = Yes
+Spanning = Yes
+Dedicated Hot Spare = Yes
+Revertible Hot Spares = No
+Foreign Config Import = Yes
+Self Diagnostic = Yes
+Allow Mixed Redundancy on Array = No
+Global Hot Spares = Yes
+Deny SCSI Passthrough = No
+Deny SMP Passthrough = No
+Deny STP Passthrough = No
+Support more than 8 Phys = Yes
+FW and Event Time in GMT = No
+Support Enhanced Foreign Import = Yes
+Support Enclosure Enumeration = Yes
+Support Allowed Operations = Yes
+Abort CC on Error = Yes
+Support Multipath = No
+Support Odd & Even Drive count in RAID1E = No
+Support Security = No
+Support Config Page Model = No
+Support the OCE without adding drives = No
+Support EKM = No
+Snapshot Enabled = No
+Support PFK = No
+Support PI = No
+Support Ld BBM Info = No
+Support Shield State = No
+Block SSD Write Disk Cache Change = No
+Support Suspend Resume BG ops = No
+Support Emergency Spares = No
+Support Set Link Speed = No
+Support Boot Time PFK Change = No
+Support JBOD = No
+Disable Online PFK Change = No
+Support Perf Tuning = No
+Support SSD PatrolRead = No
+Real Time Scheduler = No
+Support Reset Now = No
+Support Emulated Drives = No
+Headless Mode = No
+Dedicated HotSpares Limited = No
+Point In Time Progress = No
+Extended LD = No
+Boot Volume Supported = No
+Support Uneven span  = No
+Support Config Auto Balance = No
+Support Maintenance Mode = No
+Support Diagnostic results = No
+Support Ext Enclosure = No
+Support Sesmonitoring = No
+Support SecurityonJBOD = No
+Support ForceFlash = No
+Support DisableImmediateIO = No
+Support LargeIOSupport = No
+Support DrvActivityLEDSetting = No
+Support FlushWriteVerify = No
+Support CPLDUpdate = No
+Support ForceTo512e = No
+Support discardCacheDuringLDDelete = No
+Support JBOD Write cache = No
+Support Large QD Support = No
+Support SRIOV Options = No
+
+
+Supported PD Operations :
+=======================
+Force Online = Yes
+Force Offline = Yes
+Force Rebuild = Yes
+Deny Force Failed = No
+Deny Force Good/Bad = No
+Deny Missing Replace = No
+Deny Clear = No
+Deny Locate = No
+Support Power State = No
+Set Power State For Cfg = No
+Support T10 Power State = No
+Support Temperature = No
+NCQ = No
+Support Max Rate SATA = No
+Support Degraded Media = No
+Support Parallel FW Update = No
+Support Drive Crypto Erase = No
+
+
+Supported VD Operations :
+=======================
+Read Policy = Yes
+Write Policy = Yes
+IO Policy = Yes
+Access Policy = Yes
+Disk Cache Policy = Yes
+Reconstruction = Yes
+Deny Locate = No
+Deny CC = No
+Allow Ctrl Encryption = No
+Enable LDBBM = No
+Support FastPath = No
+Performance Metrics = No
+Power Savings = No
+Support Powersave Max With Cache = No
+Support Breakmirror = No
+Support SSC WriteBack = No
+Support SSC Association = No
+Support VD Hide = No
+Support VD Cachebypass = No
+Support VD discardCacheDuringLDDelete = No
+
+
+HwCfg :
+=====
+ChipRevision =  
+BatteryFRU = N/A
+Front End Port Count = 0
+Backend Port Count = 16
+BBU = Absent
+Alarm = On
+Serial Debugger = Present
+NVRAM Size = 32KB
+Flash Size = 4MB
+On Board Memory Size = 256MB
+CacheVault Flash Size = NA
+TPM = Absent
+Upgrade Key = Absent
+On Board Expander = Absent
+Temperature Sensor for ROC = Absent
+Temperature Sensor for Controller = Absent
+Upgradable CPLD = Absent
+Current Size of CacheCade (GB) = 0
+Current Size of FW Cache (MB) = 0
+
+
+Policies :
+========
+
+Policies Table :
+==============
+
+------------------------------------------------
+Policy                          Current Default 
+------------------------------------------------
+Predictive Fail Poll Interval   300 sec         
+Interrupt Throttle Active Count 16              
+Interrupt Throttle Completion   50 us           
+Rebuild Rate                    30 %    30%     
+PR Rate                         30 %    30%     
+BGI Rate                        30 %    30%     
+Check Consistency Rate          30 %    30%     
+Reconstruction Rate             30 %    30%     
+Cache Flush Interval            4s              
+------------------------------------------------
+
+Flush Time(Default) = 4s
+Drive Coercion Mode = 1GB
+Auto Rebuild = On
+Battery Warning = Off
+ECC Bucket Size = 15
+ECC Bucket Leak Rate (hrs) = 24
+Restore HotSpare on Insertion = Off
+Expose Enclosure Devices = On
+Maintain PD Fail History = Off
+Reorder Host Requests = On
+Auto detect BackPlane = SGPIO/i2c SEP
+Load Balance Mode = Auto
+Security Key Assigned = Off
+Disable Online Controller Reset = Off
+Use drive activity for locate = Off
+
+
+Boot :
+====
+BIOS Enumerate VDs = 0
+Stop BIOS on Error = On
+Delay during POST = 0
+Spin Down Mode = None
+Enable Ctrl-R = No
+Enable Web BIOS = Yes
+Enable PreBoot CLI = Yes
+Enable BIOS = Yes
+Max Drives to Spinup at One Time = 2
+Maximum number of direct attached drives to spin up in 1 min = 0
+Delay Among Spinup Groups (sec) = 12
+Allow Boot with Preserved Cache = Off
+
+
+High Availability :
+=================
+Topology Type = None
+Cluster Permitted = No
+Cluster Active = No
+
+
+Defaults :
+========
+Phy Polarity = 0
+Phy PolaritySplit = 0
+Strip Size = 64 KB
+Write Policy = WB
+Read Policy = No Read Ahead
+Cache When BBU Bad = Off
+Cached IO = On
+VD PowerSave Policy = Controller Defined
+Default spin down time (mins) = 0
+Coercion Mode = 1 GB
+ZCR Config = Unknown
+Max Chained Enclosures = 3
+Direct PD Mapping = No
+Restore Hot Spare on Insertion = No
+Expose Enclosure Devices = Yes
+Maintain PD Fail History = No
+Zero Based Enclosure Enumeration = No
+Disable Puncturing = No
+EnableLDBBM = No
+DisableHII = No
+Un-Certified Hard Disk Drives = Block
+SMART Mode = Mode 6
+Enable LED Header = No
+LED Show Drive Activity = No
+Dirty LED Shows Drive Activity = No
+EnableCrashDump = No
+Disable Online Controller Reset = No
+Treat Single span R1E as R10 = No
+Power Saving option = Enabled
+TTY Log In Flash = No
+Auto Enhanced Import = No
+BreakMirror RAID Support = No
+Disable Join Mirror = No
+Enable Shield State = No
+Time taken to detect CME = 60 sec
+
+
+Capabilities :
+============
+Supported Drives = SAS, SATA
+Boot Volume Supported = NO
+RAID Level Supported = RAID0, RAID1, RAID5, RAID6, RAID00, RAID10, RAID50, 
+RAID60, SRL 3 supported, 
+
+Enable JBOD = No
+Mix in Enclosure = Allowed
+Mix of SAS/SATA of HDD type in VD = Allowed
+Mix of SAS/SATA of SSD type in VD = Not Allowed
+Mix of SSD/HDD in VD = Not Allowed
+SAS Disable = No
+Max Arms Per VD = 32
+Max Spans Per VD = 8
+Max Arrays = 128
+Max VD per array = 16
+Max Number of VDs = 64
+Max Parallel Commands = 1008
+Max SGE Count = 80
+Max Data Transfer Size = 8192 sectors
+Max Strips PerIO = 42
+Max Configurable CacheCade Size(GB) = 0
+Max Transportable DGs = 0
+Min Strip Size = 8 KB
+Max Strip Size = 1.0 MB
+
+
+Scheduled Tasks :
+===============
+Consistency Check Reoccurrence = 168 hrs
+Next Consistency check launch = 02/08/2017, 07:00:00
+Patrol Read Reoccurrence = 168 hrs
+Next Patrol Read launch = 02/07/2017, 20:00:00
+Battery learn Reoccurrence = NA
+Next Battery Learn = NA
+OEMID = LSI
+
+Drive Groups = 1
+
+TOPOLOGY :
+========
+
+----------------------------------------------------------------------------
+DG Arr Row EID:Slot DID Type  State BT      Size PDC  PI SED DS3  FSpace TR 
+----------------------------------------------------------------------------
+ 0 -   -   -        -   RAID6 Optl  N  19.998 TB dflt N  N   dflt N      N  
+ 0 0   -   -        -   RAID6 Optl  N  19.998 TB dflt N  N   dflt N      N  
+ 0 0   0   252:5    41  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   1   252:2    42  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   2   252:3    43  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   3   252:6    44  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   4   252:7    45  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   5   253:4    46  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   6   253:6    47  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   7   253:7    48  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   8   253:0    49  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   9   253:1    50  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   10  253:2    51  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   11  253:5    52  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+ 0 0   12  253:3    53  DRIVE Onln  N   1.817 TB dflt N  N   dflt -      N  
+----------------------------------------------------------------------------
+
+DG=Disk Group Index|Arr=Array Index|Row=Row Index|EID=Enclosure Device ID
+DID=Device ID|Type=Drive Type|Onln=Online|Rbld=Rebuild|Dgrd=Degraded
+Pdgd=Partially degraded|Offln=Offline|BT=Background Task Active
+PDC=PD Cache|PI=Protection Info|SED=Self Encrypting Drive|Frgn=Foreign
+DS3=Dimmer Switch 3|dflt=Default|Msng=Missing|FSpace=Free Space Present
+TR=Transport Ready
+
+Virtual Drives = 1
+
+VD LIST :
+=======
+
+--------------------------------------------------------------
+DG/VD TYPE  State Access Consist Cache Cac sCC      Size Name 
+--------------------------------------------------------------
+0/0   RAID6 Optl  RW     Yes     NRWTD -   ON  19.998 TB      
+--------------------------------------------------------------
+
+Cac=CacheCade|Rec=Recovery|OfLn=OffLine|Pdgd=Partially Degraded|Dgrd=Degraded
+Optl=Optimal|RO=Read Only|RW=Read Write|HD=Hidden|TRANS=TransportReady|B=Blocked|
+Consist=Consistent|R=Read Ahead Always|NR=No Read Ahead|WB=WriteBack|
+AWB=Always WriteBack|WT=WriteThrough|C=Cached IO|D=Direct IO|sCC=Scheduled
+Check Consistency
+
+Physical Drives = 13
+
+PD LIST :
+=======
+
+-----------------------------------------------------------------------------------
+EID:Slt DID State DG     Size Intf Med SED PI SeSz Model                   Sp Type 
+-----------------------------------------------------------------------------------
+252:2    42 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:3    43 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:5    41 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:6    44 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:7    45 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+253:0    49 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+253:1    50 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+253:2    51 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+253:3    53 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+253:4    46 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+253:5    52 Onln   0 1.817 TB SATA HDD N   N  512B ST2000DM001-1CH164      U  -    
+253:6    47 Onln   0 1.817 TB SATA HDD N   N  512B ST2000DM001-1CH164      U  -    
+253:7    48 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+-----------------------------------------------------------------------------------
+
+EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup
+DHS-Dedicated Hot Spare|UGood-Unconfigured Good|GHS-Global Hotspare
+UBad-Unconfigured Bad|Onln-Online|Offln-Offline|Intf-Interface
+Med-Media Type|SED-Self Encryptive Drive|PI-Protection Info
+SeSz-Sector Size|Sp-Spun|U-Up|D-Down|T-Transition|F-Foreign
+UGUnsp-Unsupported|UGShld-UnConfigured shielded|HSPShld-Hotspare shielded
+CFShld-Configured shielded|Cpybck-CopyBack|CBShld-Copyback Shielded
+
+

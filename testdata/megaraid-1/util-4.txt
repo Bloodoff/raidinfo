@@ -1,0 +1,96 @@
+Controller = 0
+Status = Success
+Description = Show Drive Information Succeeded.
+
+
+Drive /c0/e252/s5 :
+=================
+
+----------------------------------------------------------------------------
+EID:Slt DID State DG     Size Intf Med SED PI SeSz Model            Sp Type 
+----------------------------------------------------------------------------
+252:5    41 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640  U  -    
+----------------------------------------------------------------------------
+
+EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup
+DHS-Dedicated Hot Spare|UGood-Unconfigured Good|GHS-Global Hotspare
+UBad-Unconfigured Bad|Onln-Online|Offln-Offline|Intf-Interface
+Med-Media Type|SED-Self Encryptive Drive|PI-Protection Info
+SeSz-Sector Size|Sp-Spun|U-Up|D-Down|T-Transition|F-Foreign
+UGUnsp-Unsupported|UGShld-UnConfigured shielded|HSPShld-Hotspare shielded
+CFShld-Configured shielded|Cpybck-CopyBack|CBShld-Copyback Shielded
+
+
+Drive /c0/e252/s5 - Detailed Information :
+========================================
+
+Drive /c0/e252/s5 State :
+=======================
+Shield Counter = 0
+Media Error Count = 0
+Other Error Count = 3
+Drive Temperature =  26C (78.80 F)
+Predictive Failure Count = 0
+S.M.A.R.T alert flagged by drive = No
+
+
+Drive /c0/e252/s5 Device attributes :
+===================================
+SN =         YFH83LLD
+Manufacturer Id = HITACHI 
+Model Number = HUS723020ALS640 
+NAND Vendor = NA
+WWN = 
+Raw size = 1.819 TB [0xe8e088b0 Sectors]
+Coerced size = 1.817 TB [0xe8b6d000 Sectors]
+Non Coerced size = 1.818 TB [0xe8d088b0 Sectors]
+Device Speed = Unknown
+Link Speed = Unknown
+Write cache = N/A
+Sector Size = 512B
+Connector Name = 
+
+
+Drive /c0/e252/s5 Policies/Settings :
+===================================
+Drive position = DriveGroup:0, Span:0, Row:0
+Enclosure position = 0
+Connected Port Number = 5(path0) 
+Sequence Number = 2
+Commissioned Spare = No
+Emergency Spare = No
+Last Predictive Failure Event Sequence Number = 0
+Successful diagnostics completion on = N/A
+SED Capable = No
+SED Enabled = No
+Secured = No
+Cryptographic Erase Capable = No
+Locked = No
+Needs EKM Attention = No
+PI Eligible = No
+Certified = Yes
+Wide Port Capable = No
+
+Port Information :
+================
+
+-----------------------------------------
+Port Status Linkspeed SAS address        
+-----------------------------------------
+   0 Active Unknown   0x5000cca01b471ff1 
+   1 Active Unknown   0x0                
+-----------------------------------------
+
+
+Inquiry Data = 
+00 00 06 12 9f 01 10 02 48 49 54 41 43 48 49 20 
+48 55 53 37 32 33 30 32 30 41 4c 53 36 34 30 20 
+41 32 32 32 59 46 48 38 33 4c 4c 44 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+43 6f 70 79 72 69 67 68 74 20 48 69 74 61 63 68 
+69 20 43 6f 72 70 2e 20 32 30 30 33 2e 20 41 6c 
+
+
+

@@ -1,0 +1,68 @@
+Controller = 0
+Status = Success
+Description = None
+
+
+/c0/v0 :
+======
+
+--------------------------------------------------------------
+DG/VD TYPE  State Access Consist Cache Cac sCC      Size Name 
+--------------------------------------------------------------
+0/0   RAID6 Optl  RW     Yes     NRWTD -   ON  19.998 TB      
+--------------------------------------------------------------
+
+Cac=CacheCade|Rec=Recovery|OfLn=OffLine|Pdgd=Partially Degraded|Dgrd=Degraded
+Optl=Optimal|RO=Read Only|RW=Read Write|HD=Hidden|TRANS=TransportReady|B=Blocked|
+Consist=Consistent|R=Read Ahead Always|NR=No Read Ahead|WB=WriteBack|
+AWB=Always WriteBack|WT=WriteThrough|C=Cached IO|D=Direct IO|sCC=Scheduled
+Check Consistency
+
+
+PDs for VD 0 :
+============
+
+-----------------------------------------------------------------------------------
+EID:Slt DID State DG     Size Intf Med SED PI SeSz Model                   Sp Type 
+-----------------------------------------------------------------------------------
+252:5    41 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:2    42 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:3    43 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:6    44 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+252:7    45 Onln   0 1.817 TB SAS  HDD N   N  512B HUS723020ALS640         U  -    
+253:4    46 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+253:6    47 Onln   0 1.817 TB SATA HDD N   N  512B ST2000DM001-1CH164      U  -    
+253:7    48 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+253:0    49 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+253:1    50 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+253:2    51 Onln   0 1.817 TB SATA HDD N   N  512B WDC WD20EFRX-68EUZN0    U  -    
+253:5    52 Onln   0 1.817 TB SATA HDD N   N  512B ST2000DM001-1CH164      U  -    
+253:3    53 Onln   0 1.817 TB SATA HDD N   N  512B Hitachi HDS723020BLA642 U  -    
+-----------------------------------------------------------------------------------
+
+EID-Enclosure Device ID|Slt-Slot No.|DID-Device ID|DG-DriveGroup
+DHS-Dedicated Hot Spare|UGood-Unconfigured Good|GHS-Global Hotspare
+UBad-Unconfigured Bad|Onln-Online|Offln-Offline|Intf-Interface
+Med-Media Type|SED-Self Encryptive Drive|PI-Protection Info
+SeSz-Sector Size|Sp-Spun|U-Up|D-Down|T-Transition|F-Foreign
+UGUnsp-Unsupported|UGShld-UnConfigured shielded|HSPShld-Hotspare shielded
+CFShld-Configured shielded|Cpybck-CopyBack|CBShld-Copyback Shielded
+
+
+VD0 Properties :
+==============
+Strip Size = 1.0 MB
+Number of Blocks = 42947244032
+Span Depth = 1
+Number of Drives Per Span = 13
+Write Cache(initial setting) = WriteThrough
+Disk Cache Policy = Disk's Default
+Encryption = None
+Data Protection = None
+Active Operations = None
+Exposed to OS = Yes
+Creation Date = 30-08-2016
+Creation Time = 08:20:23 AM
+Emulation type = default
+Is LD Ready for OS Requests = Yes
+SCSI NAA Id = 600605b001a02e401f57fe47e983aa9a

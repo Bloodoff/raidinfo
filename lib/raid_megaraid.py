@@ -23,7 +23,7 @@ class RaidControllerLSI(TextAttributeParser, RaidController):
         (r'(?i)^Firmware\sVersion\s=\s(.*)$', 'Firmware', None, False, None),
         (r'(?i)^On\sBoard\sMemory\sSize\s=\s(.*)$', 'CacheSize', None, False, None),
         (r'(?i)^BBU\s=\s(.*)$', 'Battery', None, False, lambda match: {'Absent': False}.get(match.group(1), True)),
-        (r'(?i)^BBU\sStatus\s=\s(.*)$', 'BatteryStatus', None, False, None)
+        (r'(?i)^BBU\sStatus\s=\s(.*)$', 'BatteryStatus', None, False, lambda match: {'32': 'Degraded'}.get(match.group(1), match.group(1)))
     ]
 
     def __init__(self, name):
@@ -118,6 +118,8 @@ class RaidLDvendorLSI(RaidLD):
                 self.Size = DeviceCapacity(int(float(match.group(10)) * 1024), {'TB': 'GiB', 'GB': 'MiB', 'MB': 'KiB'}.get(match.group(11), None))
 
     def __find_devicename(self):
+        if os.name == 'nt':
+            return
         for filename in [f for f in os.listdir('/dev/disk/by-id')]:
             match = re.search(r'^scsi-\d+' + self.NAA, filename)
             if match:

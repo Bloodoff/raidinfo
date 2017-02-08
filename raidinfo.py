@@ -8,14 +8,15 @@ import argparse
 from email.mime.text import MIMEText
 from io import StringIO
 from lib import *
+import configparser
 
 
-fromaddr = ''
-toaddr = ''
-mailserver = ''
-mailserverport = 519
-maillogin = ''
-mailpassword = ''
+def loadconfig():
+    config = configparser.ConfigParser()
+    config.read('raidinfo.conf')
+    if 'mail' not in config:
+        return None
+    return config['mail']
 
 
 def main():
@@ -45,16 +46,23 @@ def main():
     if args.email:
         sys.stdout = old_stdout
         msg = MIMEText(body.getvalue())
-        msg['From'] = fromaddr
-        msg['To'] = toaddr
+
+        config = loadconfig()
+        if config is None:
+            print('Error loading config file')
+            return
+
+        msg['From'] = config['fromaddr']
+        msg['To'] = config['toaddr']
         msg['Subject'] = 'Information about RAID controllers on {}'.format(socket.getfqdn())
         msg['Date'] = datetime.datetime.now().ctime()
 
-        server = smtplib.SMTP(mailserver, mailserverport)
+        server = smtplib.SMTP(config['mailserver'], config['mailserverport'])
         server.starttls()
-        server.login(maillogin, mailpassword)
+        server.login(config['maillogin'], config['mailpassword'])
+
         text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
+        server.sendmail(config['fromaddr'], config['toaddr'], text)
         server.quit()
 
 if __name__ == '__main__':

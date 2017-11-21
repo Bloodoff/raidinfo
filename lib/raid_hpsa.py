@@ -80,6 +80,8 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
         (r'^Disk\sName:\s(\S.*)$', 'Device', None, False, None),
         (r'^Size:\s(\S.*)$', 'Size', None, False, None),
         (r'^Fault\sTolerance:\s(\S.*)$', 'Level', None, False, None),
+        (r'^Parity\sInitialization\sStatus:\s(.*)$', 'InitState', None, False, None),
+        (r'^Parity\sInitialization\sProgress:\s(\S*)', 'InitProgress', '100%', False, None),
         (r'^Status:\s(\S.*)$', 'State', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1)))
     ]
 
@@ -94,6 +96,9 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
         self.__enumerate_pd()
         self.DriveCount = len(self.PDs)
         self.DriveActiveCount = self.DriveCount
+
+    def printSpecificInfo(self):
+        print('Rebuild state: {} ({})'.format(self.InitState, self.InitProgress))
 
     def __enumerate_pd(self):
         for line in helpers.getOutput('{} controller slot={} array {} physicaldrive all show'.format(raidUtil, self.Controller.Name, self.ArrayName)):

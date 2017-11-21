@@ -107,6 +107,7 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
                 self.PDs.append(RaidPDvendorHPSA(match.group(1), self))
 
     def __fill_data(self):
+        self._set_default_attributes()
         for line in helpers.getOutput('{} controller slot={} logicaldrive {} show'.format(raidUtil, self.Controller.Name, self.Name)):
             if self._process_attributes_line(line):
                 continue

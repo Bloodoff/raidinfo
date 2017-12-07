@@ -30,6 +30,7 @@ class SMARTinfo(TextAttributeParser):
         (r'Sector\sSizes:\s+(\d+)\D+(\d+)'             , 'SectorSizes' , None, False, lambda match: [int(match.group(1)), int(match.group(2))]),
         (r'Sector\sSize:\s+(\d+)'                      , 'SectorSizes' , None, False, lambda match: [int(match.group(1)), int(match.group(1))]),
         (r'5\s+Reallocated_Sector_Ct.*\s(\d+)$'        , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
+        (r'187\s+Reported_Uncorrec.*\s(\d+)$'          , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
         (r'196\s+Reallocated_Event_Count.*\s(\d+)$'    , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
         (r'197\s+Current_Pending_Sector.*\s(\d+)$'     , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
         (r'198\s+Offline_Uncorrectable.*\s(\d+)$'      , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),

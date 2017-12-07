@@ -59,6 +59,8 @@ class RaidLDsoft(RaidLD):
         self.DriveCount = len(self.PDs)
 
     def printSpecificInfo(self):
+        if (self.Rebuild < 100):
+            print('Rebuild progress: {}%'.format(self.Rebuild))
         print('Metadata version: {}, layout {}'.format(self.Version, self.Layout))
 
     def __getLDlevel(self):
@@ -81,6 +83,14 @@ class RaidLDsoft(RaidLD):
             0: 'Optimal',
             1: 'Degraded'
         }.get(degraded, degraded)
+
+    def __getLDrebuild(self):
+        rebuild = helpers.readFile('{}/{}/md/sync_completed'.format(syspath, self.Name))
+        if (rebuild == 'none'):
+            return 100
+        else:
+            temp = rebuild.split(' / ')
+            return int(int(temp[0]) * 100 / int(temp[1]))
 
     def __getLDsize(self):
         blockcount = int(helpers.readFile('{}/{}/size'.format(syspath, self.Name)))

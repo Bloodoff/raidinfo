@@ -45,6 +45,7 @@ class RaidLDsoft(RaidLD):
         self.Version = self.__getLDmeta()
         self.DriveActiveCount = self.__getLDdriveCount()
         self.Size = self.__getLDsize()
+        self.Rebuild = self.__getLDrebuild()
         self.__enumeratePD()
 
     def __enumeratePD(self):
@@ -88,6 +89,8 @@ class RaidLDsoft(RaidLD):
         rebuild = helpers.readFile('{}/{}/md/sync_completed'.format(syspath, self.Name))
         if (rebuild == 'none'):
             return 100
+        elif (rebuild == 'delayed'):
+            return 0
         else:
             temp = rebuild.split(' / ')
             return int(int(temp[0]) * 100 / int(temp[1]))

@@ -9,7 +9,12 @@ from lib import *
 FakeResponses = {'/usr/sbin/smartctl -x /dev/sda': 'testdata/soft_1/smart/1.txt',
                  '/usr/sbin/smartctl -x /dev/sdb': 'testdata/soft_1/smart/2.txt',
                  '/usr/sbin/smartctl -x /dev/sdc': 'testdata/soft_1/smart/3.txt',
-                 '/usr/sbin/smartctl -x /dev/sdd': 'testdata/soft_1/smart/4.txt'}
+                 '/usr/sbin/smartctl -x /dev/sdd': 'testdata/soft_1/smart/4.txt',
+                 '/usr/sbin/smartctl -l scterc /dev/sda': 'testdata/soft_1/smart/sct.txt',
+                 '/usr/sbin/smartctl -l scterc /dev/sdb': 'testdata/soft_1/smart/sct.txt',
+                 '/usr/sbin/smartctl -l scterc /dev/sdc': 'testdata/soft_1/smart/sct.txt',
+                 '/usr/sbin/smartctl -l scterc /dev/sdd': 'testdata/soft_1/smart/sct.txt'
+                 }
 
 
 def fake_readFile(filename):

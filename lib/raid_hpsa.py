@@ -162,6 +162,6 @@ class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
     def __fill_advanced_info(self):
         smart = self.LD.search_smart_by_serial(self.Serial)
         if smart is not None:
-            for prop in ['Model', 'Serial', 'Firmware', 'SectorSizes', 'FormFactor', 'PowerOnHours', 'ErrorCount', 'Temperature', 'Capacity']:
+            for prop in ['Model', 'Serial', 'Firmware', 'SectorSizes', 'FormFactor', 'PowerOnHours', 'ErrorCount', 'Temperature', 'Capacity', 'SCT']:
                 if hasattr(smart, prop):
                     setattr(self, prop, getattr(smart, prop))

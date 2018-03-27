@@ -116,7 +116,7 @@ class RaidPDsoft(RaidPD):
         self.Slot = self.__getSlot()
         self.State = self.__getState()
         smart = SMARTinfo('', self.PhysicalDevice)
-        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature']:
+        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature', 'SCT']:
             if hasattr(smart, prop):
                 setattr(self, prop, getattr(smart, prop))
 

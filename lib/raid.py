@@ -96,6 +96,7 @@ class RaidPD(object):
         ('FF', 3, '>', '-', 'FormFactor', None),
         ('RPM', 6, '>', '-', 'RPM', None),
         ('PHY', 6, '>', None, 'PHYSpeed', '_formatPHYInfo'),
+        ('SCT', 11, '>', ['-', '-'], 'SCT', lambda value: '{}/{}'.format(value[0], value[1])),
         ('Temp', 4, '>', '-', 'Temperature', None),
         ('Hours', 6, '>', '-', 'PowerOnHours', None),
         ('Errors', 6, '>', '-', 'ErrorCount', None)

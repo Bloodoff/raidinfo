@@ -36,7 +36,10 @@ class SMARTinfo(TextAttributeParser):
         (r'198\s+Offline_Uncorrectable.*\s(\d+)$'      , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
         # Common errors
         (r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', 'SMART', True, False, lambda match: False),
-        (r'.*Terminate\scommand\searly\sdue'                     , 'Disk' , True, False, lambda match: False)
+        (r'.*Terminate\scommand\searly\sdue'                     , 'Disk' , True, False, lambda match: False),
+        # SCT Error correction
+        (r'Read:\s+(\d+)\s', 'SCT_Read', None, False, lambda match: int(match.group(1)) / 10),
+        (r'Write:\s+(\d+)\s', 'SCT_Write', None, False, lambda match: int(match.group(1)) /10)
     ]
 
     def __init__(self, options, device):
@@ -45,19 +48,24 @@ class SMARTinfo(TextAttributeParser):
             return
         self._set_default_attributes()
         self.Technology = 'SATA'
-        self.__cmd = '{} {}'.format(options, device)
-        self.__cmd = '{} -x {}'.format(smartctl, self.__cmd.strip())
+        self.__cmd_smart = '{} {}'.format(options, device)
+        self.__cmd_smart = '{} -x {}'.format(smartctl, self.__cmd_smart.strip())
+        self.__cmd_scterc = '{} -l scterc {}'.format(smartctl, device)
         self.__load_values()
         if self.Technology == 'SATA':
             if self.PHYCount == 0:
                 self.PHYCount = 1
+        self.SCT = [self.SCT_Read, self.SCT_Write]
 
     def __load_values(self):
-        for line in helpers.getOutput(self.__cmd):
+        for line in helpers.getOutput(self.__cmd_smart):
             if self._process_attributes_line(line):
                 continue
             # SAS
             match = re.search(r'Product:\s+(\S.*)$', line)
             if match:
                 self.Model = '{} {}'.format(self.Vendor, match.group(1)) if hasattr(self, 'Vendor') else match.group(1)
+                continue
+        for line in helpers.getOutput(self.__cmd_scterc):
+            if self._process_attributes_line(line):
                 continue

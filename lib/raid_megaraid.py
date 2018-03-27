@@ -167,6 +167,6 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
         smart = SMARTinfo('-d megaraid,{}'.format(int(self.Device)), self.LD.Device)
         if not smart.SMART:
             return
-        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature']:
+        for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature', 'SCT']:
             if hasattr(smart, prop):
                 setattr(self, prop, getattr(smart, prop))

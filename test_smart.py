@@ -10,12 +10,15 @@ from lib.smart import SMARTinfo
 
 FakeResponses = { '/usr/sbin/smartctl -x /dev/sda': 'testdata/smart/smart-1.txt',
                   '/usr/sbin/smartctl -x /dev/sdb': 'testdata/smart/smart-2.txt',
+                  '/usr/sbin/smartctl -l scterc /dev/sda': 'testdata/smart/scterc.txt',
+                  '/usr/sbin/smartctl -l scterc /dev/sdb': 'testdata/smart/scterc.txt',
                   }
 
 
 def read_file(filename):
     file = open(filename)
     return [line.strip() for line in file]
+
 
 def fake_getOutput(cmd):
     lines = []
@@ -28,6 +31,7 @@ def fake_getOutput(cmd):
             lines.append(line.strip())
     return lines
 
+
 def fake_isfile(filename):
     if filename in ['/usr/sbin/smartctl']:
         return True
@@ -38,12 +42,11 @@ def fake_isfile(filename):
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
 def test_smart_1(monkeypatch):
     smart = SMARTinfo('', '/dev/sda')
-    assert smart.SectorSizes == [512, 512] 
-    
+    assert smart.SectorSizes == [512, 512]
+
+
 @mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
 def test_smart_2(monkeypatch):
     smart = SMARTinfo('', '/dev/sdb')
-    assert smart.SectorSizes == [512, 4096] 
-    
-    
+    assert smart.SectorSizes == [512, 4096]

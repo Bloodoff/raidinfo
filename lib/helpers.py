@@ -1,6 +1,7 @@
 import subprocess
 import os
 import re
+import functools
 
 
 def readFile(filename):
@@ -10,7 +11,6 @@ def readFile(filename):
         return lines[0]
     return lines
 
-Outputs = {}
 
 if os.name == 'nt':
     line_separator = '\r\n'
@@ -18,26 +18,23 @@ else:
     line_separator = '\n'
 
 
+@functools.lru_cache(maxsize=None)
 def getOutput(cmd):
     lines = []
-    if (cmd in Outputs):
-        lines = Outputs[cmd]
-    else:
-        startupinfo = None
-        shell = True
-        if os.name == 'nt':
-            startupinfo = subprocess.STARTUPINFO()
-            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            shell = False
-        output = subprocess.Popen(cmd,
-                                  stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE,
-                                  stdin=subprocess.PIPE,
-                                  shell=shell,
-                                  startupinfo=startupinfo).communicate()
-        output = output[0].decode('utf-8', 'ignore').split(line_separator)
-        for line in output:
-            if not re.match(r'^$', line.strip()):
-                lines.append(line.strip())
-        Outputs[cmd] = lines
+    startupinfo = None
+    shell = True
+    if os.name == 'nt':
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        shell = False
+    output = subprocess.Popen(cmd,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE,
+                              stdin=subprocess.PIPE,
+                              shell=shell,
+                              startupinfo=startupinfo).communicate()
+    output = output[0].decode('utf-8', 'ignore').split(line_separator)
+    for line in output:
+        if not re.match(r'^$', line.strip()):
+            lines.append(line.strip())
     return lines

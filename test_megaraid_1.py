@@ -35,7 +35,20 @@ FakeResponses = {
     '/usr/sbin/smartctl -x -d megaraid,50 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-10.txt',
     '/usr/sbin/smartctl -x -d megaraid,51 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-11.txt',
     '/usr/sbin/smartctl -x -d megaraid,52 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-12.txt',
-    '/usr/sbin/smartctl -x -d megaraid,53 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-13.txt'
+    '/usr/sbin/smartctl -x -d megaraid,53 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-13.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,41 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,42 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,43 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,44 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,45 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,46 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,47 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,48 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,49 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,50 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,51 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,52 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d megaraid,53 /dev/disk/by-id/scsi-3600605b001a02e401f57fe47e983aa9a': 'testdata/megaraid-1/smart/smart-sct.txt',
 }
 
 

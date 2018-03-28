@@ -216,7 +216,7 @@ class RaidPDvendorAdaptec(RaidPD):
         if smart.SMART:
             if self.PHYCount == 0:
                 delattr(self, 'PHYCount')
-            for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM', 'PHYCount']:
+            for prop in ['SectorSizes', 'FormFactor', 'Temperature', 'RPM', 'PHYCount', 'SCT', 'ErrorCount']:
                 if not hasattr(self, prop):
                     if hasattr(smart, prop):
                         setattr(self, prop, getattr(smart, prop))
@@ -226,7 +226,8 @@ class RaidPDvendorAdaptec(RaidPD):
         smart = self.LD.Controller.find_SMART(coordinates[1], coordinates[0])
         if smart is None:
             return
-        self.ErrorCount = 0
+        if not hasattr(self, 'ErrorCount'):
+            self.ErrorCount = 0
         for attribute in smart:
             value = int(attribute.attrib['rawValue']) if ('rawValue' in attribute.attrib) else int(attribute.attrib['Value'])
             if attribute.attrib['name'] == 'Power-On Hours':
@@ -243,5 +244,5 @@ class RaidPDvendorAdaptec(RaidPD):
                                             'Total Uncorrected Read Errors',
                                             'Total Uncorrected Write Errors'
                                             ]:
-                self.ErrorCount = value
+                self.ErrorCount += value
                 continue

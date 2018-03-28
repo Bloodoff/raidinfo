@@ -37,9 +37,14 @@ class SMARTinfo(TextAttributeParser):
         # Common errors
         (r'Smartctl\sopen\sdevice.*No\ssuch\sdevice\sor\saddress', 'SMART', True, False, lambda match: False),
         (r'.*Terminate\scommand\searly\sdue'                     , 'Disk' , True, False, lambda match: False),
+    ]
+
+    _sct_attributes = [
         # SCT Error correction
+        (r'Read:\s+Disabled', 'SCT_Read', None, False, lambda match: 'dsbl'),
+        (r'Write:\s+Disabled', 'SCT_Write', None, False, lambda match: 'dsbl'),
         (r'Read:\s+(\d+)\s', 'SCT_Read', None, False, lambda match: int(match.group(1)) / 10),
-        (r'Write:\s+(\d+)\s', 'SCT_Write', None, False, lambda match: int(match.group(1)) /10)
+        (r'Write:\s+(\d+)\s', 'SCT_Write', None, False, lambda match: int(match.group(1)) / 10),
     ]
 
     def __init__(self, options, device):
@@ -47,10 +52,12 @@ class SMARTinfo(TextAttributeParser):
             self.SMART = False
             return
         self._set_default_attributes()
+        self.device = device
         self.Technology = 'SATA'
         self.__cmd_smart = '{} {}'.format(options, device)
         self.__cmd_smart = '{} -x {}'.format(smartctl, self.__cmd_smart.strip())
-        self.__cmd_scterc = '{} -l scterc {}'.format(smartctl, device)
+        self.__cmd_scterc = '{} {}'.format(options, device)
+        self.__cmd_scterc = '{} -l scterc {}'.format(smartctl, self.__cmd_scterc.strip())
         self.__load_values()
         if self.Technology == 'SATA':
             if self.PHYCount == 0:
@@ -70,5 +77,5 @@ class SMARTinfo(TextAttributeParser):
                 self.Model = '{} {}'.format(self.Vendor, match.group(1)) if hasattr(self, 'Vendor') else match.group(1)
                 continue
         for line in helpers.getOutput(self.__cmd_scterc):
-            if self._process_attributes_line(line):
+            if self._process_attributes_line(line, self._sct_attributes):
                 continue

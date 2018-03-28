@@ -10,8 +10,9 @@ class TextAttributeParser(object):
             if default is not None:
                 setattr(self, attr, default)
 
-    def _process_attributes_line(self, line):
-        for (regexp, attr, default, accum, convert_func) in self._attributes:
+    def _process_attributes_line(self, line, attributes_list=None):
+        _attributes = self._attributes if attributes_list is None else attributes_list
+        for (regexp, attr, default, accum, convert_func) in _attributes:
             match = re.search(regexp, line)
             if match:
                 value = match.group(1) if (convert_func is None) else convert_func(match)

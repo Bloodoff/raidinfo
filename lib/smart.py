@@ -55,7 +55,10 @@ class SMARTinfo(TextAttributeParser):
         if self.Technology == 'SATA':
             if self.PHYCount == 0:
                 self.PHYCount = 1
-        self.SCT = [self.SCT_Read, self.SCT_Write]
+        if hasattr(self, 'SCT_Read') and hasattr(self, 'SCT_Write'):
+            self.SCT = [self.SCT_Read, self.SCT_Write]
+        else:
+            self.SCT = [None, None]
 
     def __load_values(self):
         for line in helpers.getOutput(self.__cmd_smart):

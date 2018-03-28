@@ -46,6 +46,7 @@ class RaidLDsoft(RaidLD):
         self.DriveActiveCount = self.__getLDdriveCount()
         self.Size = self.__getLDsize()
         self.Rebuild = self.__getLDrebuild()
+        self.MismatchCount = self.__getLDmismatchCount()
         self.__enumeratePD()
 
     def __enumeratePD(self):
@@ -63,6 +64,11 @@ class RaidLDsoft(RaidLD):
         if (self.Rebuild < 100):
             print('Rebuild progress: {}%'.format(self.Rebuild))
         print('Metadata version: {}, layout {}'.format(self.Version, self.Layout))
+        if (self.MismatchCount > 0):
+            print('Warning, found {} mismathed blocks!!!'.format(self.MismatchCount))
+
+    def __getLDmismatchCount(self):
+        return int(helpers.readFile('{}/{}/md/mismatch_cnt'.format(syspath, self.Name)))
 
     def __getLDlevel(self):
         return helpers.readFile('{}/{}/md/level'.format(syspath, self.Name)).upper()

@@ -65,7 +65,7 @@ class RaidLDsoft(RaidLD):
             print('Rebuild progress: {}%'.format(self.Rebuild))
         print('Metadata version: {}, layout {}'.format(self.Version, self.Layout))
         if (self.MismatchCount > 0):
-            print('Warning, found {} mismathed blocks!!!'.format(self.MismatchCount))
+            print('Warning, found {} mismatched blocks!!!'.format(self.MismatchCount))
 
     def __getLDmismatchCount(self):
         return int(helpers.readFile('{}/{}/md/mismatch_cnt'.format(syspath, self.Name)))

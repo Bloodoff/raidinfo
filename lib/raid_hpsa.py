@@ -98,7 +98,8 @@ class RaidLDvendorHPSA(TextAttributeParser, RaidLD):
         self.DriveActiveCount = self.DriveCount
 
     def printSpecificInfo(self):
-        print('Rebuild state: {} ({})'.format(self.InitState, self.InitProgress))
+        if hasattr(self, 'InitState'):
+            print('Rebuild state: {} ({})'.format(self.InitState, self.InitProgress))
 
     def __enumerate_pd(self):
         for line in helpers.getOutput('{} controller slot={} array {} physicaldrive all show'.format(raidUtil, self.Controller.Name, self.ArrayName)):

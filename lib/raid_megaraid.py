@@ -1,5 +1,6 @@
 import os
 import re
+import struct
 
 from . import helpers
 
@@ -9,6 +10,8 @@ from .smart import SMARTinfo
 
 if os.name == 'nt':
     raidUtil = 'C:\\Program Files (x86)\\MegaRAID Storage Manager\\StorCLI64.exe'
+elif 'VMkernel' in os.uname():
+    raidUtil = '/opt/lsi/storcli/storcli'
 else:
     raidUtil = '/opt/MegaRAID/storcli/storcli64'
 
@@ -118,12 +121,13 @@ class RaidLDvendorLSI(RaidLD):
                 self.Size = DeviceCapacity(int(float(match.group(10)) * 1024), {'TB': 'GiB', 'GB': 'MiB', 'MB': 'KiB'}.get(match.group(11), None))
 
     def __find_devicename(self):
-        if os.name == 'nt':
-            return
-        for filename in [f for f in os.listdir('/dev/disk/by-id')]:
-            match = re.search(r'^scsi-\d+' + self.NAA, filename)
-            if match:
-                self.Device = '/dev/disk/by-id/' + filename
+        try:
+            for filename in [f for f in os.listdir('/dev/disk/by-id')]:
+                match = re.search(r'^scsi-\d+' + self.NAA, filename)
+                if match:
+                    self.Device = '/dev/disk/by-id/' + filename
+            except:
+                pass
 
 
 class RaidPDvendorLSI(TextAttributeParser, RaidPD):
@@ -146,7 +150,10 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
         self.__fill_basic_info()
         if hasattr(self, 'Vendor'):
             self.Model = self.Vendor + ' ' + self.Model
-        self.__fill_smart_info()
+        if 'VMkernel' in os.uname():
+            self.__fill_LSI_smart_info()
+        else:
+            self.__fill_smart_info()
 
     def __fill_basic_info(self):
         for line in helpers.getOutput('{} /c{}/e{}/s{} show all'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
@@ -170,3 +177,20 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
         for prop in ['Model', 'Serial', 'Firmware', 'Capacity', 'SectorSizes', 'FormFactor', 'PHYCount', 'PHYSpeed', 'RPM', 'PowerOnHours', 'ErrorCount', 'Temperature', 'SCT']:
             if hasattr(smart, prop):
                 setattr(self, prop, getattr(smart, prop))
+
+    def __fill_LSI_smart_info(self):
+        data_dump = []
+        for line in helpers.getOutput('{} /c{}/e{}/s{} show smart'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
+            match = re.search(r'^(\S\S\s){15}\S\S$', line)
+            if match:
+                for c in line.split(' '):
+                   data_dump.append(int(c, 16))
+        data_dump = data_dump[2:]
+        smart = {}
+        for attr_index in range(0, len(data_dump) // 12):
+            attr, value = struct.unpack('<BxxxxHxxxxx', bytearray(data_dump[attr_index * 12:(attr_index + 1) * 12]))
+            if attr != 0:
+                smart[attr] = value
+        setattr(self, 'PowerOnHours', smart.get(9, None))
+        setattr(self, 'ErrorCount', smart.get(5, 0) + smart.get(187, 0) + smart.get(196, 0) + smart.get(197, 0) + smart.get(198, 0))
+        

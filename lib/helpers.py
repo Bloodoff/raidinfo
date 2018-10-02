@@ -1,7 +1,11 @@
 import subprocess
 import os
 import re
-import functools
+
+try:
+    from functools import lru_cache
+except ImportError:
+    from polyfills import lru_cache
 
 
 def readFile(filename):
@@ -16,9 +20,9 @@ if os.name == 'nt':
     line_separator = '\r\n'
 else:
     line_separator = '\n'
+ 
 
-
-@functools.lru_cache(maxsize=None)
+@lru_cache(maxsize=None)
 def getOutput(cmd):
     lines = []
     startupinfo = None

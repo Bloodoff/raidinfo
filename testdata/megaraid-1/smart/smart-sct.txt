@@ -1,0 +1,5 @@
+smartctl 6.5 2016-05-07 r4318 [x86_64-linux-4.14.18-200.fc26.x86_64] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+Write SCT (Get) Error Recovery Control Command failed: ATA return descriptor not supported by controller firmware
+SCT (Get) Error Recovery Control command failed

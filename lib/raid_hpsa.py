@@ -25,7 +25,8 @@ class RaidControllerHPSA(TextAttributeParser, RaidController):
         (r'^Cache\sStatus:\s(.*)$', 'CacheStatus', None, False, None),
         (r'^Cache\sStatus\sDetails:\s(.*)$', 'CacheStatusDetails', None, False, None),
         (r'^Total\sCache\sSize:\s(.*)$', 'CacheSize', None, False, None),
-        (r'^Battery/Capacitor\sCount:\s(.*)$', 'CacheBatteryCount', None, False, None)
+        (r'^Battery/Capacitor\sCount:\s(.*)$', 'CacheBatteryCount', None, False, None),
+        (r'^Battery/Capacitor\sStatus:\s(.*)$', 'CacheBatteryStatus', None, False, None)
     ]
 
     def __init__(self, name):
@@ -60,11 +61,11 @@ class RaidControllerHPSA(TextAttributeParser, RaidController):
     def printSpecificInfo(self):
         print('Model: {}, s/n: {}, fw: {}, Status: {}'.format(self.Model, self.Serial, self.Firmware, self.Status))
         if self.Cache:
-            print('Cache: {}, s/n {}, Battery count: {}, Status: {} / {}'.format(self.CacheSize,
-                                                                                 self.CacheSerial,
-                                                                                 self.CacheBatteryCount,
-                                                                                 self.CacheStatus,
-                                                                                 self.CacheStatusDetails))
+            print('Cache: {}, s/n {}, Status: {} / {}'.format(self.CacheSize,
+                                                              self.CacheSerial,
+                                                              self.CacheStatus,
+                                                              self.CacheStatusDetails))
+            print('Battery count: {}, Status: {}'.format(self.CacheBatteryCount, self.CacheBatteryStatus))
         else:
             print('NO Cache module')
 

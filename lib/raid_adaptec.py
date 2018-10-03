@@ -211,6 +211,8 @@ class RaidPDvendorAdaptec(RaidPD):
                 continue
 
     def __fill_smart_info(self):
+        if (self.Technology == 'SAS') and (os.name == 'nt'):
+            return
         coordinates = self.Slot.split(':')
         smart = SMARTinfo('-d aacraid,{},{},{}'.format(int(self.LD.Controller.Name) - 1, coordinates[1], coordinates[0]), '/dev/null')
         if smart.SMART:
@@ -229,7 +231,11 @@ class RaidPDvendorAdaptec(RaidPD):
         if not hasattr(self, 'ErrorCount'):
             self.ErrorCount = 0
         for attribute in smart:
-            value = int(attribute.attrib['rawValue']) if ('rawValue' in attribute.attrib) else int(attribute.attrib['Value'])
+            value = (attribute.attrib['rawValue']) if ('rawValue' in attribute.attrib) else (attribute.attrib['Value'])
+            try:
+                value = int(value)
+            except ValueError:
+                value = 0
             if attribute.attrib['name'] == 'Power-On Hours':
                 self.PowerOnHours = value
                 continue

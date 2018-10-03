@@ -126,8 +126,8 @@ class RaidLDvendorLSI(RaidLD):
                 match = re.search(r'^scsi-\d+' + self.NAA, filename)
                 if match:
                     self.Device = '/dev/disk/by-id/' + filename
-            except:
-                pass
+        except:
+            pass
 
 
 class RaidPDvendorLSI(TextAttributeParser, RaidPD):

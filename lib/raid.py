@@ -9,7 +9,7 @@ class DeviceCapacity(object):
         if units is None:
             self.Units = -1
             return
-        self.Value = int(re.sub(r'\D', '', str(capacity)))
+        self.Value = float(re.sub(r'(?:\D|\.)', '', str(capacity)))
         for key, unit in self.UNITS.items():
             if units.lower() == unit.lower():
                 self.Units = key
@@ -29,7 +29,7 @@ class DeviceCapacity(object):
     def __str__(self):
         if self.Units == -1:
             return self.PassedValue
-        return '{} {}'.format(round(self.Value, 2), self.UNITS[self.Units])
+        return '{} {}'.format(round(self.Value, 1), self.UNITS[self.Units])
 
 
 class RaidController(object):

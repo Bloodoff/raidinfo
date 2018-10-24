@@ -4,6 +4,7 @@ from threading import RLock
 
 _CacheInfo = namedtuple("CacheInfo", ["hits", "misses", "maxsize", "currsize"])
 
+
 class _HashedSeq(list):
     __slots__ = 'hashvalue'
 
@@ -14,11 +15,12 @@ class _HashedSeq(list):
     def __hash__(self):
         return self.hashvalue
 
+
 def _make_key(args, kwds, typed,
-             kwd_mark = (object(),),
-             fasttypes = {int, str, frozenset, type(None)},
-             sorted=sorted, tuple=tuple, type=type, len=len):
-    'Make a cache key from optionally typed positional and keyword arguments'
+              kwd_mark=(object(),),
+              fasttypes={int, str, frozenset, type(None)},
+              sorted=sorted, tuple=tuple, type=type, len=len):
+    """Make a cache key from optionally typed positional and keyword arguments."""
     key = args
     if kwds:
         sorted_items = sorted(kwds.items())
@@ -33,31 +35,8 @@ def _make_key(args, kwds, typed,
         return key[0]
     return _HashedSeq(key)
 
+
 def lru_cache(maxsize=100, typed=False):
-    """Least-recently-used cache decorator.
-
-    If *maxsize* is set to None, the LRU features are disabled and the cache
-    can grow without bound.
-
-    If *typed* is True, arguments of different types will be cached separately.
-    For example, f(3.0) and f(3) will be treated as distinct calls with
-    distinct results.
-
-    Arguments to the cached function must be hashable.
-
-    View the cache statistics named tuple (hits, misses, maxsize, currsize) with
-    f.cache_info().  Clear the cache and statistics with f.cache_clear().
-    Access the underlying function with f.__wrapped__.
-
-    See:  http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
-
-    """
-
-    # Users should only access the lru_cache through its public API:
-    #       cache_info, cache_clear, and f.__wrapped__
-    # The internals of the lru_cache are encapsulated for thread safety and
-    # to allow the implementation to change (including a possible C version).
-
     def decorating_function(user_function):
 
         cache = dict()
@@ -144,12 +123,12 @@ def lru_cache(maxsize=100, typed=False):
                 return result
 
         def cache_info():
-            """Report cache statistics"""
+            """Report cache statistics."""
             with lock:
                 return _CacheInfo(stats[HITS], stats[MISSES], maxsize, len(cache))
 
         def cache_clear():
-            """Clear the cache and cache statistics"""
+            """Clear the cache and cache statistics."""
             with lock:
                 cache.clear()
                 root = nonlocal_root[0]

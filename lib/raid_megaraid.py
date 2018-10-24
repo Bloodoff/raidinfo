@@ -184,7 +184,7 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
             match = re.search(r'^(\S\S\s){15}\S\S$', line)
             if match:
                 for c in line.split(' '):
-                   data_dump.append(int(c, 16))
+                    data_dump.append(int(c, 16))
         data_dump = data_dump[2:]
         smart = {}
         for attr_index in range(0, len(data_dump) // 12):
@@ -193,4 +193,3 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
                 smart[attr] = value
         setattr(self, 'PowerOnHours', smart.get(9, None))
         setattr(self, 'ErrorCount', smart.get(5, 0) + smart.get(187, 0) + smart.get(196, 0) + smart.get(197, 0) + smart.get(198, 0))
-        

@@ -8,7 +8,7 @@ from .mixins import TextAttributeParser
 from .smart import SMARTinfo
 
 if os.name == 'nt':
-    raidUtil = 'C:\Program Files (x86)\Compaq\Hpacucli\Bin\hpacucli.exe'
+    raidUtil = 'C:\\Program Files (x86)\\Compaq\\Hpacucli\\Bin\\hpacucli.exe'
 else:
     raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
 
@@ -135,7 +135,7 @@ class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
 
     _attributes = [
         (r'^Status:\s(\S.*)$', 'State', None, False, lambda match: {'OK': 'Optimal'}.get(match.group(1), match.group(1))),
-        (r'^Interface\sType:\s+(\S+)', 'Technology', None, False, None),
+        (r'^Interface\sType:.*\s+(\S+)$', 'Technology', None, False, None),
         (r'^Rotational\sSpeed:\s+(\d+)', 'RPM', None, False, None),
         (r'^PHY\sCount:\s+(\d+)', 'PHYCount', None, False, None),
         (r'(?i)^PHY\sTransfer\sRate:\s+(\S+)Gbps', 'PHYSpeed', None, False, None),
@@ -154,6 +154,10 @@ class RaidPDvendorHPSA(TextAttributeParser, RaidPD):
     def __fill_basic_info(self):
         for line in helpers.getOutput('{} controller slot={} physicaldrive {} show'.format(raidUtil, self.LD.Controller.Name, self.Device)):
             if self._process_attributes_line(line):
+                continue
+            match = re.search(r'SSD\sSmart\sTrip\sWearout', line)
+            if match:
+                self.RPM = 'SSD'
                 continue
             match = re.search(r'^Drive\sType:\s+(\S.*$)', line)
             if match:

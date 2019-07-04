@@ -161,12 +161,15 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
             if match:
                 self.Capacity = DeviceCapacity(int(float(match.group(6)) * 1024), {'TB': 'GiB', 'GB': 'MiB', 'MB': 'KiB'}.get(match.group(7), None))
                 self.Technology = match.group(8)
-                self.State = {'DHS': 'Dedicated Hot Spare',
-                              'UGood': 'Unconfigured Good',
-                              'GHS': 'Global Hotspare',
-                              'UBad': 'Unconfigured Bad',
-                              'Onln': 'Optimal',
-                              'Offln': 'Offline'}.get(match.group(4), match.group(4))
+                self.State = {
+                    'DHS': 'Dedicated Hot Spare',
+                    'UGood': 'Unconfigured Good',
+                    'GHS': 'Global Hotspare',
+                    'UBad': 'Unconfigured Bad',
+                    'Onln': 'Optimal',
+                    'Rbld': 'Rebuild',
+                    'Offln': 'Offline'
+                }.get(match.group(4), match.group(4))
             if self._process_attributes_line(line):
                 continue
 

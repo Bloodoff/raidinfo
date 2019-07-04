@@ -22,7 +22,7 @@ class SMARTinfo(TextAttributeParser):
         (r'SATA Version is:.+\s(\S+)\sGb\/s'           , 'PHYSpeed'    , None, False, None),
         (r'number\sof\sphys\s=\s(\d+)'                 , 'PHYCount'    ,    0,  True, lambda match: int(match.group(1))),
         (r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', 'Temperature' , None, False, None),
-        (r'9\sPower_On_Hours+.*\s(\d+)$'               , 'PowerOnHours', None, False, None),
+        (r'9\sPower_On_Hours+.*\s(\d+)(?:\s\(|$)'      , 'PowerOnHours', None, False, None),
         (r'Vendor:\s+(\S.*)$'                          , 'Vendor'      , None, False, None),
         (r'Revision:\s+(\S.*)$'                        , 'Firmware'    , None, False, None),
         (r'Current\sDrive\sTemperature:\s+(\d*)'       , 'Temperature' , None, False, None),

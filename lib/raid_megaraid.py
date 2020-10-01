@@ -95,7 +95,7 @@ class RaidLDvendorLSI(RaidLD):
 
     def __enumerate_pd(self):
         pd_section = False
-        for line in helpers.getOutput('{} /c{}/v{} show all'.format(raidUtil, self.Controller.Name, self.VD)):
+        for line in helpers.getOutput('{} /c{}/v{} show all nolog'.format(raidUtil, self.Controller.Name, self.VD)):
             if re.match(r'(?i)PDs\sfor\sVD', line):
                 pd_section = True
                 continue
@@ -106,7 +106,7 @@ class RaidLDvendorLSI(RaidLD):
                 self.PDs.append(RaidPDvendorLSI(match.group(1), match.group(2), match.group(3), self))
 
     def __fill_data(self):
-        for line in helpers.getOutput('{} /c{}/v{} show all'.format(raidUtil, self.Controller.Name, self.VD)):
+        for line in helpers.getOutput('{} /c{}/v{} show all nolog'.format(raidUtil, self.Controller.Name, self.VD)):
             match = re.search(r'(?i)SCSI\sNAA\sId\s=\s(.*)$', line)
             if match:
                 self.NAA = match.group(1)
@@ -156,7 +156,7 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
             self.__fill_smart_info()
 
     def __fill_basic_info(self):
-        for line in helpers.getOutput('{} /c{}/e{}/s{} show all'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
+        for line in helpers.getOutput('{} /c{}/e{}/s{} show all nolog'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
             match = re.search(r'^(\d+):(\d+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)', line)
             if match:
                 self.Capacity = DeviceCapacity(int(float(match.group(6)) * 1024), {'TB': 'GiB', 'GB': 'MiB', 'MB': 'KiB'}.get(match.group(7), None))
@@ -183,7 +183,7 @@ class RaidPDvendorLSI(TextAttributeParser, RaidPD):
 
     def __fill_LSI_smart_info(self):
         data_dump = []
-        for line in helpers.getOutput('{} /c{}/e{}/s{} show smart'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
+        for line in helpers.getOutput('{} /c{}/e{}/s{} show smart nolog'.format(raidUtil, self.LD.Controller.Name, self.Enclosure, self.Slot)):
             match = re.search(r'^(\S\S\s){15}\S\S$', line)
             if match:
                 for c in line.split(' '):

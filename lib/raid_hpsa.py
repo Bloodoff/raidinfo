@@ -10,7 +10,7 @@ from .smart import SMARTinfo
 if os.name == 'nt':
     raidUtil = 'C:\\Program Files (x86)\\Compaq\\Hpacucli\\Bin\\hpacucli.exe'
 else:
-    raidUtil = '/opt/compaq/hpacucli/bld/hpacucli'
+    raidUtil = '/opt/smartstorageadmin/ssacli/bin/ssacli'
 
 
 class RaidControllerHPSA(TextAttributeParser, RaidController):
@@ -50,7 +50,7 @@ class RaidControllerHPSA(TextAttributeParser, RaidController):
 
     def __enumerate_ld(self):
         for line in helpers.getOutput('{} controller slot={} array all show'.format(raidUtil, self.Name)):
-            match = re.search(r'^array\s(\S+)\s', line)
+            match = re.search(r'^array\s(\S+)\s', line, flags=re.IGNORECASE)
             if match:
                 array_name = match.group(1)
                 for line in helpers.getOutput('{} controller slot={} array {} logicaldrive all show'.format(raidUtil, self.Name, array_name)):

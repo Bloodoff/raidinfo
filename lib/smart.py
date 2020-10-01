@@ -17,16 +17,18 @@ class SMARTinfo(TextAttributeParser):
         (r'Serial\s[N|n]umber:\s+(.*)$'                , 'Serial'      , None, False, None),
         (r'Firmware\sVersion:\s+(.*)$'                 , 'Firmware'    , None, False, None),
         (r'User\sCapacity:.*\[(.*)\]$'                 , 'Capacity'    , None, False, None),
-        (r'Rotation\sRate:\s+(\d+)'                    , 'RPM'         , None, False, None),
+        (r'Rotation\sRate:\s+(.*)$'                    , 'RPM'         , None, False, None),
         (r'Form\sFactor:\s+(\S+)'                      , 'FormFactor'  , None, False, None),
         (r'SATA Version is:.+\s(\S+)\sGb\/s'           , 'PHYSpeed'    , None, False, None),
         (r'number\sof\sphys\s=\s(\d+)'                 , 'PHYCount'    ,    0,  True, lambda match: int(match.group(1))),
+        (r'190\sAirflow_Temperature.*\s(\d+)(?:\s\(|$)', 'Temperature' , None, False, None),
         (r'194\sTemperature_Celsius.*\s(\d+)(?:\s\(|$)', 'Temperature' , None, False, None),
-        (r'9\sPower_On_Hours+.*\s(\d+)(?:\s\(|$)'      , 'PowerOnHours', None, False, None),
+        (r'Current\sDrive\sTemperature:\s+(\d*)'       , 'Temperature' , None, False, None),
+        (r'9\sPower_On_Hours.*\s(\d+)(?:\s\(|$)'       , 'PowerOnHours', None, False, None),
+        (r'number\sof\shours\spowered\sup\s=\s+(\d*)'  , 'PowerOnHours', None, False, None),
+        (r'9\sPower_On_Hours_and_Msec.*\s(\d+)h'       , 'PowerOnHours', None, False, None),
         (r'Vendor:\s+(\S.*)$'                          , 'Vendor'      , None, False, None),
         (r'Revision:\s+(\S.*)$'                        , 'Firmware'    , None, False, None),
-        (r'Current\sDrive\sTemperature:\s+(\d*)'       , 'Temperature' , None, False, None),
-        (r'number\sof\shours\spowered\sup\s=\s+(\d*)'  , 'PowerOnHours', None, False, None),
         (r'Sector\sSizes:\s+(\d+)\D+(\d+)'             , 'SectorSizes' , None, False, lambda match: [int(match.group(1)), int(match.group(2))]),
         (r'Sector\sSize:\s+(\d+)'                      , 'SectorSizes' , None, False, lambda match: [int(match.group(1)), int(match.group(1))]),
         (r'5\s+Reallocated_Sector_Ct.*\s(\d+)$'        , 'ErrorCount'  ,    0,  True, lambda match: int(match.group(1))),
@@ -66,6 +68,9 @@ class SMARTinfo(TextAttributeParser):
             self.SCT = [self.SCT_Read, self.SCT_Write]
         else:
             self.SCT = [None, None]
+        if hasattr(self, 'RPM'):
+            if self.RPM == 'Solid State Device':
+                self.RPM = 'SSD'
 
     def __load_values(self):
         for line in helpers.getOutput(self.__cmd_smart):

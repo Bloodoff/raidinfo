@@ -68,7 +68,9 @@ class RaidLDsoft(RaidLD):
             print('Warning, found {} mismatched blocks!!!'.format(self.MismatchCount))
 
     def __getLDmismatchCount(self):
-        return int(helpers.readFile('{}/{}/md/mismatch_cnt'.format(syspath, self.Name)))
+        mismatch_count = helpers.readFile('{}/{}/md/mismatch_cnt'.format(syspath, self.Name))
+        return 0 if mismatch_count == None else int(mismatch_count)
+
 
     def __getLDlevel(self):
         return helpers.readFile('{}/{}/md/level'.format(syspath, self.Name)).upper()
@@ -76,30 +78,36 @@ class RaidLDsoft(RaidLD):
     def __getLDlayout(self):
         layout = int(helpers.readFile('{}/{}/md/layout'.format(syspath, self.Name)))
         return {
+           -1: 'not applicable',
             0: 'not applicable',
             1: 'right-symmetric',
-            2: 'left-symmetric'
+            2: 'left-symmetric',
+          258: 'near=2'
         }.get(layout, layout)
 
     def __getLDmeta(self):
         return helpers.readFile('{}/{}/md/metadata_version'.format(syspath, self.Name))
 
     def __getLDstate(self):
-        degraded = int(helpers.readFile('{}/{}/md/degraded'.format(syspath, self.Name)))
+        degraded = helpers.readFile('{}/{}/md/degraded'.format(syspath, self.Name))
         return {
-            0: 'Optimal',
-            1: 'Degraded'
+            None: 'Optimal (not stable)',
+            '0': 'Optimal',
+            '1': 'Degraded'
         }.get(degraded, degraded)
 
     def __getLDrebuild(self):
         rebuild = helpers.readFile('{}/{}/md/sync_completed'.format(syspath, self.Name))
-        if (rebuild == 'none'):
+        if (rebuild == None):
+            return 1000
+        elif (rebuild == 'none'):
             return 100
         elif (rebuild == 'delayed'):
             return 0
         else:
             temp = rebuild.split(' / ')
             return int(int(temp[0]) * 100 / int(temp[1]))
+
 
     def __getLDsize(self):
         blockcount = int(helpers.readFile('{}/{}/size'.format(syspath, self.Name)))

@@ -9,11 +9,13 @@ except ImportError:
 
 
 def readFile(filename):
-    file = open(filename)
-    lines = [line.strip() for line in file]
-    if len(lines) == 1:
-        return lines[0]
-    return lines
+    if os.path.isfile(filename):
+        file = open(filename)
+        lines = [line.strip() for line in file]
+        if len(lines) == 1:
+            return lines[0]
+        return lines
+    return None
 
 
 if os.name == 'nt':

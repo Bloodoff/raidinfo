@@ -205,7 +205,7 @@ class RaidPDvendorAdaptec(RaidPD):
             if match:
                 self.Capacity = DeviceCapacity(match.group(1), 'MiB')
                 continue
-            match = re.search(r'^(?i)Phy\s#\d+$', line)
+            match = re.search(r'(?i)^Phy\s#\d+$', line)
             if match:
                 self.PHYCount = self.PHYCount + 1
                 continue

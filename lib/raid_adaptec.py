@@ -134,7 +134,7 @@ class RaidLDvendorAdaptec(TextAttributeParser, RaidLD):
                 break
             if self._process_attributes_line(line):
                 continue
-            match = re.search(r'(?i)^Segment\s(\d+)\s.*\s(\S+)$', line)
+            match = re.search(r'(?i)^Segment\s(\d+)\s.*\)\s*(\S*)$', line)
             if match:
                 self.PDs.append(RaidPDvendorAdaptec('Seg: {}'.format(match.group(1)), self, match.group(2)))
                 continue
@@ -151,7 +151,13 @@ class RaidPDvendorAdaptec(RaidPD):
         self.Serial = serial
         self.Device = name
         self.PHYCount = 0
-        self.__fill_basic_info()
+        if serial == '':
+            self.Technology = '-'
+            self.Slot = '-:-'
+            self.State = 'Failed'
+            return
+        if not self.__fill_basic_info():
+            return
         self.__fill_smart_info()
         self.__fill_advanced_info()
 
@@ -209,6 +215,7 @@ class RaidPDvendorAdaptec(RaidPD):
             if match:
                 self.PHYCount = self.PHYCount + 1
                 continue
+        return searched_pd
 
     def __fill_smart_info(self):
         if (self.Technology == 'SAS') and (os.name == 'nt'):

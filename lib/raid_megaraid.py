@@ -40,7 +40,7 @@ class RaidControllerLSI(TextAttributeParser, RaidController):
     def probe():
         if not os.path.isfile(raidUtil):
             return []
-        output = helpers.getOutput('{} show'.format(raidUtil))
+        output = helpers.getOutput('{} show nolog'.format(raidUtil))
         controllers = []
         for line in output:
             match = re.search(r'^(\d+)\s\S+\s+\d+', line)
@@ -50,7 +50,7 @@ class RaidControllerLSI(TextAttributeParser, RaidController):
 
     def __enumerate_ld(self):
         ld_section = False
-        for line in helpers.getOutput('{} /c{} show all'.format(raidUtil, self.Name)):
+        for line in helpers.getOutput('{} /c{} show all nolog'.format(raidUtil, self.Name)):
             if re.match(r'(?i)^VD\sLIST\s:', line):
                 ld_section = True
                 continue
@@ -71,7 +71,7 @@ class RaidControllerLSI(TextAttributeParser, RaidController):
         print('FW version  : {}'.format(self.Firmware))
 
     def __fill_data(self):
-        for line in helpers.getOutput('{} /c{} show all'.format(raidUtil, self.Name)):
+        for line in helpers.getOutput('{} /c{} show all nolog'.format(raidUtil, self.Name)):
             if re.match(r'(?i)^TOPOLOGY\s:', line):
                 break
             if self._process_attributes_line(line):

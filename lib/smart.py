@@ -17,7 +17,7 @@ class SMARTinfo(TextAttributeParser):
         (r'Serial\s[N|n]umber:\s+(.*)$'                , 'Serial'      , None, False, None),
         (r'Firmware\sVersion:\s+(.*)$'                 , 'Firmware'    , None, False, None),
         (r'User\sCapacity:.*\[(.*)\]$'                 , 'Capacity'    , None, False, None),
-        (r'Rotation\sRate:\s+(.*)$'                    , 'RPM'         , None, False, None),
+        (r'Rotation\sRate:\s+(\d*)'                   , 'RPM'         , None, False, None),
         (r'Form\sFactor:\s+(\S+)'                      , 'FormFactor'  , None, False, None),
         (r'SATA Version is:.+\s(\S+)\sGb\/s'           , 'PHYSpeed'    , None, False, None),
         (r'number\sof\sphys\s=\s(\d+)'                 , 'PHYCount'    ,    0,  True, lambda match: int(match.group(1))),

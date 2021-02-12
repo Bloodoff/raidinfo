@@ -65,8 +65,8 @@ class RaidControllerAdaptec(TextAttributeParser, RaidController):
         lines = helpers.getOutput('{} GETSMARTSTATS {}'.format(raidUtil, self.Name))
         lines = filter(lambda line: re.match(r'^<', line), lines)
         root = ET.fromstring('<data>' + ''.join(lines) + '</data>')
-        for child in root:
-            for child in child:
+        for childs in root:
+            for child in childs:
                 self.SMART.append(child)
 
     def find_SMART(self, channel, id):

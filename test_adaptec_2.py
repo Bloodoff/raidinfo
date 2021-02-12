@@ -25,7 +25,25 @@ FakeResponses = {
     '/usr/sbin/smartctl -x -d aacraid,0,0,20 /dev/null': 'testdata/adaptec-2/smart-13.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,21 /dev/null': 'testdata/adaptec-2/smart-14.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,22 /dev/null': 'testdata/adaptec-2/smart-15.txt',
-    '/usr/sbin/smartctl -x -d aacraid,0,0,23 /dev/null': 'testdata/adaptec-2/smart-16.txt'
+    '/usr/sbin/smartctl -x -d aacraid,0,0,23 /dev/null': 'testdata/adaptec-2/smart-16.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,-,- /dev/null': 'testdata/adaptec/smart-error.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,-,- /dev/null': 'testdata/adaptec/smart-error.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,8 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,9 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,10 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,11 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,12 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,13 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,14 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,15 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,16 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,17 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,18 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,19 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,20 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,21 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,22 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,23 /dev/null': 'testdata/adaptec/smart-sct.txt',
 }
 
 
@@ -54,7 +72,7 @@ def fake_getOutput(cmd):
 
 @mock.patch('os.path.isfile', fake_isfile)
 @mock.patch('lib.helpers.getOutput', fake_getOutput)
-def test_adaptec_1(monkeypatch):
+def test_adaptec_2(monkeypatch):
     controllers = raid.RaidController.probe()
     for controller in controllers:
         controller.printInfo()

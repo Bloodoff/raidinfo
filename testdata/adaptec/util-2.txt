@@ -2,85 +2,350 @@ Controllers found: 1
 ----------------------------------------------------------------------
 Controller information
 ----------------------------------------------------------------------
-   Controller Status                        : Optimal
-   Channel description                      : SAS/SATA
-   Controller Model                         : Adaptec 6805Q
-   Controller Serial Number                 : 2B46121D3CE
-   Controller World Wide Name               : 50000D1105EED080
-   Controller Alarm                         : Enabled
-   Physical Slot                            : 0
-   Temperature                              : 60 C/ 140 F (Normal)
-   Installed memory                         : 512 MB
-   Global task priority                     : High
-   Performance Mode                         : Default/Dynamic
-   Host bus type                            : PCIe
-   Host bus speed                           : 5000 MHz
-   Host bus link width                      : 8 bit(s)/link(s)
-   PCI Device ID                            : 651
-   Stayawake period                         : Disabled
-   Spinup limit internal drives             : 0
-   Spinup limit external drives             : 0
-   Defunct disk drive count                 : 0
-   Logical devices/Failed/Degraded          : 1/0/0
-   NCQ status                               : Enabled
-   Statistics data collection mode          : Enabled
+   Controller Status                          : Optimal
+   Controller Mode                            : RAID (Expose RAW)
+   Channel description                        : SAS/SATA
+   Controller Model                           : Adaptec ASR81605Z
+   Controller Serial Number                   : 7B3563E0ADA
+   Controller World Wide Name                 : 50000D1703905800
+   Controller Alarm                           : Enabled
+   Temperature                                : 56 C/ 132 F (Normal)
+   Installed memory                           : 1024 MB
+   Host bus type                              : PCIe
+   Host bus speed                             : 8000 MHz
+   Host bus link width                        : 8 bit(s)/link(s)
+   Global task priority                       : High
+   Performance Mode                           : Default/Dynamic
+   PCI Device ID                              : 653
+   Stayawake period                           : Disabled
+   Spinup limit internal drives               : 0
+   Spinup limit external drives               : 0
+   Defunct disk drive count                   : 1
+   NCQ status                                 : Enabled
+   Statistics data collection mode            : Disabled
+   Monitor Log Severity Level                 : Informational
+   Global Max SAS Phy Link Rate               : 12 Gbps
+   Verify Write Setting                       : Not Applicable
+   Save Custom Defaults Setting               : Disabled
+   Smart Poll                                 : Enabled
+   Error Tunable Profile                      : Normal
+   Metadead Supported                         : Supported
+   Metadead                                   : False
+   --------------------------------------------------------
+   Cache Properties
+   --------------------------------------------------------
+   Controller Cache Preservation              : Disabled
+   Global Physical Device Write Cache Policy  : Drive Specific
    --------------------------------------------------------
    RAID Properties
    --------------------------------------------------------
-   Copyback                                 : Disabled
-   Automatic Failover                       : Enabled
-   Background consistency check             : Enabled
-   Background consistency check period      : 30
-   SSDs assigned to maxCache pool           : 0
-   Maximum SSDs allowed in maxCache pool    : 8
-   maxCache Read Cache Pool Size            : 0.000 GB
-   maxCache flush and fetch rate            : 0
-   maxCache Read, Write Balance Factor      : 1,1
+   Logical devices/Failed/Degraded            : 1/0/1
+   Copyback                                   : Disabled
+   Automatic Failover                         : Enabled
+   Background consistency check               : Enabled
+   Background consistency check period        : 0
+   --------------------------------------------------------
+   Controller BIOS Setting Information
+   --------------------------------------------------------
+   Runtime BIOS                               : Enabled
+   Array BBS Support                          : Disabled
+   Physical Drives Displayed during POST      : Disabled
+   Backplane Mode                             : SGPIO
+   BIOS Halt on Missing Drive Count           : 255
    --------------------------------------------------------
    Controller Version Information
    --------------------------------------------------------
-   BIOS                                     : 5.2-0 (19176)
-   Firmware                                 : 5.2-0 (19176)
-   Driver                                   : 1.2-1 (41066)
-   Boot Flash                               : 5.2-0 (19176)
-   SEEPROM (Load version/ Flash version)    : 2/ 8
+   BIOS                                       : 7.15-0 (33401)
+   Firmware                                   : 7.15-0 (33401)
+   Driver                                     : 1.2-1 (50983)
+   Boot Flash                                 : 7.15-0 (33401)
+   CPLD (Load version/ Flash version)         : 11/ 12
+   SEEPROM (Load version/ Flash version)      : 1/ 1
+   FCT Custom Init String Version             : 0x0
+
    --------------------------------------------------------
-   Controller ZMM Information
+   Controller Cache Backup Unit Information
    --------------------------------------------------------
-   Status                                   : ZMM Optimal
+
+    Overall Backup Unit Status                : Ready
+
+         Backup Unit Type                     : AFM-700/700LP
+         Non-Volatile Storage Status          : Ready
+         Supercap Status                      : Ready
+
+         -------------------------------------
+         Supercap Information                 
+         -------------------------------------
+         Current Temperature                  : 20 deg C
+         Threshold Temperature                : 55 deg C
+         Life-time Temperature Recorded       
+         (Min/Max)                            : 10 deg C/ 33 deg C
+
+         Voltage(Present/Max)                 : 4964 mV/ 5302 mV
+         Life-time Max Voltage Recorded       : 5442 mV
+
+         Current Drawn(Present/Max)           : -14 mA/ 560 mA
+         Health                               : 100 percent
+         Charge Level                         : 100 percent
+         Estimated Life-time                  : 5 Years, 0 Month
+         Serial Number                        : 7B3563E0ADA
+
+         Learn Status                         : Idle
+         Next Scheduled Learn Cycle           : 253 hours
+
+         Present Capacitance                  : 310 farads
+   --------------------------------------------------------
+   Connector information
+                     
+   --------------------------------------------------------
+   Connector #0                               
+      Connector Name                          : CN0
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+      Lane #0                                 
+         Channel ID                           : 0
+         Device ID                            : 0
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 11
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580B
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #1                                 
+         Channel ID                           : 0
+         Device ID                            : 1
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 9
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D1703905809
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #2                                 
+         Channel ID                           : 0
+         Device ID                            : 2
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 10
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580A
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #3                                 
+         Channel ID                           : 0
+         Device ID                            : 3
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 8
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D1703905808
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+
+   Connector #1                               
+      Connector Name                          : CN1
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+      Lane #0                                 
+         Channel ID                           : 0
+         Device ID                            : 4
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 12
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580C
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #1                                 
+         Channel ID                           : 0
+         Device ID                            : 5
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 14
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580E
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #2                                 
+         Channel ID                           : 0
+         Device ID                            : 6
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 13
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580D
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+      Lane #3                                 
+         Channel ID                           : 0
+         Device ID                            : 7
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 15
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+            Attached PHY Identifier           : 0
+            Attached SAS Address              : 30000D170390580F
+            Negotiated Logical Link Rate      : PHY enabled - 6 Gbps
+
+
+   Connector #2                               
+      Connector Name                          : CN2
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+      Lane #0                                 
+         Channel ID                           : 0
+         Device ID                            : 8
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 4
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #1                                 
+         Channel ID                           : 0
+         Device ID                            : 9
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 5
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #2                                 
+         Channel ID                           : 0
+         Device ID                            : 10
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 7
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #3                                 
+         Channel ID                           : 0
+         Device ID                            : 11
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 6
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+
+   Connector #3                               
+      Connector Name                          : CN3
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+      Lane #0                                 
+         Channel ID                           : 0
+         Device ID                            : 12
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 3
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #1                                 
+         Channel ID                           : 0
+         Device ID                            : 13
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 2
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #2                                 
+         Channel ID                           : 0
+         Device ID                            : 14
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 0
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+      Lane #3                                 
+         Channel ID                           : 0
+         Device ID                            : 15
+         SAS Address                          : 50000D1703905800
+         PHY Identifier                       : 1
+         -------------------------------------
+         Lane SAS Phy Information             
+         -------------------------------------
+            SAS Address                       : 50000D1703905800
+
+
 
 ----------------------------------------------------------------------
 Logical device information
 ----------------------------------------------------------------------
 Logical Device number 0
-   Logical Device name                      : ARRAY1
-   Block Size of member drives              : 512 Bytes
-   RAID level                               : 6 Reed-Solomon
-   Unique Identifier                        : F771262D
-   Status of Logical Device                 : Optimal
-   Additional details                       : Initialized with Build/Clear
-   Size                                     : 8570870 MB
-   Parity space                             : 5713920 MB
-   Stripe-unit size                         : 256 KB
-   Read-cache setting                       : Enabled
-   Read-cache status                        : On
-   Write-cache setting                      : On when protected by battery/ZMM
-   Write-cache status                       : On
-   maxCache read cache setting              : Enabled
-   maxCache read cache status               : Off
-   Partitioned                              : Yes
-   Protected by Hot-Spare                   : No
-   Bootable                                 : Yes
-   Failed stripes                           : No
-   Power settings                           : Disabled
+   Logical Device name                        : ARRAY0
+   Block Size of member drives                : 512 Bytes
+   RAID level                                 : 6
+   Unique Identifier                          : E02E692D
+   Status of Logical Device                   : Suboptimal, Fault Tolerant
+   Additional details                         : Initialized with Build/Clear
+   Size                                       : 34314230 MB
+   Parity space                               : 11438080 MB
+   Stripe-unit size                           : 512 KB
+   Interface Type                             : SAS/SATA
+   Device Type                                : HDD
+   Read-cache setting                         : Enabled
+   Read-cache status                          : On
+   Write-cache setting                        : On when protected by battery/ZMM
+   Write-cache status                         : On
+   Partitioned                                : Yes
+   Protected by Hot-Spare                     : No
+   Bootable                                   : Yes
+   Failed stripes                             : No
+   Power settings                             : Disabled
    --------------------------------------------------------
    Logical Device segment information
    --------------------------------------------------------
-   Segment 0                                : Present (2861588MB, SATA, HDD, Connector:1, Device:1)       PN2231P8HE17ZR
-   Segment 1                                : Present (2861588MB, SATA, HDD, Connector:0, Device:0)       PN2231P8HE1B8R
-   Segment 2                                : Present (2861588MB, SATA, HDD, Connector:0, Device:1)       PN2231P8HDWU7R
-   Segment 3                                : Present (2861588MB, SATA, HDD, Connector:0, Device:2)       PN2231P8HDY4BR
-   Segment 4                                : Present (2861588MB, SATA, HDD, Connector:1, Device:0)       PN2231P8HDY2YR
+   Segment 0                                  : Failed (0MB, SAS, HDD, Connector:0, Device:0) 
+   Segment 1                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:1)         X7DQK50OF56D
+   Segment 2                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:2)         7741Y0DSF56D
+   Segment 3                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:3)         X7DQK50RF56D
+   Segment 4                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:4)         X7GUK2AYF56D
+   Segment 5                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:5)         X7GSK2LIF56D
+   Segment 6                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:6)         X7FOK1FXF56D
+   Segment 7                                  : Present (5723166MB, SATA, HDD, Enclosure:0, Slot:7)         X7GSK2LKF56D
 
 
 ----------------------------------------------------------------------
@@ -88,286 +353,582 @@ Physical Device information
 ----------------------------------------------------------------------
       Device #0
          Device is a Hard drive
-         State                              : Online
-         Block Size                         : 512 Bytes
-         Supported                          : Yes
-         Transfer Speed                     : SATA 6.0 Gb/s
-         Reported Channel,Device(T:L)       : 0,0(0:0)
-         Reported Location                  : Connector 0, Device 0
-         Vendor                             : HGST
-         Model                              : HUS724030ALA640
-         Firmware                           : MF8OAA70
-         Serial number                      : PN2231P8HE1B8R
-         World-wide name                    : 5000CCA22CD40572
-         Reserved Size                      : 4739480 KB
-         Used Size                          : 2856960 MB
-         Unused Size                        : 64 KB
-         Total Size                         : 2861588 MB
-         Write Cache                        : Enabled (write-back)
-         FRU                                : None
-         S.M.A.R.T.                         : No
-         S.M.A.R.T. warnings                : 0
-         Power State                        : Full rpm
-         Supported Power States             : Full rpm,Powered off,Reduced rpm
-         SSD                                : No
-         maxCache Capable                   : No
-         maxCache Assigned                  : No
-         Temperature                        : Not Supported
-         NCQ status                         : Enabled
+         State                                : Failed
+         Block Size                           : Unknown
+         Supported                            : Yes
+         Reported Channel,Device(T:L)         : 0,0(0:0)
+         Reported Location                    : Connector 0, Device 0
+         Vendor                               : 
+         Model                                : 
+         Firmware                             : 
+         World-wide name                      : 0000000000000000
+         Total Size                           : 0 MB
+         Write Cache                          : Unknown
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         SSD                                  : No
+         Temperature                          : Not Supported
       ----------------------------------------------------------------
-      Device Phy Information                
+      Device Phy Information                  
       ----------------------------------------------------------------
-         Phy #0
-            PHY Identifier                  : 0
-            SAS Address                     : 3000000000000003
-            Attached PHY Identifier         : 3
-            Attached SAS Address            : 50000D1105EED080
+         No Phy information available         
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
       Device #1
          Device is a Hard drive
-         State                              : Online
-         Block Size                         : 512 Bytes
-         Supported                          : Yes
-         Transfer Speed                     : SATA 6.0 Gb/s
-         Reported Channel,Device(T:L)       : 0,1(1:0)
-         Reported Location                  : Connector 0, Device 1
-         Vendor                             : HGST
-         Model                              : HUS724030ALA640
-         Firmware                           : MF8OAA70
-         Serial number                      : PN2231P8HDWU7R
-         World-wide name                    : 5000CCA22CD3F45E
-         Reserved Size                      : 4739480 KB
-         Used Size                          : 2856960 MB
-         Unused Size                        : 64 KB
-         Total Size                         : 2861588 MB
-         Write Cache                        : Enabled (write-back)
-         FRU                                : None
-         S.M.A.R.T.                         : No
-         S.M.A.R.T. warnings                : 0
-         Power State                        : Full rpm
-         Supported Power States             : Full rpm,Powered off,Reduced rpm
-         SSD                                : No
-         maxCache Capable                   : No
-         maxCache Assigned                  : No
-         Temperature                        : Not Supported
-         NCQ status                         : Enabled
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,1(1:0)
+         Reported Location                    : Enclosure 0, Slot 1(Connector 0)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7DQK50OF56D
+         World-wide name                      : 500003981C381427
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 34 C/ 93 F 
+         NCQ status                           : Enabled
       ----------------------------------------------------------------
-      Device Phy Information                
+      Device Phy Information                  
       ----------------------------------------------------------------
          Phy #0
-            PHY Identifier                  : 0
-            SAS Address                     : 3000000000000002
-            Attached PHY Identifier         : 2
-            Attached SAS Address            : 50000D1105EED080
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D1703905809
+            Attached PHY Identifier           : 9
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
       Device #2
          Device is a Hard drive
-         State                              : Online
-         Block Size                         : 512 Bytes
-         Supported                          : Yes
-         Transfer Speed                     : SATA 6.0 Gb/s
-         Reported Channel,Device(T:L)       : 0,2(2:0)
-         Reported Location                  : Connector 0, Device 2
-         Vendor                             : HGST
-         Model                              : HUS724030ALA640
-         Firmware                           : MF8OAA70
-         Serial number                      : PN2231P8HDY4BR
-         World-wide name                    : 5000CCA22CD3F959
-         Reserved Size                      : 4739480 KB
-         Used Size                          : 2856960 MB
-         Unused Size                        : 64 KB
-         Total Size                         : 2861588 MB
-         Write Cache                        : Enabled (write-back)
-         FRU                                : None
-         S.M.A.R.T.                         : No
-         S.M.A.R.T. warnings                : 0
-         Power State                        : Full rpm
-         Supported Power States             : Full rpm,Powered off,Reduced rpm
-         SSD                                : No
-         maxCache Capable                   : No
-         maxCache Assigned                  : No
-         Temperature                        : Not Supported
-         NCQ status                         : Enabled
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,2(2:0)
+         Reported Location                    : Enclosure 0, Slot 2(Connector 0)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : 7741Y0DSF56D
+         World-wide name                      : 50000397ECD804E2
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 36 C/ 96 F 
+         NCQ status                           : Enabled
       ----------------------------------------------------------------
-      Device Phy Information                
+      Device Phy Information                  
       ----------------------------------------------------------------
          Phy #0
-            PHY Identifier                  : 0
-            SAS Address                     : 3000000000000001
-            Attached PHY Identifier         : 1
-            Attached SAS Address            : 50000D1105EED080
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D170390580A
+            Attached PHY Identifier           : 10
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
       Device #3
          Device is a Hard drive
-         State                              : Online
-         Block Size                         : 512 Bytes
-         Supported                          : Yes
-         Transfer Speed                     : SATA 6.0 Gb/s
-         Reported Channel,Device(T:L)       : 0,4(4:0)
-         Reported Location                  : Connector 1, Device 0
-         Vendor                             : HGST
-         Model                              : HUS724030ALA640
-         Firmware                           : MF8OAA70
-         Serial number                      : PN2231P8HDY2YR
-         World-wide name                    : 5000CCA22CD3F92D
-         Reserved Size                      : 4739480 KB
-         Used Size                          : 2856960 MB
-         Unused Size                        : 64 KB
-         Total Size                         : 2861588 MB
-         Write Cache                        : Enabled (write-back)
-         FRU                                : None
-         S.M.A.R.T.                         : No
-         S.M.A.R.T. warnings                : 0
-         Power State                        : Full rpm
-         Supported Power States             : Full rpm,Powered off,Reduced rpm
-         SSD                                : No
-         maxCache Capable                   : No
-         maxCache Assigned                  : No
-         Temperature                        : Not Supported
-         NCQ status                         : Enabled
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,3(3:0)
+         Reported Location                    : Enclosure 0, Slot 3(Connector 0)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7DQK50RF56D
+         World-wide name                      : 500003981C38142A
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 36 C/ 96 F 
+         NCQ status                           : Enabled
       ----------------------------------------------------------------
-      Device Phy Information                
+      Device Phy Information                  
       ----------------------------------------------------------------
          Phy #0
-            PHY Identifier                  : 0
-            SAS Address                     : 3000000000000007
-            Attached PHY Identifier         : 7
-            Attached SAS Address            : 50000D1105EED080
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D1703905808
+            Attached PHY Identifier           : 8
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
       Device #4
          Device is a Hard drive
-         State                              : Online
-         Block Size                         : 512 Bytes
-         Supported                          : Yes
-         Transfer Speed                     : SATA 6.0 Gb/s
-         Reported Channel,Device(T:L)       : 0,5(5:0)
-         Reported Location                  : Connector 1, Device 1
-         Vendor                             : HGST
-         Model                              : HUS724030ALA640
-         Firmware                           : MF8OAA70
-         Serial number                      : PN2231P8HE17ZR
-         World-wide name                    : 5000CCA22CD4050C
-         Reserved Size                      : 4739480 KB
-         Used Size                          : 2856960 MB
-         Unused Size                        : 64 KB
-         Total Size                         : 2861588 MB
-         Write Cache                        : Enabled (write-back)
-         FRU                                : None
-         S.M.A.R.T.                         : No
-         S.M.A.R.T. warnings                : 0
-         Power State                        : Full rpm
-         Supported Power States             : Full rpm,Powered off,Reduced rpm
-         SSD                                : No
-         maxCache Capable                   : No
-         maxCache Assigned                  : No
-         Temperature                        : Not Supported
-         NCQ status                         : Enabled
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,4(4:0)
+         Reported Location                    : Enclosure 0, Slot 4(Connector 1)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7GUK2AYF56D
+         World-wide name                      : 500003981C5813E5
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 30 C/ 86 F 
+         NCQ status                           : Enabled
       ----------------------------------------------------------------
-      Device Phy Information                
+      Device Phy Information                  
       ----------------------------------------------------------------
          Phy #0
-            PHY Identifier                  : 0
-            SAS Address                     : 3000000000000006
-            Attached PHY Identifier         : 6
-            Attached SAS Address            : 50000D1105EED080
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D170390580C
+            Attached PHY Identifier           : 12
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
+      Device #5
+         Device is a Hard drive
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,5(5:0)
+         Reported Location                    : Enclosure 0, Slot 5(Connector 1)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7GSK2LIF56D
+         World-wide name                      : 500003981C48154C
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 32 C/ 89 F 
+         NCQ status                           : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                  
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D170390580E
+            Attached PHY Identifier           : 14
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
 
+      Device #6
+         Device is a Hard drive
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,6(6:0)
+         Reported Location                    : Enclosure 0, Slot 6(Connector 1)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7FOK1FXF56D
+         World-wide name                      : 500003981C28121F
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 33 C/ 91 F 
+         NCQ status                           : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                  
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D170390580D
+            Attached PHY Identifier           : 13
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
+
+      Device #7
+         Device is a Hard drive
+         State                                : Online
+         Block Size                           : 512 Bytes
+         Supported                            : Yes
+         Programmed Max Speed                 : SATA 6.0 Gb/s
+         Transfer Speed                       : SATA 6.0 Gb/s
+         Reported Channel,Device(T:L)         : 0,7(7:0)
+         Reported Location                    : Enclosure 0, Slot 7(Connector 1)
+         Reported ESD(T:L)                    : 2,0(0:0)
+         Vendor                               : ATA
+         Model                                : TOSHIBA HDWE160    
+         Firmware                             : FS2A
+         Serial number                        : X7GSK2LKF56D
+         World-wide name                      : 500003981C48154E
+         Reserved Size                        : 4225560 KB
+         Used Size                            : 5719040 MB
+         Unused Size                          : 64 KB
+         Total Size                           : 5723166 MB
+         Write Cache                          : Enabled (write-back)
+         FRU                                  : None
+         S.M.A.R.T.                           : No
+         S.M.A.R.T. warnings                  : 0
+         Power State                          : Full rpm
+         Supported Power States               : Full rpm,Powered off,Reduced rpm
+         SSD                                  : No
+         Temperature                          : 30 C/ 86 F 
+         NCQ status                           : Enabled
+      ----------------------------------------------------------------
+      Device Phy Information                  
+      ----------------------------------------------------------------
+         Phy #0
+            PHY Identifier                    : 0
+            SAS Address                       : 30000D170390580F
+            Attached PHY Identifier           : 15
+            Attached SAS Address              : 50000D1703905800
+      ----------------------------------------------------------------
+      Runtime Error Counters                  
+      ----------------------------------------------------------------
+         Hardware Error Count                 : 0
+         Medium Error Count                   : 0
+         Parity Error Count                   : 0
+         Link Failure Count                   : 0
+         Aborted Command Count                : 0
+         SMART Warning Count                  : 0
+
+      Device #8
+         Device is an Enclosure Services Device
+         Reported Channel,Device(T:L)         : 2,0(0:0)
+         Enclosure ID                         : 0
+         Type                                 : SES2
+         Vendor                               : ADAPTEC
+         Model                                : Virtual SGPIO
+         Firmware                             :    1
+         Status of Enclosure Services Device
+            Speaker status                    : Not Available
 
 ----------------------------------------------------------------------
 Connector information
 ----------------------------------------------------------------------
-Connector #0
-   Connector Name                           : CN0
+Connector #0                                  
+   Connector Name                             : CN0
 
-   -------------------------------------------------------------------
-   Lane Information                         
-   -------------------------------------------------------------------
-   Lane #0                                  
-      Channel ID                            : 0
-      Device ID                             : 0
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 3
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #0           
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+   Lane #0                                    
+      Channel ID                              : 0
+      Device ID                               : 0
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 11
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580B
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #1                                  
-      Channel ID                            : 0
-      Device ID                             : 1
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 2
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #1           
+   Lane #1                                    
+      Channel ID                              : 0
+      Device ID                               : 1
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 9
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D1703905809
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #2                                  
-      Channel ID                            : 0
-      Device ID                             : 2
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 1
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #2           
+   Lane #2                                    
+      Channel ID                              : 0
+      Device ID                               : 2
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 10
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580A
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #3                                  
-      Channel ID                            : 0
-      Device ID                             : 3
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 0
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #3           
+   Lane #3                                    
+      Channel ID                              : 0
+      Device ID                               : 3
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 8
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D1703905808
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
 
-Connector #1
-   Connector Name                           : CN1
+Connector #1                                  
+   Connector Name                             : CN1
 
-   -------------------------------------------------------------------
-   Lane Information                         
-   -------------------------------------------------------------------
-   Lane #0                                  
-      Channel ID                            : 0
-      Device ID                             : 4
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 7
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #0           
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+   Lane #0                                    
+      Channel ID                              : 0
+      Device ID                               : 4
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 12
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580C
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #1                                  
-      Channel ID                            : 0
-      Device ID                             : 5
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 6
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #1           
+   Lane #1                                    
+      Channel ID                              : 0
+      Device ID                               : 5
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 14
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580E
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #2                                  
-      Channel ID                            : 0
-      Device ID                             : 6
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 5
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #2           
+   Lane #2                                    
+      Channel ID                              : 0
+      Device ID                               : 6
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 13
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580D
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
 
-   Lane #3                                  
-      Channel ID                            : 0
-      Device ID                             : 7
-      SAS Address                           : 50000D1105EED080
-      PHY Identifier                        : 4
-      ----------------------------------------------------------------
-      Lane SAS Phy Information              
-      ----------------------------------------------------------------
-         No SAS Phy information available for lane #3           
+   Lane #3                                    
+      Channel ID                              : 0
+      Device ID                               : 7
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 15
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+         Attached PHY Identifier              : 0
+         Attached SAS Address                 : 30000D170390580F
+         Negotiated Logical Link Rate         : PHY enabled - 6 Gbps
+
+
+Connector #2                                  
+   Connector Name                             : CN2
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+   Lane #0                                    
+      Channel ID                              : 0
+      Device ID                               : 8
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 4
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #1                                    
+      Channel ID                              : 0
+      Device ID                               : 9
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 5
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #2                                    
+      Channel ID                              : 0
+      Device ID                               : 10
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 7
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #3                                    
+      Channel ID                              : 0
+      Device ID                               : 11
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 6
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+
+Connector #3                                  
+   Connector Name                             : CN3
+
+      ----------------------------------------
+   Lane Information                           
+      ----------------------------------------
+   Lane #0                                    
+      Channel ID                              : 0
+      Device ID                               : 12
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 3
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #1                                    
+      Channel ID                              : 0
+      Device ID                               : 13
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 2
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #2                                    
+      Channel ID                              : 0
+      Device ID                               : 14
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 0
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
+
+   Lane #3                                    
+      Channel ID                              : 0
+      Device ID                               : 15
+      SAS Address                             : 50000D1703905800
+      PHY Identifier                          : 1
+         -------------------------------------
+      Lane SAS Phy Information                
+         -------------------------------------
+         SAS Address                          : 50000D1703905800
 
 
 

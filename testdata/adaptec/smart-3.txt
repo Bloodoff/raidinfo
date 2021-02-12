@@ -4,8 +4,8 @@ Copyright (C) 2002-19, Bruce Allen, Christian Franke, www.smartmontools.org
 === START OF INFORMATION SECTION ===
 Model Family:     Toshiba X300
 Device Model:     TOSHIBA HDWE160
-Serial Number:    X7GSK2LIF56D
-LU WWN Device Id: 5 000039 81c48154c
+Serial Number:    X7DQK50RF56D
+LU WWN Device Id: 5 000039 81c38142a
 Firmware Version: FS2A
 User Capacity:    6,001,175,126,016 bytes [6.00 TB]
 Sector Sizes:     512 bytes logical, 4096 bytes physical
@@ -14,7 +14,7 @@ Form Factor:      3.5 inches
 Device is:        In smartctl database [for details use: -P show]
 ATA Version is:   ATA8-ACS (minor revision not indicated)
 SATA Version is:  SATA 3.0, 6.0 Gb/s (current: 6.0 Gb/s)
-Local Time is:    Fri Feb 12 17:28:22 2021 +05
+Local Time is:    Fri Feb 12 17:26:52 2021 +05
 SMART support is: Available - device has SMART capability.
 SMART support is: Enabled
 AAM feature is:   Unavailable
@@ -54,7 +54,7 @@ Error logging capability:        (0x01)	Error logging supported.
 Short self-test routine 
 recommended polling time: 	 (   2) minutes.
 Extended self-test routine
-recommended polling time: 	 ( 655) minutes.
+recommended polling time: 	 ( 648) minutes.
 SCT capabilities: 	       (0x003d)	SCT Status supported.
 					SCT Error Recovery Control supported.
 					SCT Feature Control supported.
@@ -65,27 +65,27 @@ Vendor Specific SMART Attributes with Thresholds:
 ID# ATTRIBUTE_NAME          FLAGS    VALUE WORST THRESH FAIL RAW_VALUE
   1 Raw_Read_Error_Rate     PO-R--   100   100   050    -    0
   2 Throughput_Performance  P-S---   100   100   050    -    0
-  3 Spin_Up_Time            POS--K   100   100   001    -    10826
-  4 Start_Stop_Count        -O--CK   100   100   000    -    10
+  3 Spin_Up_Time            POS--K   100   100   001    -    10117
+  4 Start_Stop_Count        -O--CK   100   100   000    -    12
   5 Reallocated_Sector_Ct   PO--CK   100   100   050    -    0
   7 Seek_Error_Rate         PO-R--   100   100   050    -    0
   8 Seek_Time_Performance   P-S---   100   100   050    -    0
   9 Power_On_Hours          -O--CK   041   041   000    -    23778
  10 Spin_Retry_Count        PO--CK   100   100   030    -    0
- 12 Power_Cycle_Count       -O--CK   100   100   000    -    10
-191 G-Sense_Error_Rate      -O--CK   100   100   000    -    0
-192 Power-Off_Retract_Count -O--CK   100   100   000    -    9
-193 Load_Cycle_Count        -O--CK   100   100   000    -    184
-194 Temperature_Celsius     -O---K   100   100   000    -    33 (Min/Max 15/45)
+ 12 Power_Cycle_Count       -O--CK   100   100   000    -    12
+191 G-Sense_Error_Rate      -O--CK   100   100   000    -    1
+192 Power-Off_Retract_Count -O--CK   100   100   000    -    11
+193 Load_Cycle_Count        -O--CK   100   100   000    -    18
+194 Temperature_Celsius     -O---K   100   100   000    -    36 (Min/Max 16/50)
 196 Reallocated_Event_Count -O--CK   100   100   000    -    0
 197 Current_Pending_Sector  -O--CK   100   100   000    -    0
 198 Offline_Uncorrectable   ----CK   100   100   000    -    0
 199 UDMA_CRC_Error_Count    -O--CK   200   253   000    -    0
 220 Disk_Shift              -O----   100   100   000    -    0
-222 Loaded_Hours            -O--CK   041   041   000    -    23776
+222 Loaded_Hours            -O--CK   041   041   000    -    23778
 223 Load_Retry_Count        -O--CK   100   100   000    -    0
 224 Load_Friction           -O---K   100   100   000    -    0
-226 Load-in_Time            -OS--K   100   100   000    -    640
+226 Load-in_Time            -OS--K   100   100   000    -    543
 240 Head_Flying_Hours       P-----   100   100   001    -    0
                             ||||||_ K auto-keep
                             |||||__ C event count
@@ -136,9 +136,9 @@ If Selective self-test is pending on power-up, resume after 0 minute delay.
 SCT Status Version:                  3
 SCT Version (vendor specific):       1 (0x0001)
 Device State:                        Active (0)
-Current Temperature:                    33 Celsius
-Power Cycle Min/Max Temperature:     22/39 Celsius
-Lifetime    Min/Max Temperature:     15/45 Celsius
+Current Temperature:                    36 Celsius
+Power Cycle Min/Max Temperature:     25/42 Celsius
+Lifetime    Min/Max Temperature:     16/50 Celsius
 Under/Over Temperature Limit Count:   0/0
 
 SCT Temperature History Version:     2
@@ -146,4 +146,4 @@ Temperature Sampling Period:         1 minute
 Temperature Logging Interval:        1 minute
 Min/Max recommended Temperature:      5/55 Celsius
 Min/Max Temperature Limit:            5/55 Celsius
-Temperature History Size (Index):    478 (331)
+Temperature History Size (Index):    478 (327)

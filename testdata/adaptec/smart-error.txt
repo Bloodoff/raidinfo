@@ -1,0 +1,7 @@
+smartctl 7.1 2019-12-30 r5022 [x86_64-linux-5.5.6-100.fc30.x86_64] (local build)
+Copyright (C) 2002-19, Bruce Allen, Christian Franke, www.smartmontools.org
+
+/dev/null: Unknown device type 'aacraid,0,-,-'
+=======> VALID ARGUMENTS ARE: ata, scsi[+TYPE], nvme[,NSID], sat[,auto][,N][+TYPE], usbcypress[,X], usbjmicron[,p][,x][,N], usbprolific, usbsunplus, sntjmicron[,NSID], intelliprop,N[+TYPE], jmb39x,N[,sLBA][,force][+TYPE], marvell, areca,N/E, 3ware,N, hpt,L/M/N, megaraid,N, aacraid,H,L,ID, cciss,N, auto, test <=======
+
+Use smartctl -h to get a usage summary

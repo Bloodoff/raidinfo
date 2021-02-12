@@ -12,14 +12,21 @@ FakeResponses = {
     '/usr/sbin/smartctl -x -d aacraid,0,0,0 /dev/null': 'testdata/adaptec/smart-0.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,1 /dev/null': 'testdata/adaptec/smart-1.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,2 /dev/null': 'testdata/adaptec/smart-2.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,3 /dev/null': 'testdata/adaptec/smart-3.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,4 /dev/null': 'testdata/adaptec/smart-4.txt',
     '/usr/sbin/smartctl -x -d aacraid,0,0,5 /dev/null': 'testdata/adaptec/smart-5.txt',
-    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,0 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,6 /dev/null': 'testdata/adaptec/smart-6.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,0,7 /dev/null': 'testdata/adaptec/smart-7.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,0 /dev/null': 'testdata/adaptec/smart-sct-error.txt',
     '/usr/sbin/smartctl -l scterc -d aacraid,0,0,1 /dev/null': 'testdata/adaptec/smart-sct.txt',
     '/usr/sbin/smartctl -l scterc -d aacraid,0,0,2 /dev/null': 'testdata/adaptec/smart-sct.txt',
     '/usr/sbin/smartctl -l scterc -d aacraid,0,0,3 /dev/null': 'testdata/adaptec/smart-sct.txt',
     '/usr/sbin/smartctl -l scterc -d aacraid,0,0,4 /dev/null': 'testdata/adaptec/smart-sct.txt',
     '/usr/sbin/smartctl -l scterc -d aacraid,0,0,5 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,6 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,0,7 /dev/null': 'testdata/adaptec/smart-sct.txt',
+    '/usr/sbin/smartctl -x -d aacraid,0,-,- /dev/null': 'testdata/adaptec/smart-error.txt',
+    '/usr/sbin/smartctl -l scterc -d aacraid,0,-,- /dev/null': 'testdata/adaptec/smart-error.txt',
     '/usr/sbin/arcconf GETSMARTSTATS 1': 'testdata/adaptec/util-3.txt',
 }
 
@@ -38,6 +45,7 @@ def fake_isfile(filename):
 def fake_getOutput(cmd):
     lines = []
     testfile = FakeResponses.get(cmd, False)
+    print(testfile)
     if not testfile:
         raise Exception('Test file for command "{}" not found'.format(cmd))
     output = read_file('{}/{}'.format(os.path.dirname(__file__), testfile))

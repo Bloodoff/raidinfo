@@ -4,7 +4,7 @@ import re
 import pytest
 import mock
 
-from lib import *
+from lib import raid
 
 FakeResponses = {
     '/opt/MegaRAID/storcli/storcli64 show nolog': 'testdata/megaraid-1/util-1.txt',
